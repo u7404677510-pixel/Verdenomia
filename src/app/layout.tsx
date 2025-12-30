@@ -18,26 +18,22 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Verdenomia - Aislamiento de Buhardillas | Aislamiento por 1€',
+    default: 'Verdenomia - Aislamiento 100% Gratis con CAE',
     template: '%s | Verdenomia',
   },
   description:
-    'Especialistas en aislamiento de buhardillas en España. Gracias a los programas PREE y PRTR-NextGenerationEU, aísla tu hogar por 1€. +50 artesanos, +15 años de experiencia, +2500 proyectos financiados.',
+    'Aísla el suelo de tu buhardilla 100% gratis gracias a los Certificados de Ahorro Energético (CAE). Sin coste, sin compromiso. Ahorra hasta un 30% en tu factura energética.',
   keywords: [
-    'aislamiento buhardillas',
-    'aislamiento por 1 euro',
+    'aislamiento gratis',
+    'CAE',
+    'certificados ahorro energético',
+    'aislamiento buhardilla',
     'eficiencia energética',
-    'PREE',
-    'PRTR',
-    'NextGenerationEU',
-    'aislamiento insuflado',
+    'aislamiento 0 euros',
+    'aislamiento soplado',
     'lana mineral',
     'ahorro energético',
-    'subvenciones aislamiento',
     'España',
-    'Madrid',
-    'Barcelona',
-    'Ibiza',
   ],
   authors: [{ name: 'Verdenomia' }],
   creator: 'Verdenomia',
@@ -50,32 +46,28 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://verdenomia.es'),
   alternates: {
     canonical: '/',
-    languages: {
-      'es-ES': '/es',
-      'fr-FR': '/fr',
-    },
   },
   openGraph: {
     type: 'website',
     locale: 'es_ES',
     url: 'https://verdenomia.es',
-    title: 'Verdenomia - Aislamiento de Buhardillas por 1€',
+    title: 'Verdenomia - Aislamiento 100% Gratis con CAE',
     description:
-      'Renueva tu hogar con total confianza. Aislamiento de buhardillas financiado por programas públicos PREE y NextGenerationEU.',
+      'Aísla el suelo de tu buhardilla 100% gratis gracias a los CAE. Ahorra hasta un 30% en tu factura.',
     siteName: 'Verdenomia',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Verdenomia - Especialistas en Aislamiento',
+        alt: 'Verdenomia - Aislamiento 100% financiado',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Verdenomia - Aislamiento de Buhardillas',
-    description: 'Aísla tu hogar por 1€ con ayudas públicas',
+    title: 'Verdenomia - Aislamiento 100% Gratis',
+    description: 'Aísla tu buhardilla gratis con los CAE',
     images: ['/og-image.jpg'],
   },
   robots: {
@@ -117,5 +109,3 @@ export default function RootLayout({
     </html>
   )
 }
-
-

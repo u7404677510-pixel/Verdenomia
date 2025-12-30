@@ -1,96 +1,65 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import {
-  ArrowRight,
   CheckCircle2,
-  Award,
-  Users,
-  Clock,
-  Leaf,
-  ThermometerSun,
-  Snowflake,
-  Euro,
-  Star,
+  ArrowRight,
+  ArrowLeft,
   Phone,
-  ChevronRight,
-  Play,
+  Star,
   Shield,
-  TrendingDown,
+  Clock,
+  Euro,
+  Thermometer,
   Home,
   Zap,
-  MapPin,
-  Quote,
-  ArrowUpRight,
+  Users,
+  Award,
+  ChevronRight,
   Sparkles,
+  Wind,
+  Layers,
+  FileCheck,
 } from 'lucide-react'
 
-const stats = [
-  { value: '50+', label: 'Artesanos expertos', icon: Users },
-  { value: '15+', label: 'Años de experiencia', icon: Clock },
-  { value: '2500+', label: 'Proyectos financiados', icon: Home },
-  { value: '97%', label: 'Dossiers aceptados', icon: Award },
-]
-
-const benefits = [
+// Wizard steps configuration
+const wizardSteps = [
   {
-    icon: Euro,
-    title: 'Aislamiento desde 1€',
-    description:
-      'Gracias a los programas PREE y NextGenerationEU, la mayoría de los hogares pueden aislar sus buhardillas con un coste simbólico.',
-  },
-  {
-    icon: ThermometerSun,
-    title: 'Confort todo el año',
-    description:
-      'Mantén tu hogar fresco en verano y cálido en invierno. Mejora inmediata del confort térmico.',
-  },
-  {
-    icon: TrendingDown,
-    title: 'Ahorro 20-35%',
-    description:
-      'Reduce tu factura de calefacción y aire acondicionado de forma significativa y sostenible.',
-  },
-  {
-    icon: Zap,
-    title: 'Instalación rápida',
-    description:
-      'Nuestros equipos profesionales completan la mayoría de los proyectos en menos de un día.',
-  },
-]
-
-const techniques = [
-  {
-    id: 'insuflado',
-    title: 'Aislamiento Insuflado',
-    subtitle: 'Ideal para espacios de difícil acceso',
-    description:
-      'La lana mineral insuflada se proyecta en los huecos y rincones de la buhardilla, garantizando una cobertura total sin puentes térmicos. Perfecto para espacios reducidos o de geometría compleja.',
-    features: [
-      'Cobertura total sin huecos',
-      'Sin necesidad de acceso amplio',
-      'Instalación limpia y rápida',
-      'Ideal para retrofit',
+    id: 1,
+    question: '¿Eres propietario u ocupante de la vivienda?',
+    options: [
+      { value: 'propietario', label: 'Soy propietario', icon: Home },
+      { value: 'inquilino', label: 'Soy inquilino', icon: Users },
     ],
-    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80',
-    color: 'verde',
   },
   {
-    id: 'manta',
-    title: 'Aislamiento en Manta',
-    subtitle: 'Para buhardillas accesibles',
-    description:
-      'Los rollos de lana mineral se despliegan sobre el suelo de la buhardilla, formando una barrera térmica continua. La opción más económica para espacios con buen acceso.',
-    features: [
-      'Instalación sencilla',
-      'Excelente relación calidad-precio',
-      'Durabilidad comprobada',
-      'Fácil verificación visual',
+    id: 2,
+    question: '¿Tu vivienda tiene buhardilla o ático?',
+    options: [
+      { value: 'si', label: 'Sí, tiene buhardilla/ático', icon: Home },
+      { value: 'no', label: 'No tiene', icon: Home },
     ],
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
-    color: 'tierra',
+  },
+  {
+    id: 3,
+    question: '¿El suelo de tu buhardilla está aislado actualmente?',
+    options: [
+      { value: 'no', label: 'No está aislado', icon: Thermometer },
+      { value: 'parcial', label: 'Parcialmente aislado', icon: Thermometer },
+      { value: 'no_se', label: 'No lo sé', icon: Thermometer },
+    ],
+  },
+  {
+    id: 4,
+    question: '¿Cuál es el tipo de calefacción de tu vivienda?',
+    options: [
+      { value: 'gas', label: 'Gas natural', icon: Zap },
+      { value: 'electrico', label: 'Eléctrico', icon: Zap },
+      { value: 'gasoil', label: 'Gasóleo', icon: Zap },
+      { value: 'otro', label: 'Otro', icon: Zap },
+    ],
   },
 ]
 
@@ -99,401 +68,527 @@ const testimonials = [
     name: 'María García',
     location: 'Madrid',
     rating: 5,
-    text: 'Increíble servicio. El equipo fue muy profesional y la diferencia de temperatura en casa es notable. ¡Y todo por solo 1€!',
-    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&q=80',
+    text: 'Increíble servicio. El aislamiento se hizo en unas pocas horas y ya notamos la diferencia en la factura. ¡Y todo gratis gracias a los CAE!',
+    date: 'Hace 2 semanas',
   },
   {
-    name: 'Carlos Martínez',
-    location: 'Barcelona',
+    name: 'Carlos Rodríguez',
+    location: 'Alicante',
     rating: 5,
-    text: 'Desde que aislaron nuestra buhardilla, la factura de gas ha bajado un 30%. El proceso de subvención fue muy fácil con su ayuda.',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80',
+    text: 'Muy profesionales. Me explicaron todo el proceso de los certificados de ahorro energético y no pagué ni un euro.',
+    date: 'Hace 1 mes',
   },
   {
-    name: 'Ana Rodríguez',
+    name: 'Ana Martínez',
     location: 'Valencia',
     rating: 5,
-    text: 'Muy contentos con el resultado. El equipo explicó todo el proceso y gestionaron todos los papeles de la subvención.',
-    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&q=80',
+    text: 'La casa está mucho más caliente en invierno. El equipo fue muy amable y el trabajo impecable.',
+    date: 'Hace 3 semanas',
   },
 ]
 
-const projects = [
-  {
-    id: 1,
-    title: 'Casa unifamiliar en Pozuelo',
-    type: 'Aislamiento insuflado',
-    area: '120m²',
-    image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80',
-  },
-  {
-    id: 2,
-    title: 'Ático en el Eixample',
-    type: 'Aislamiento en manta',
-    area: '85m²',
-    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80',
-  },
-  {
-    id: 3,
-    title: 'Chalet en Las Rozas',
-    type: 'Aislamiento insuflado',
-    area: '200m²',
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
-  },
+const stats = [
+  { value: '2,500+', label: 'Hogares aislados', icon: Home },
+  { value: '100%', label: 'Financiado por CAE', icon: Euro },
+  { value: '30%', label: 'Ahorro energético', icon: Thermometer },
+  { value: '24h', label: 'Respuesta garantizada', icon: Clock },
 ]
 
-const processSteps = [
+const process = [
   {
-    step: 1,
-    title: 'Contacto inicial',
-    description: 'Llámanos o completa el formulario. Verificamos tu elegibilidad en 24h.',
-    icon: Phone,
+    step: '01',
+    title: 'Verifica tu elegibilidad',
+    description: 'Responde unas preguntas sencillas para saber si cumples los requisitos del programa CAE.',
+    icon: FileCheck,
   },
   {
-    step: 2,
-    title: 'Visita técnica',
-    description: 'Un técnico visita tu hogar para evaluar las necesidades y tomar medidas.',
+    step: '02',
+    title: 'Diagnóstico gratuito',
+    description: 'Un técnico evalúa tu buhardilla y te explica el proceso sin ningún compromiso.',
     icon: Home,
   },
   {
-    step: 3,
-    title: 'Gestión de ayudas',
-    description: 'Nos encargamos de todos los trámites administrativos con las subvenciones.',
-    icon: Shield,
+    step: '03',
+    title: 'Instalación rápida',
+    description: 'Aislamos el suelo de tu buhardilla en pocas horas con técnicas de soplado o desenrollado.',
+    icon: Wind,
   },
   {
-    step: 4,
-    title: 'Instalación',
-    description: 'Realizamos la instalación en menos de 10 días tras la validación del dossier.',
-    icon: Zap,
+    step: '04',
+    title: '¡0€ para ti!',
+    description: 'Gracias a los CAE, la intervención está 100% financiada. No pagas nada.',
+    icon: Sparkles,
   },
 ]
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0 },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-}
-
 export default function HomePage() {
+  const [currentStep, setCurrentStep] = useState(0)
+  const [answers, setAnswers] = useState<Record<number, string>>({})
+  const [showForm, setShowForm] = useState(false)
+  const [formData, setFormData] = useState({
+    nombre: '',
+    apellido: '',
+    email: '',
+    telefono: '',
+    codigoPostal: '',
+  })
+  const [isSubmitted, setIsSubmitted] = useState(false)
+
+  const handleAnswer = (value: string) => {
+    setAnswers({ ...answers, [currentStep]: value })
+    if (currentStep < wizardSteps.length - 1) {
+      setCurrentStep(currentStep + 1)
+    } else {
+      setShowForm(true)
+    }
+  }
+
+  const handleBack = () => {
+    if (currentStep > 0) {
+      setCurrentStep(currentStep - 1)
+    }
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    // Here you would send the data to your backend
+    console.log({ answers, formData })
+    setIsSubmitted(true)
+  }
+
+  const resetWizard = () => {
+    setCurrentStep(0)
+    setAnswers({})
+    setShowForm(false)
+    setIsSubmitted(false)
+    setFormData({ nombre: '', apellido: '', email: '', telefono: '', codigoPostal: '' })
+  }
+
   return (
-    <>
+    <div className="overflow-hidden">
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center hero-pattern overflow-hidden">
-        {/* Background decorations */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-verde-400/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-tierra-400/10 rounded-full blur-3xl" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cielo-400/5 rounded-full blur-3xl" />
+      <section className="relative min-h-[90vh] flex items-center bg-gradient-to-br from-verde-900 via-verde-800 to-verde-900 overflow-hidden">
+        {/* Background pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }} />
         </div>
+        
+        {/* Floating elements */}
+        <div className="absolute top-20 left-10 w-72 h-72 bg-verde-400/20 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-verde-500/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
 
-        <div className="container-custom relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left content */}
+        <div className="container-custom relative z-10 py-20">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            {/* Left - Content */}
             <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={staggerContainer}
-              className="text-center lg:text-left"
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
             >
-              <motion.div variants={fadeInUp} className="mb-6">
-                <span className="inline-flex items-center gap-2 px-4 py-2 bg-verde-100 text-verde-800 rounded-full text-sm font-medium">
-                  <Sparkles className="w-4 h-4" />
-                  Programa PREE & NextGenerationEU
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-verde-100 text-sm mb-6">
+                <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                Programa CAE 2024 activo
+              </div>
+
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-tight mb-6">
+                Aísla tu buhardilla
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-verde-300 to-green-200">
+                  100% gratis
                 </span>
-              </motion.div>
+              </h1>
 
-              <motion.h1
-                variants={fadeInUp}
-                className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold text-gray-900 mb-6 leading-tight"
-              >
-                Renueva tu hogar con{' '}
-                <span className="gradient-text">total confianza</span>
-              </motion.h1>
+              <p className="text-xl text-verde-100 mb-8 leading-relaxed">
+                Gracias a los <strong>Certificados de Ahorro Energético (CAE)</strong>, 
+                aislamos el suelo de tu buhardilla sin coste para ti. 
+                Reduce tu factura hasta un <strong>30%</strong>.
+              </p>
 
-              <motion.p
-                variants={fadeInUp}
-                className="text-lg md:text-xl text-gray-600 mb-8 max-w-xl mx-auto lg:mx-0"
-              >
-                Aísla tu buhardilla por{' '}
-                <strong className="text-verde-700">solo 1€</strong> gracias a las
-                ayudas públicas. Más de 2.500 familias ya confían en nosotros.
-              </motion.p>
+              {/* Benefits */}
+              <div className="grid sm:grid-cols-2 gap-4 mb-8">
+                {[
+                  { icon: Euro, text: '0€ — 100% financiado' },
+                  { icon: Clock, text: 'Instalación en pocas horas' },
+                  { icon: Thermometer, text: 'Hasta -30% en factura' },
+                  { icon: Shield, text: 'Sin obras ni molestias' },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-3 text-white">
+                    <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center">
+                      <item.icon className="w-5 h-5 text-verde-300" />
+                    </div>
+                    <span className="font-medium">{item.text}</span>
+                  </div>
+                ))}
+              </div>
 
-              <motion.div
-                variants={fadeInUp}
-                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8"
-              >
-                <Link href="/contacto#presupuesto" className="btn-primary text-lg px-8 py-4">
-                  Calcular mi proyecto
+              {/* CTAs */}
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="#eligibilidad"
+                  className="btn-primary bg-white text-verde-800 hover:bg-verde-50 text-lg px-8 py-4 shadow-2xl shadow-verde-900/50"
+                >
+                  ¿Soy elegible?
                   <ArrowRight className="w-5 h-5" />
-                </Link>
-                <Link href="/servicios" className="btn-secondary text-lg px-8 py-4">
-                  <Play className="w-5 h-5" />
-                  Ver cómo funciona
-                </Link>
-              </motion.div>
-
-              <motion.div
-                variants={fadeInUp}
-                className="flex flex-wrap items-center gap-6 justify-center lg:justify-start text-sm text-gray-600"
-              >
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-verde-600" />
-                  Sin coste inicial
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-verde-600" />
-                  Gestión 100% incluida
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-verde-600" />
-                  Garantía 10 años
-                </div>
-              </motion.div>
+                </a>
+                <a
+                  href="tel:+34919469528"
+                  className="btn-secondary border-white/30 text-white hover:bg-white/10 text-lg px-8 py-4"
+                >
+                  <Phone className="w-5 h-5" />
+                  Llamar ahora
+                </a>
+              </div>
             </motion.div>
 
-            {/* Right content - Hero image */}
+            {/* Right - Image/Visual */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative hidden lg:block"
+              className="relative"
             >
-              <div className="relative">
-                {/* Main image */}
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-                  <Image
-                    src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80"
-                    alt="Casa moderna con aislamiento eficiente"
-                    width={600}
-                    height={500}
-                    className="w-full h-auto object-cover"
-                    priority
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-verde-900/40 to-transparent" />
+              <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10">
+                {/* House illustration */}
+                <div className="aspect-square relative flex items-center justify-center">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-full max-w-xs">
+                      {/* Simple house SVG */}
+                      <svg viewBox="0 0 200 180" className="w-full h-auto">
+                        {/* Roof */}
+                        <path d="M100 10 L190 80 L10 80 Z" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" strokeWidth="2"/>
+                        {/* Attic floor - highlighted */}
+                        <rect x="30" y="80" width="140" height="15" fill="rgba(74, 222, 128, 0.5)" stroke="rgba(74, 222, 128, 0.8)" strokeWidth="2">
+                          <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+                        </rect>
+                        {/* House body */}
+                        <rect x="30" y="95" width="140" height="75" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" strokeWidth="2"/>
+                        {/* Door */}
+                        <rect x="85" y="130" width="30" height="40" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.3)" strokeWidth="2"/>
+                        {/* Windows */}
+                        <rect x="45" y="110" width="25" height="25" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.3)" strokeWidth="2"/>
+                        <rect x="130" y="110" width="25" height="25" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.3)" strokeWidth="2"/>
+                      </svg>
+                    </div>
+                  </div>
+                  
+                  {/* Labels */}
+                  <div className="absolute top-1/4 right-0 transform translate-x-4">
+                    <div className="bg-verde-500 text-white px-3 py-1.5 rounded-lg text-sm font-medium shadow-lg">
+                      Suelo buhardilla
+                      <div className="absolute left-0 top-1/2 -translate-x-2 -translate-y-1/2 w-0 h-0 border-t-8 border-b-8 border-r-8 border-transparent border-r-verde-500" />
+                    </div>
+                  </div>
                 </div>
 
-                {/* Floating cards */}
-                <motion.div
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.5 }}
-                  className="absolute -left-8 top-20 glass-effect rounded-2xl p-4 shadow-xl"
-                >
+                {/* Stats overlay */}
+                <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl p-4 shadow-xl">
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 bg-verde-100 rounded-xl flex items-center justify-center">
-                      <Snowflake className="w-6 h-6 text-verde-600" />
+                      <Thermometer className="w-6 h-6 text-verde-600" />
                     </div>
                     <div>
-                      <p className="font-bold text-gray-900">-35%</p>
-                      <p className="text-sm text-gray-500">Consumo energético</p>
+                      <div className="text-2xl font-bold text-verde-800">-30%</div>
+                      <div className="text-sm text-gray-500">Factura energética</div>
                     </div>
                   </div>
-                </motion.div>
+                </div>
 
-                <motion.div
-                  initial={{ opacity: 0, x: 30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.7 }}
-                  className="absolute -right-4 bottom-32 glass-effect rounded-2xl p-4 shadow-xl"
-                >
+                <div className="absolute -top-6 -right-6 bg-white rounded-2xl p-4 shadow-xl">
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-tierra-100 rounded-xl flex items-center justify-center">
-                      <Euro className="w-6 h-6 text-tierra-600" />
+                    <div className="w-12 h-12 bg-yellow-100 rounded-xl flex items-center justify-center">
+                      <Euro className="w-6 h-6 text-yellow-600" />
                     </div>
                     <div>
-                      <p className="font-bold text-gray-900">Solo 1€</p>
-                      <p className="text-sm text-gray-500">Con ayudas públicas</p>
+                      <div className="text-2xl font-bold text-verde-800">0€</div>
+                      <div className="text-sm text-gray-500">Coste para ti</div>
                     </div>
                   </div>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.9 }}
-                  className="absolute -bottom-6 left-1/2 -translate-x-1/2 glass-effect rounded-2xl p-4 shadow-xl"
-                >
-                  <div className="flex items-center gap-2">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                    ))}
-                    <span className="ml-2 font-semibold text-gray-900">4.9/5</span>
-                    <span className="text-gray-500 text-sm">(500+ avis)</span>
-                  </div>
-                </motion.div>
+                </div>
               </div>
             </motion.div>
           </div>
         </div>
+
+        {/* Wave divider */}
+        <div className="absolute bottom-0 left-0 right-0">
+          <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
+            <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white"/>
+          </svg>
+        </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-12 bg-white border-y border-gray-100">
+      <section className="py-12 bg-white relative -mt-1">
         <div className="container-custom">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => {
-              const Icon = stat.icon
-              return (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="text-center"
-                >
-                  <div className="inline-flex items-center justify-center w-14 h-14 bg-verde-100 rounded-2xl mb-4">
-                    <Icon className="w-7 h-7 text-verde-600" />
-                  </div>
-                  <p className="text-3xl md:text-4xl font-bold text-verde-700 mb-1">
-                    {stat.value}
-                  </p>
-                  <p className="text-gray-600">{stat.label}</p>
-                </motion.div>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Benefits Section */}
-      <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <span className="badge-verde mb-4">Ventajas</span>
-            <h2 className="section-title">
-              ¿Por qué aislar tu buhardilla?
-            </h2>
-            <p className="section-subtitle">
-              El aislamiento de buhardillas es la reforma más rentable para mejorar
-              la eficiencia energética de tu hogar
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {benefits.map((benefit, index) => {
-              const Icon = benefit.icon
-              return (
-                <motion.div
-                  key={benefit.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="card group"
-                >
-                  <div className="w-14 h-14 bg-gradient-to-br from-verde-100 to-verde-200 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-                    <Icon className="w-7 h-7 text-verde-600" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {benefit.description}
-                  </p>
-                </motion.div>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Techniques Section */}
-      <section className="section-padding">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <span className="badge-tierra mb-4">Nuestras técnicas</span>
-            <h2 className="section-title">
-              Dos técnicas, un resultado perfecto
-            </h2>
-            <p className="section-subtitle">
-              Adaptamos la solución a las características de tu buhardilla para
-              garantizar el mejor resultado posible
-            </p>
-          </motion.div>
-
-          <div className="space-y-16">
-            {techniques.map((technique, index) => (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {stats.map((stat, index) => (
               <motion.div
-                key={technique.id}
-                initial={{ opacity: 0, y: 40 }}
+                key={stat.label}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className={`grid lg:grid-cols-2 gap-12 items-center ${
-                  index % 2 === 1 ? 'lg:flex-row-reverse' : ''
-                }`}
+                transition={{ delay: index * 0.1 }}
+                className="text-center p-6 rounded-2xl bg-gradient-to-br from-verde-50 to-white border border-verde-100"
               >
-                <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
-                  <span
-                    className={`badge mb-4 ${
-                      technique.color === 'verde' ? 'badge-verde' : 'badge-tierra'
-                    }`}
-                  >
-                    {technique.subtitle}
-                  </span>
-                  <h3 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">
-                    {technique.title}
-                  </h3>
-                  <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                    {technique.description}
-                  </p>
-                  <ul className="space-y-3 mb-8">
-                    {technique.features.map((feature) => (
-                      <li key={feature} className="flex items-center gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-verde-600 flex-shrink-0" />
-                        <span className="text-gray-700">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Link
-                    href={`/servicios#${technique.id}`}
-                    className="inline-flex items-center gap-2 text-verde-700 font-semibold hover:text-verde-800 group"
-                  >
-                    Más información
-                    <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </Link>
+                <div className="w-14 h-14 mx-auto mb-4 bg-verde-100 rounded-2xl flex items-center justify-center">
+                  <stat.icon className="w-7 h-7 text-verde-600" />
                 </div>
-                <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
-                  <div className="relative rounded-3xl overflow-hidden shadow-xl group">
-                    <Image
-                      src={technique.image}
-                      alt={technique.title}
-                      width={600}
-                      height={400}
-                      className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-                  </div>
+                <div className="text-3xl md:text-4xl font-bold text-verde-800 mb-1">
+                  {stat.value}
                 </div>
+                <div className="text-gray-600">{stat.label}</div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Process Section */}
-      <section className="section-padding bg-gradient-to-br from-verde-900 to-verde-950 text-white">
+      {/* Eligibility Wizard Section */}
+      <section id="eligibilidad" className="py-20 bg-gradient-to-b from-white to-verde-50">
+        <div className="container-custom">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <span className="inline-block px-4 py-2 bg-verde-100 text-verde-700 rounded-full text-sm font-semibold mb-4">
+              ✨ Respuesta en 24h garantizada
+            </span>
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-verde-900 mb-4">
+              ¿Eres elegible al programa CAE?
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Responde a unas preguntas sencillas para saber si puedes beneficiarte del aislamiento 100% financiado.
+            </p>
+          </motion.div>
+
+          <div className="max-w-2xl mx-auto">
+            <div className="bg-white rounded-3xl shadow-2xl shadow-verde-900/10 overflow-hidden">
+              {/* Progress bar */}
+              {!isSubmitted && (
+                <div className="h-2 bg-verde-100">
+                  <motion.div
+                    className="h-full bg-gradient-to-r from-verde-500 to-verde-600"
+                    initial={{ width: 0 }}
+                    animate={{ 
+                      width: showForm 
+                        ? '100%' 
+                        : `${((currentStep + 1) / (wizardSteps.length + 1)) * 100}%` 
+                    }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </div>
+              )}
+
+              <div className="p-8 md:p-10">
+                <AnimatePresence mode="wait">
+                  {isSubmitted ? (
+                    <motion.div
+                      key="success"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="text-center py-8"
+                    >
+                      <div className="w-20 h-20 mx-auto mb-6 bg-verde-100 rounded-full flex items-center justify-center">
+                        <CheckCircle2 className="w-10 h-10 text-verde-600" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-verde-800 mb-3">
+                        ¡Gracias por tu solicitud!
+                      </h3>
+                      <p className="text-gray-600 mb-6">
+                        Un asesor te contactará en las próximas <strong>24 horas</strong> para evaluar tu elegibilidad y programar un diagnóstico gratuito.
+                      </p>
+                      <button
+                        onClick={resetWizard}
+                        className="btn-secondary"
+                      >
+                        Nueva consulta
+                      </button>
+                    </motion.div>
+                  ) : showForm ? (
+                    <motion.form
+                      key="form"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      onSubmit={handleSubmit}
+                      className="space-y-6"
+                    >
+                      <div className="text-center mb-8">
+                        <h3 className="text-xl font-bold text-verde-800 mb-2">
+                          ¡Buenas noticias! Pareces elegible 🎉
+                        </h3>
+                        <p className="text-gray-600">
+                          Déjanos tus datos para que un asesor te contacte.
+                        </p>
+                      </div>
+
+                      <div className="grid sm:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Nombre *
+                          </label>
+                          <input
+                            type="text"
+                            required
+                            value={formData.nombre}
+                            onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
+                            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-verde-500 focus:border-verde-500 transition-colors"
+                            placeholder="Tu nombre"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Apellido *
+                          </label>
+                          <input
+                            type="text"
+                            required
+                            value={formData.apellido}
+                            onChange={(e) => setFormData({ ...formData, apellido: e.target.value })}
+                            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-verde-500 focus:border-verde-500 transition-colors"
+                            placeholder="Tu apellido"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Email *
+                        </label>
+                        <input
+                          type="email"
+                          required
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-verde-500 focus:border-verde-500 transition-colors"
+                          placeholder="tu@email.com"
+                        />
+                      </div>
+
+                      <div className="grid sm:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Teléfono *
+                          </label>
+                          <input
+                            type="tel"
+                            required
+                            value={formData.telefono}
+                            onChange={(e) => setFormData({ ...formData, telefono: e.target.value })}
+                            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-verde-500 focus:border-verde-500 transition-colors"
+                            placeholder="+34 600 000 000"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Código Postal *
+                          </label>
+                          <input
+                            type="text"
+                            required
+                            value={formData.codigoPostal}
+                            onChange={(e) => setFormData({ ...formData, codigoPostal: e.target.value })}
+                            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-verde-500 focus:border-verde-500 transition-colors"
+                            placeholder="28001"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="flex items-start gap-3">
+                        <input
+                          type="checkbox"
+                          required
+                          id="privacy"
+                          className="mt-1 w-4 h-4 text-verde-600 border-gray-300 rounded focus:ring-verde-500"
+                        />
+                        <label htmlFor="privacy" className="text-sm text-gray-600">
+                          Acepto la <Link href="/privacidad" className="text-verde-600 hover:underline">política de privacidad</Link> y el tratamiento de mis datos para ser contactado.
+                        </label>
+                      </div>
+
+                      <div className="flex gap-4">
+                        <button
+                          type="button"
+                          onClick={() => setShowForm(false)}
+                          className="btn-secondary flex-1"
+                        >
+                          <ArrowLeft className="w-4 h-4" />
+                          Atrás
+                        </button>
+                        <button type="submit" className="btn-primary flex-1">
+                          Enviar solicitud
+                          <ArrowRight className="w-4 h-4" />
+                        </button>
+                      </div>
+                    </motion.form>
+                  ) : (
+                    <motion.div
+                      key={`step-${currentStep}`}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      className="space-y-6"
+                    >
+                      <div className="text-center">
+                        <span className="text-sm text-verde-600 font-medium">
+                          Pregunta {currentStep + 1} de {wizardSteps.length}
+                        </span>
+                        <h3 className="text-xl md:text-2xl font-bold text-verde-800 mt-2">
+                          {wizardSteps[currentStep].question}
+                        </h3>
+                      </div>
+
+                      <div className="grid gap-3">
+                        {wizardSteps[currentStep].options.map((option) => {
+                          const Icon = option.icon
+                          return (
+                            <button
+                              key={option.value}
+                              onClick={() => handleAnswer(option.value)}
+                              className={`w-full p-4 rounded-xl border-2 text-left transition-all flex items-center gap-4 group hover:border-verde-500 hover:bg-verde-50 ${
+                                answers[currentStep] === option.value
+                                  ? 'border-verde-500 bg-verde-50'
+                                  : 'border-gray-200'
+                              }`}
+                            >
+                              <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-colors ${
+                                answers[currentStep] === option.value
+                                  ? 'bg-verde-500 text-white'
+                                  : 'bg-gray-100 text-gray-500 group-hover:bg-verde-100 group-hover:text-verde-600'
+                              }`}>
+                                <Icon className="w-6 h-6" />
+                              </div>
+                              <span className="font-medium text-gray-800">{option.label}</span>
+                              <ChevronRight className="w-5 h-5 text-gray-400 ml-auto group-hover:text-verde-500" />
+                            </button>
+                          )
+                        })}
+                      </div>
+
+                      {currentStep > 0 && (
+                        <button
+                          onClick={handleBack}
+                          className="flex items-center gap-2 text-gray-500 hover:text-verde-600 transition-colors mx-auto"
+                        >
+                          <ArrowLeft className="w-4 h-4" />
+                          Pregunta anterior
+                        </button>
+                      )}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Insulate Section */}
+      <section className="py-20 bg-white">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -501,49 +596,162 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 text-verde-200 rounded-full text-sm font-medium mb-4">
-              <Sparkles className="w-4 h-4" />
-              Proceso sencillo
-            </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4">
-              Un proceso fácil, de principio a fin
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-verde-900 mb-4">
+              ¿Por qué aislar el suelo de tu buhardilla?
             </h2>
-            <p className="text-lg text-verde-200 max-w-3xl mx-auto">
-              Nos encargamos de todo: desde la verificación de elegibilidad hasta la
-              instalación final. Tú solo tienes que llamar.
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              El 30% de las pérdidas de calor de tu hogar se producen por el techo. Aislar tu buhardilla es la solución más eficaz y rápida.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {processSteps.map((step, index) => {
-              const Icon = step.icon
-              return (
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            {/* Left - Benefits */}
+            <div className="space-y-6">
+              {[
+                {
+                  icon: Thermometer,
+                  title: 'Confort térmico todo el año',
+                  description: 'Mantén tu casa caliente en invierno y fresca en verano sin esfuerzo.',
+                },
+                {
+                  icon: Euro,
+                  title: 'Ahorro en tu factura',
+                  description: 'Reduce tu consumo de calefacción y aire acondicionado hasta un 30%.',
+                },
+                {
+                  icon: Clock,
+                  title: 'Instalación rápida',
+                  description: 'El proceso se realiza en pocas horas, sin obras ni molestias en tu hogar.',
+                },
+                {
+                  icon: Shield,
+                  title: 'Materiales de calidad',
+                  description: 'Usamos lana mineral de alta densidad con garantía de 25 años.',
+                },
+              ].map((benefit, index) => (
                 <motion.div
-                  key={step.step}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
+                  key={benefit.title}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  className="relative"
+                  transition={{ delay: index * 0.1 }}
+                  className="flex gap-4 p-6 rounded-2xl bg-verde-50 border border-verde-100"
                 >
-                  <div className="bg-white/5 backdrop-blur border border-white/10 rounded-2xl p-6 h-full hover:bg-white/10 transition-colors">
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-tierra-400 to-tierra-600 rounded-xl flex items-center justify-center font-bold text-xl">
-                        {step.step}
-                      </div>
-                      <Icon className="w-6 h-6 text-verde-300" />
-                    </div>
-                    <h3 className="text-xl font-bold mb-2">{step.title}</h3>
-                    <p className="text-verde-200">{step.description}</p>
+                  <div className="w-14 h-14 bg-verde-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <benefit.icon className="w-7 h-7 text-verde-600" />
                   </div>
-                  {index < processSteps.length - 1 && (
-                    <div className="hidden lg:block absolute top-1/2 -right-3 transform -translate-y-1/2">
-                      <ChevronRight className="w-6 h-6 text-verde-600" />
-                    </div>
-                  )}
+                  <div>
+                    <h3 className="text-lg font-bold text-verde-800 mb-1">{benefit.title}</h3>
+                    <p className="text-gray-600">{benefit.description}</p>
+                  </div>
                 </motion.div>
-              )
-            })}
+              ))}
+            </div>
+
+            {/* Right - Techniques */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-br from-verde-800 to-verde-900 rounded-3xl p-8 text-white"
+            >
+              <h3 className="text-2xl font-bold mb-6">Nuestras técnicas de aislamiento</h3>
+              
+              <div className="space-y-6">
+                {/* Technique 1 - Blown */}
+                <div className="bg-white/10 rounded-2xl p-6 backdrop-blur-sm border border-white/10">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                      <Wind className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold">Aislamiento soplado</h4>
+                      <p className="text-verde-200 text-sm">Lana mineral proyectada</p>
+                    </div>
+                  </div>
+                  <p className="text-verde-100 text-sm mb-3">
+                    Ideal para buhardillas con acceso difícil. La lana mineral se proyecta de forma homogénea sobre toda la superficie.
+                  </p>
+                  <div className="flex items-center gap-2 text-verde-200 text-sm">
+                    <CheckCircle2 className="w-4 h-4" />
+                    Rápido • Sin residuos • Cobertura total
+                  </div>
+                </div>
+
+                {/* Technique 2 - Rolled */}
+                <div className="bg-white/10 rounded-2xl p-6 backdrop-blur-sm border border-white/10">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                      <Layers className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold">Aislamiento en rollos</h4>
+                      <p className="text-verde-200 text-sm">Manta de lana mineral</p>
+                    </div>
+                  </div>
+                  <p className="text-verde-100 text-sm mb-3">
+                    Perfecto para buhardillas accesibles. Se desenrollan mantas de lana mineral de alta densidad.
+                  </p>
+                  <div className="flex items-center gap-2 text-verde-200 text-sm">
+                    <CheckCircle2 className="w-4 h-4" />
+                    Espesor preciso • Alta densidad • Durabilidad
+                  </div>
+                </div>
+              </div>
+
+              <Link href="/caes" className="btn-primary bg-white text-verde-800 hover:bg-verde-50 w-full justify-center mt-6">
+                Descubre los CAE
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Process Section */}
+      <section className="py-20 bg-verde-50">
+        <div className="container-custom">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-verde-900 mb-4">
+              Un proceso simple y transparent
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              De la verificación de elegibilidad a la instalación, te acompañamos en cada etapa.
+            </p>
+          </motion.div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {process.map((item, index) => (
+              <motion.div
+                key={item.step}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="relative bg-white rounded-2xl p-6 shadow-lg shadow-verde-900/5"
+              >
+                <div className="absolute -top-4 left-6 w-10 h-10 bg-gradient-to-br from-verde-500 to-verde-600 rounded-xl flex items-center justify-center text-white font-bold text-sm shadow-lg">
+                  {item.step}
+                </div>
+                <div className="pt-4">
+                  <div className="w-14 h-14 bg-verde-100 rounded-2xl flex items-center justify-center mb-4">
+                    <item.icon className="w-7 h-7 text-verde-600" />
+                  </div>
+                  <h3 className="text-lg font-bold text-verde-800 mb-2">{item.title}</h3>
+                  <p className="text-gray-600 text-sm">{item.description}</p>
+                </div>
+                {index < process.length - 1 && (
+                  <div className="hidden lg:block absolute top-1/2 -right-3 w-6 h-6 text-verde-300">
+                    <ArrowRight className="w-6 h-6" />
+                  </div>
+                )}
+              </motion.div>
+            ))}
           </div>
 
           <motion.div
@@ -552,78 +760,16 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="text-center mt-12"
           >
-            <Link
-              href="/contacto"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-verde-800 font-semibold rounded-xl shadow-xl hover:bg-verde-50 transition-colors"
-            >
-              <Phone className="w-5 h-5" />
-              Verificar mi elegibilidad
-            </Link>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Projects Section */}
-      <section className="section-padding">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6"
-          >
-            <div>
-              <span className="badge-cielo mb-4">Realizaciones</span>
-              <h2 className="section-title">Proyectos recientes</h2>
-              <p className="text-lg text-gray-600 max-w-2xl">
-                Descubre algunas de nuestras intervenciones más recientes
-              </p>
-            </div>
-            <Link
-              href="/proyectos"
-              className="btn-secondary"
-            >
-              Ver todos los proyectos
+            <a href="#eligibilidad" className="btn-primary text-lg px-8 py-4">
+              Comprobar mi elegibilidad
               <ArrowRight className="w-5 h-5" />
-            </Link>
+            </a>
           </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {projects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group relative rounded-2xl overflow-hidden shadow-lg"
-              >
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  width={400}
-                  height={300}
-                  className="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <span className="badge-verde mb-2">{project.type}</span>
-                  <h3 className="text-xl font-bold text-white mb-1">
-                    {project.title}
-                  </h3>
-                  <p className="text-white/80 flex items-center gap-1">
-                    <MapPin className="w-4 h-4" />
-                    {project.area}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </section>
 
       {/* Testimonials Section */}
-      <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
+      <section className="py-20 bg-white">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -631,12 +777,11 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <span className="badge-verde mb-4">Testimonios</span>
-            <h2 className="section-title">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-verde-900 mb-4">
               Lo que dicen nuestros clientes
             </h2>
-            <p className="section-subtitle">
-              Más del 93% de nuestros clientes nos recomiendan. Descubre sus experiencias.
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Más de 2,500 hogares ya han confiado en nosotros.
             </p>
           </motion.div>
 
@@ -644,157 +789,85 @@ export default function HomePage() {
             {testimonials.map((testimonial, index) => (
               <motion.div
                 key={testimonial.name}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="card"
+                transition={{ delay: index * 0.1 }}
+                className="bg-verde-50 rounded-2xl p-6 border border-verde-100"
               >
-                <div className="flex items-center gap-1 mb-4">
+                <div className="flex gap-1 mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                   ))}
                 </div>
-                <Quote className="w-8 h-8 text-verde-200 mb-4" />
-                <p className="text-gray-700 mb-6 leading-relaxed">
-                  &ldquo;{testimonial.text}&rdquo;
-                </p>
-                <div className="flex items-center gap-3">
-                  <Image
-                    src={testimonial.avatar}
-                    alt={testimonial.name}
-                    width={48}
-                    height={48}
-                    className="w-12 h-12 rounded-full object-cover"
-                  />
+                <p className="text-gray-700 mb-6 italic">"{testimonial.text}"</p>
+                <div className="flex items-center justify-between">
                   <div>
-                    <p className="font-semibold text-gray-900">{testimonial.name}</p>
-                    <p className="text-sm text-gray-500 flex items-center gap-1">
-                      <MapPin className="w-3 h-3" />
-                      {testimonial.location}
-                    </p>
+                    <p className="font-semibold text-verde-800">{testimonial.name}</p>
+                    <p className="text-sm text-gray-500">{testimonial.location}</p>
                   </div>
+                  <span className="text-xs text-gray-400">{testimonial.date}</span>
                 </div>
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-tierra-500 to-tierra-600 text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
-        </div>
-        <div className="container-custom relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <Leaf className="w-16 h-16 mx-auto mb-6 opacity-80" />
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-6">
-                ¿Listo para mejorar tu hogar?
-              </h2>
-              <p className="text-xl text-tierra-100 mb-8">
-                Llámanos hoy y verifica tu elegibilidad a las ayudas públicas.
-                Sin compromiso, sin sorpresas.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a
-                  href="tel:+34919469528"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-tierra-700 font-semibold rounded-xl shadow-xl hover:bg-tierra-50 transition-colors"
-                >
-                  <Phone className="w-5 h-5" />
-                  +34 919 46 95 28
-                </a>
-                <Link
-                  href="/contacto#presupuesto"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-tierra-700 text-white font-semibold rounded-xl border-2 border-tierra-400 hover:bg-tierra-800 transition-colors"
-                >
-                  Pedir presupuesto online
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Map/Zones Section */}
-      <section className="section-padding">
-        <div className="container-custom">
+          {/* Trust badges */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="mt-16 flex flex-wrap justify-center items-center gap-8"
           >
-            <span className="badge-cielo mb-4">Cobertura</span>
-            <h2 className="section-title">Zonas de intervención</h2>
-            <p className="section-subtitle">
-              Intervenimos en toda España, con equipos locales en las principales ciudades
-            </p>
+            <div className="flex items-center gap-2 text-gray-500">
+              <Award className="w-8 h-8" />
+              <span className="font-medium">Empresa certificada</span>
+            </div>
+            <div className="flex items-center gap-2 text-gray-500">
+              <Shield className="w-8 h-8" />
+              <span className="font-medium">Garantía 25 años</span>
+            </div>
+            <div className="flex items-center gap-2 text-gray-500">
+              <Users className="w-8 h-8" />
+              <span className="font-medium">+50 técnicos</span>
+            </div>
           </motion.div>
-
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="bg-gray-100 rounded-3xl h-96 flex items-center justify-center"
-            >
-              {/* Placeholder for Google Map */}
-              <div className="text-center p-8">
-                <MapPin className="w-16 h-16 text-verde-600 mx-auto mb-4" />
-                <p className="text-gray-600">
-                  Mapa interactivo de zonas de intervención
-                </p>
-                <p className="text-sm text-gray-500 mt-2">
-                  Alicante (Sede) • Madrid • Toda España
-                </p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                Un equipo cerca de ti
-              </h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                Con más de 50 artesanos repartidos por toda España, garantizamos
-                una intervención rápida y un seguimiento de proximidad. Nuestra
-                sede en Alicante y oficina en Madrid coordinan los proyectos en
-                toda España.
-              </p>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-verde-50 rounded-xl p-4">
-                  <p className="text-3xl font-bold text-verde-700">50+</p>
-                  <p className="text-gray-600">Artesanos</p>
-                </div>
-                <div className="bg-tierra-50 rounded-xl p-4">
-                  <p className="text-3xl font-bold text-tierra-700">2</p>
-                  <p className="text-gray-600">Oficinas</p>
-                </div>
-                <div className="bg-cielo-50 rounded-xl p-4">
-                  <p className="text-3xl font-bold text-cielo-700">&lt;10</p>
-                  <p className="text-gray-600">Días instalación</p>
-                </div>
-                <div className="bg-verde-50 rounded-xl p-4">
-                  <p className="text-3xl font-bold text-verde-700">72h</p>
-                  <p className="text-gray-600">Resolución incidentes</p>
-                </div>
-              </div>
-            </motion.div>
-          </div>
         </div>
       </section>
-    </>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-br from-verde-800 to-verde-900 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }} />
+        </div>
+        
+        <div className="container-custom relative z-10 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-6">
+              ¿Listo para aislar tu hogar gratis?
+            </h2>
+            <p className="text-xl text-verde-100 mb-8 max-w-2xl mx-auto">
+              Gracias a los Certificados de Ahorro Energético (CAE), tu aislamiento está 100% financiado. No esperes más.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="#eligibilidad" className="btn-primary bg-white text-verde-800 hover:bg-verde-50 text-lg px-8 py-4">
+                Verificar mi elegibilidad
+                <ArrowRight className="w-5 h-5" />
+              </a>
+              <a href="tel:+34919469528" className="btn-secondary border-white/30 text-white hover:bg-white/10 text-lg px-8 py-4">
+                <Phone className="w-5 h-5" />
+                +34 919 46 95 28
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    </div>
   )
 }
-

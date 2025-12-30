@@ -3,267 +3,209 @@
 import Link from 'next/link'
 import {
   Leaf,
-  MapPin,
   Phone,
   Mail,
-  Clock,
+  MapPin,
   Facebook,
   Instagram,
   Linkedin,
-  Twitter,
-  ChevronRight,
-  Heart,
-  Shield,
-  Award,
+  ArrowRight,
 } from 'lucide-react'
 
-const footerLinks = {
-  servicios: [
-    { name: 'Aislamiento Insuflado', href: '/servicios#insuflado' },
-    { name: 'Aislamiento en Manta', href: '/servicios#manta' },
-    { name: 'Diagnóstico Energético', href: '/servicios#diagnostico' },
-    { name: 'Asesoría Subvenciones', href: '/ayudas' },
-  ],
+const navigation = {
   empresa: [
-    { name: 'Sobre Nosotros', href: '/sobre-nosotros' },
-    { name: 'Nuestro Equipo', href: '/equipo' },
-    { name: 'Política de Calidad', href: '/calidad' },
-    { name: 'Certificaciones', href: '/calidad#certificaciones' },
+    { name: 'Inicio', href: '/' },
+    { name: 'Quiénes somos', href: '/nosotros' },
+    { name: 'Los CAEs', href: '/caes' },
+    { name: 'FAQ', href: '/faq' },
+    { name: 'Contacto', href: '/contacto' },
   ],
-  recursos: [
-    { name: 'Blog', href: '/blog' },
-    { name: 'Guía de Ayudas', href: '/ayudas' },
-    { name: 'Preguntas Frecuentes', href: '/faq' },
-    { name: 'Proyectos Realizados', href: '/proyectos' },
+  servicios: [
+    { name: 'Aislamiento particulares', href: '/#eligibilidad' },
+    { name: 'Soluciones B2B', href: '/profesionales' },
   ],
   legal: [
-    { name: 'Aviso Legal', href: '/legal/aviso-legal' },
-    { name: 'Política de Privacidad', href: '/legal/privacidad' },
-    { name: 'Política de Cookies', href: '/legal/cookies' },
-    { name: 'Términos y Condiciones', href: '/legal/terminos' },
+    { name: 'Aviso legal', href: '/legal' },
+    { name: 'Política de privacidad', href: '/privacidad' },
+    { name: 'Política de cookies', href: '/cookies' },
   ],
 }
 
 const offices = [
   {
-    city: 'Alicante (Sede Central)',
-    address: 'Avenida Maisonnave 41, 3º piso, 03003 Alicante',
+    city: 'Alicante',
+    type: 'Sede Central',
+    address: 'Calle Principal, 123',
+    zip: '03001 Alicante',
     phone: '+34 919 46 95 28',
-    hours: 'Lun - Vie: 9:00 - 18:00',
   },
   {
     city: 'Madrid',
-    address: 'Madrid, España',
+    type: 'Oficina Comercial',
+    address: 'Calle Comercio, 45',
+    zip: '28001 Madrid',
     phone: '+34 919 46 95 28',
-    hours: 'Lun - Vie: 9:00 - 18:00',
   },
-]
-
-const socialLinks = [
-  { name: 'Facebook', icon: Facebook, href: 'https://facebook.com/verdenomia' },
-  { name: 'Instagram', icon: Instagram, href: 'https://instagram.com/verdenomia' },
-  { name: 'LinkedIn', icon: Linkedin, href: 'https://linkedin.com/company/verdenomia' },
-  { name: 'Twitter', icon: Twitter, href: 'https://twitter.com/verdenomia' },
 ]
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-b from-verde-900 to-verde-950 text-white">
-      {/* Newsletter section */}
-      <div className="border-b border-verde-800/50">
-        <div className="container-custom py-12">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
-            <div className="text-center lg:text-left">
-              <h3 className="text-2xl font-display font-bold mb-2">
-                Mantente Informado
-              </h3>
-              <p className="text-verde-200">
-                Recibe consejos de ahorro energético y novedades sobre ayudas públicas
-              </p>
-            </div>
-            <form className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
-              <input
-                type="email"
-                placeholder="Tu correo electrónico"
-                className="px-5 py-3 rounded-xl bg-white/10 border border-verde-700 text-white placeholder:text-verde-300 focus:bg-white/15 focus:border-verde-500 focus:outline-none transition-colors w-full sm:w-80"
-              />
-              <button
-                type="submit"
-                className="px-6 py-3 bg-tierra-500 hover:bg-tierra-600 text-white font-semibold rounded-xl transition-colors whitespace-nowrap"
-              >
-                Suscribirme
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-
+    <footer className="bg-verde-950 text-white">
       {/* Main footer */}
       <div className="container-custom py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10">
-          {/* Brand column */}
-          <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-br from-verde-400 to-verde-600 rounded-xl flex items-center justify-center shadow-lg">
-                <Leaf className="w-7 h-7 text-white" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+          {/* Brand */}
+          <div className="lg:col-span-1">
+            <Link href="/" className="flex items-center gap-2 mb-6">
+              <div className="w-10 h-10 bg-gradient-to-br from-verde-500 to-verde-600 rounded-xl flex items-center justify-center">
+                <Leaf className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h2 className="text-2xl font-display font-bold">Verdenomia</h2>
-                <p className="text-verde-300 text-sm">Aislamiento Eficiente</p>
+                <span className="text-xl font-display font-bold">Verdenomia</span>
+                <p className="text-xs text-verde-300 -mt-0.5">Aislamiento 100% financiado</p>
               </div>
             </Link>
-            <p className="text-verde-200 mb-6 leading-relaxed">
-              Especialistas en aislamiento de buhardillas con más de 15 años de
-              experiencia. Hacemos tu hogar más eficiente con ayudas públicas que
-              reducen el coste a 1€.
+            <p className="text-verde-200 text-sm mb-6">
+              Especialistas en aislamiento de suelos de buhardilla. Gracias a los CAE, tu aislamiento es 100% gratuito.
             </p>
-            <div className="flex items-center gap-4 mb-6">
-              {socialLinks.map((social) => {
-                const Icon = social.icon
-                return (
-                  <a
-                    key={social.name}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 bg-verde-800/50 hover:bg-verde-700 rounded-lg flex items-center justify-center transition-colors"
-                    aria-label={social.name}
-                  >
-                    <Icon className="w-5 h-5" />
-                  </a>
-                )
-              })}
-            </div>
-            {/* Trust badges */}
-            <div className="flex items-center gap-4 flex-wrap">
-              <div className="flex items-center gap-2 px-3 py-2 bg-verde-800/30 rounded-lg">
-                <Shield className="w-5 h-5 text-verde-400" />
-                <span className="text-sm text-verde-200">ISO 9001</span>
-              </div>
-              <div className="flex items-center gap-2 px-3 py-2 bg-verde-800/30 rounded-lg">
-                <Award className="w-5 h-5 text-verde-400" />
-                <span className="text-sm text-verde-200">RGE Certificado</span>
-              </div>
-            </div>
-          </div>
+            
+            {/* CTA */}
+            <Link
+              href="/#eligibilidad"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-verde-600 hover:bg-verde-500 rounded-lg text-sm font-medium transition-colors"
+            >
+              Verificar elegibilidad
+              <ArrowRight className="w-4 h-4" />
+            </Link>
 
-          {/* Links columns */}
-          <div>
-            <h4 className="font-semibold text-lg mb-4">Servicios</h4>
-            <ul className="space-y-3">
-              {footerLinks.servicios.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-verde-200 hover:text-white flex items-center gap-1 group transition-colors"
-                  >
-                    <ChevronRight className="w-4 h-4 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" />
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-semibold text-lg mb-4">Empresa</h4>
-            <ul className="space-y-3">
-              {footerLinks.empresa.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-verde-200 hover:text-white flex items-center gap-1 group transition-colors"
-                  >
-                    <ChevronRight className="w-4 h-4 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" />
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-semibold text-lg mb-4">Recursos</h4>
-            <ul className="space-y-3">
-              {footerLinks.recursos.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-verde-200 hover:text-white flex items-center gap-1 group transition-colors"
-                  >
-                    <ChevronRight className="w-4 h-4 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" />
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-semibold text-lg mb-4">Legal</h4>
-            <ul className="space-y-3">
-              {footerLinks.legal.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-verde-200 hover:text-white flex items-center gap-1 group transition-colors"
-                  >
-                    <ChevronRight className="w-4 h-4 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" />
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        {/* Offices */}
-        <div className="mt-12 pt-10 border-t border-verde-800/50">
-          <h4 className="font-semibold text-lg mb-6">Nuestras Oficinas</h4>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {offices.map((office) => (
-              <div
-                key={office.city}
-                className="bg-verde-800/20 rounded-xl p-5 hover:bg-verde-800/30 transition-colors"
+            {/* Social */}
+            <div className="flex gap-3 mt-6">
+              <a
+                href="#"
+                className="w-10 h-10 bg-verde-800 hover:bg-verde-700 rounded-lg flex items-center justify-center transition-colors"
               >
-                <h5 className="font-semibold text-lg mb-3">{office.city}</h5>
-                <div className="space-y-2 text-verde-200 text-sm">
-                  <p className="flex items-start gap-2">
-                    <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                    {office.address}
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <Phone className="w-4 h-4 flex-shrink-0" />
-                    <a href={`tel:${office.phone.replace(/\s/g, '')}`} className="hover:text-white">
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a
+                href="#"
+                className="w-10 h-10 bg-verde-800 hover:bg-verde-700 rounded-lg flex items-center justify-center transition-colors"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a
+                href="#"
+                className="w-10 h-10 bg-verde-800 hover:bg-verde-700 rounded-lg flex items-center justify-center transition-colors"
+              >
+                <Linkedin className="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+
+          {/* Navigation */}
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-verde-300 mb-4">
+              Navegación
+            </h3>
+            <ul className="space-y-3">
+              {navigation.empresa.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="text-verde-100 hover:text-white transition-colors"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Services & Legal */}
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-verde-300 mb-4">
+              Servicios
+            </h3>
+            <ul className="space-y-3 mb-8">
+              {navigation.servicios.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="text-verde-100 hover:text-white transition-colors"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-verde-300 mb-4">
+              Legal
+            </h3>
+            <ul className="space-y-3">
+              {navigation.legal.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="text-verde-100 hover:text-white transition-colors"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Offices */}
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-verde-300 mb-4">
+              Nuestras oficinas
+            </h3>
+            <div className="space-y-6">
+              {offices.map((office) => (
+                <div key={office.city}>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="font-semibold text-white">{office.city}</span>
+                    <span className="text-xs px-2 py-0.5 bg-verde-800 text-verde-200 rounded">
+                      {office.type}
+                    </span>
+                  </div>
+                  <div className="text-sm text-verde-200 space-y-1">
+                    <p className="flex items-start gap-2">
+                      <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                      {office.address}, {office.zip}
+                    </p>
+                    <a
+                      href={`tel:${office.phone.replace(/\s/g, '')}`}
+                      className="flex items-center gap-2 hover:text-white transition-colors"
+                    >
+                      <Phone className="w-4 h-4" />
                       {office.phone}
                     </a>
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <Clock className="w-4 h-4 flex-shrink-0" />
-                    {office.hours}
-                  </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+              <a
+                href="mailto:info@verdenomia.es"
+                className="flex items-center gap-2 text-verde-200 hover:text-white transition-colors"
+              >
+                <Mail className="w-4 h-4" />
+                info@verdenomia.es
+              </a>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-verde-800/50 bg-verde-950">
+      <div className="border-t border-verde-800">
         <div className="container-custom py-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-verde-300">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-verde-300">
             <p>
               © {new Date().getFullYear()} Verdenomia. Todos los derechos reservados.
             </p>
-            <p className="flex items-center gap-1">
-              Hecho con <Heart className="w-4 h-4 text-red-400" /> para un mundo más sostenible
-            </p>
-            <p>
-              <a href="mailto:info@verdenomia.es" className="hover:text-white flex items-center gap-2">
-                <Mail className="w-4 h-4" />
-                info@verdenomia.es
-              </a>
+            <p className="flex items-center gap-2">
+              <Leaf className="w-4 h-4 text-verde-500" />
+              Comprometidos con la eficiencia energética
             </p>
           </div>
         </div>
@@ -271,4 +213,3 @@ export default function Footer() {
     </footer>
   )
 }
-
