@@ -15,7 +15,7 @@ export default function PrivacidadPage() {
                 <h1 className="text-3xl font-display font-bold text-verde-900">
                   Política de Privacidad
                 </h1>
-                <p className="text-gray-500">Última actualización: Diciembre 2024</p>
+                <p className="text-gray-500">Última actualización: Diciembre 2025</p>
               </div>
             </div>
 

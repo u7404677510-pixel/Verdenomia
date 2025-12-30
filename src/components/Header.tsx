@@ -55,7 +55,7 @@ export default function Header() {
           <div className="flex items-center gap-3 text-center">
             <span className="inline-flex items-center gap-2 px-3 py-1 bg-white/20 rounded-full text-xs font-semibold uppercase tracking-wide">
               <span className="w-2 h-2 bg-green-300 rounded-full animate-pulse" />
-              CAE 2024
+              Programa CAE activo
             </span>
             <span className="font-medium">
               🏠 <strong>Aislamiento de suelos de buhardilla 100% financiado</strong> — ¡0€ para ti!
