@@ -26,13 +26,11 @@ import {
 } from 'lucide-react'
 import { type Locale } from '@/i18n/config'
 
-type WizardStep = 'q1' | 'q2' | 'q3' | 'q4' | 'form' | 'success'
+type WizardStep = 'q1' | 'q2' | 'form' | 'success'
 
 interface WizardAnswer {
   q1?: string
   q2?: string
-  q3?: string
-  q4?: string
 }
 
 export default function HomePage() {
@@ -53,9 +51,7 @@ export default function HomePage() {
     setAnswers((prev) => ({ ...prev, [question]: answer }))
     const nextStep: Record<string, WizardStep> = {
       q1: 'q2',
-      q2: 'q3',
-      q3: 'q4',
-      q4: 'form',
+      q2: 'form',
     }
     setWizardStep(nextStep[question] || 'form')
   }
@@ -68,9 +64,7 @@ export default function HomePage() {
   const goBack = () => {
     const prevStep: Record<string, WizardStep> = {
       q2: 'q1',
-      q3: 'q2',
-      q4: 'q3',
-      form: 'q4',
+      form: 'q2',
     }
     setWizardStep(prevStep[wizardStep] || 'q1')
   }
@@ -91,10 +85,8 @@ export default function HomePage() {
   const stepNumber = {
     q1: 1,
     q2: 2,
-    q3: 3,
-    q4: 4,
-    form: 5,
-    success: 5,
+    form: 3,
+    success: 3,
   }
 
   return (
@@ -345,17 +337,17 @@ export default function HomePage() {
                       <span>
                         {t('home.wizard.questionOf', {
                           current: stepNumber[wizardStep],
-                          total: 5,
+                          total: 3,
                         })}
                       </span>
-                      <span>{Math.round((stepNumber[wizardStep] / 5) * 100)}%</span>
+                      <span>{Math.round((stepNumber[wizardStep] / 3) * 100)}%</span>
                     </div>
                     <div className="h-2 bg-verde-800/50 rounded-full overflow-hidden">
                       <motion.div
                         className="h-full bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full"
                         initial={{ width: 0 }}
                         animate={{
-                          width: `${(stepNumber[wizardStep] / 5) * 100}%`,
+                          width: `${(stepNumber[wizardStep] / 3) * 100}%`,
                         }}
                         transition={{ duration: 0.3 }}
                       />
@@ -431,100 +423,6 @@ export default function HomePage() {
                         >
                           <Shield className="w-6 h-6 text-gray-400" />
                           <span>{t('home.wizard.q2o2')}</span>
-                        </button>
-                      </div>
-                    </motion.div>
-                  )}
-
-                  {/* Question 3 */}
-                  {wizardStep === 'q3' && (
-                    <motion.div
-                      key="q3"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -20 }}
-                      className="space-y-4"
-                    >
-                      <button
-                        onClick={goBack}
-                        className="flex items-center gap-1 text-verde-600 hover:text-verde-700 text-sm mb-4"
-                      >
-                        <ChevronLeft className="w-4 h-4" />
-                        {t('home.wizard.previousQuestion')}
-                      </button>
-                      <h3 className="text-xl font-semibold text-gray-900 text-center mb-6">
-                        {t('home.wizard.q3')}
-                      </h3>
-                      <div className="grid gap-3">
-                        <button
-                          onClick={() => handleAnswer('q3', 'no')}
-                          className="wizard-option"
-                        >
-                          <span>{t('home.wizard.q3o1')}</span>
-                        </button>
-                        <button
-                          onClick={() => handleAnswer('q3', 'parcial')}
-                          className="wizard-option"
-                        >
-                          <span>{t('home.wizard.q3o2')}</span>
-                        </button>
-                        <button
-                          onClick={() => handleAnswer('q3', 'nosabe')}
-                          className="wizard-option"
-                        >
-                          <span>{t('home.wizard.q3o3')}</span>
-                        </button>
-                      </div>
-                    </motion.div>
-                  )}
-
-                  {/* Question 4 */}
-                  {wizardStep === 'q4' && (
-                    <motion.div
-                      key="q4"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -20 }}
-                      className="space-y-4"
-                    >
-                      <button
-                        onClick={goBack}
-                        className="flex items-center gap-1 text-verde-600 hover:text-verde-700 text-sm mb-4"
-                      >
-                        <ChevronLeft className="w-4 h-4" />
-                        {t('home.wizard.previousQuestion')}
-                      </button>
-                      <h3 className="text-xl font-semibold text-gray-900 text-center mb-6">
-                        {t('home.wizard.q4')}
-                      </h3>
-                      <div className="grid grid-cols-2 gap-3">
-                        <button
-                          onClick={() => handleAnswer('q4', 'gas')}
-                          className="wizard-option"
-                        >
-                          <Flame className="w-6 h-6 text-orange-500" />
-                          <span>{t('home.wizard.q4o1')}</span>
-                        </button>
-                        <button
-                          onClick={() => handleAnswer('q4', 'electrico')}
-                          className="wizard-option"
-                        >
-                          <Zap className="w-6 h-6 text-yellow-500" />
-                          <span>{t('home.wizard.q4o2')}</span>
-                        </button>
-                        <button
-                          onClick={() => handleAnswer('q4', 'gasoleo')}
-                          className="wizard-option"
-                        >
-                          <Thermometer className="w-6 h-6 text-gray-600" />
-                          <span>{t('home.wizard.q4o3')}</span>
-                        </button>
-                        <button
-                          onClick={() => handleAnswer('q4', 'otro')}
-                          className="wizard-option"
-                        >
-                          <Wind className="w-6 h-6 text-blue-500" />
-                          <span>{t('home.wizard.q4o4')}</span>
                         </button>
                       </div>
                     </motion.div>
