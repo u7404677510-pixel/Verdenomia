@@ -1,7 +1,7 @@
 {
   "common": {
-    "phone": "+34 919 46 95 28",
-    "email": "info@verdenomia.es",
+    "phone": "+34 919 94 75 86",
+    "email": "Contacto@verdenomia.es",
     "callNow": "Call now",
     "call": "Call",
     "contact": "Contact",
@@ -75,7 +75,7 @@
       "description": "Answer a few simple questions to find out if you can benefit from 100% funded insulation.",
       "questionOf": "Question {current} of {total}",
       "previousQuestion": "Previous question",
-      "q1": "Are you the owner or occupant of the property?",
+      "q1": "Are you the owner or tenant of the property?",
       "q1o1": "I am the owner",
       "q1o2": "I am a tenant",
       "q2": "Does your property have an attic or loft?",
@@ -90,7 +90,7 @@
       "q4o2": "Electric",
       "q4o3": "Oil",
       "q4o4": "Other",
-      "formTitle": "Good news! You seem eligible 🎉",
+      "formTitle": "Good news! You could be eligible 🎉",
       "formDescription": "Leave your details so an advisor can contact you.",
       "fieldName": "First name",
       "fieldLastName": "Last name",

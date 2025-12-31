@@ -42,40 +42,6 @@ const faqData = {
     moreQuestions: '¿Tienes más preguntas?',
     moreQuestionsDesc: 'Nuestro equipo está disponible para responder a todas tus dudas.',
   },
-  fr: {
-    title: 'Questions fréquentes',
-    description: 'Trouvez les réponses aux questions les plus courantes sur le programme CAE et nos services d\'isolation.',
-    categories: [
-      {
-        name: 'À propos du programme CAE',
-        questions: [
-          { q: 'Qu\'est-ce que les CAE ?', a: 'Les Certificats d\'Économies d\'Énergie (CAE) sont un instrument créé par le gouvernement espagnol pour promouvoir l\'efficacité énergétique. Les entreprises énergétiques financent des travaux d\'isolation en échange des certificats générés.' },
-          { q: 'C\'est vraiment gratuit ?', a: 'Oui, 100% gratuit. Pas de frais cachés, pas de mensualités, pas d\'engagements futurs. Vous signez simplement la cession des CAE et nous nous occupons du reste.' },
-          { q: 'Qui finance le programme ?', a: 'Les grandes entreprises énergétiques ont l\'obligation légale de générer des économies d\'énergie. Pour y parvenir, elles financent des travaux de rénovation énergétique comme l\'isolation.' },
-        ],
-      },
-      {
-        name: 'À propos du processus',
-        questions: [
-          { q: 'Combien de temps dure l\'installation ?', a: 'L\'installation se fait en quelques heures, généralement entre 2 et 4 heures selon la taille des combles. Pas de gros travaux ni de nuisances.' },
-          { q: 'Quels documents sont nécessaires ?', a: 'Vous avez juste besoin de votre pièce d\'identité, d\'un justificatif de domicile récent et de signer le contrat de cession des CAE.' },
-          { q: 'Comment se planifie la visite ?', a: 'Après vérification de votre éligibilité, un conseiller vous contacte sous 24h pour programmer une visite technique gratuite à votre convenance.' },
-        ],
-      },
-      {
-        name: 'À propos de l\'isolation',
-        questions: [
-          { q: 'Quelle technique d\'isolation utilisez-vous ?', a: 'Nous utilisons deux techniques : isolation soufflée (laine minérale projetée) ou isolation en rouleaux (panneaux de laine minérale). Le technicien vous recommandera la meilleure option selon vos combles.' },
-          { q: 'Quelle garantie pour les matériaux ?', a: 'Tous nos matériaux ont une garantie de 25 ans. Nous utilisons de la laine minérale haute densité de grandes marques.' },
-          { q: 'Combien puis-je économiser sur ma facture ?', a: 'L\'économie typique est de jusqu\'à 30% sur la facture de chauffage et climatisation, car 30% des pertes de chaleur se produisent par le toit.' },
-        ],
-      },
-    ],
-    cta: 'Vérifier mon éligibilité',
-    callNow: 'Appeler maintenant',
-    moreQuestions: 'Vous avez d\'autres questions ?',
-    moreQuestionsDesc: 'Notre équipe est disponible pour répondre à toutes vos questions.',
-  },
   en: {
     title: 'Frequently asked questions',
     description: 'Find answers to the most common questions about the CAE program and our insulation services.',
@@ -214,7 +180,7 @@ export default function FAQPage() {
               {t.cta}
               <ArrowRight className="w-5 h-5" />
             </Link>
-            <a href="tel:+34919469528" className="btn-secondary text-lg">
+            <a href="tel:+34919947586" className="btn-secondary text-lg">
               <Phone className="w-5 h-5" />
               {t.callNow}
             </a>

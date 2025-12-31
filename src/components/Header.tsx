@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
 import { useLocale, useTranslations } from 'next-intl'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -70,7 +71,7 @@ export default function Header() {
               🏠 <strong>{t('header.banner.message')}</strong> — {t('header.banner.cta')}
             </span>
             <a
-              href="tel:+34919469528"
+              href="tel:+34919947586"
               className="hidden md:flex items-center gap-1.5 px-3 py-1 bg-white/10 hover:bg-white/20 rounded-full transition-colors font-medium"
             >
               <Phone className="w-3.5 h-3.5" />
@@ -91,15 +92,14 @@ export default function Header() {
         <div className="container-custom">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
-            <Link href={`/${locale}`} className="flex items-center gap-2 group">
-              <div className="relative">
-                <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-verde-500 to-verde-700 rounded-xl flex items-center justify-center shadow-lg shadow-verde-500/30 group-hover:shadow-verde-500/50 transition-shadow">
-                  <Leaf className="w-6 h-6 md:w-7 md:h-7 text-white" />
-                </div>
-                <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center shadow-md">
-                  <span className="text-yellow-900 text-[10px] font-black">0€</span>
-                </div>
-              </div>
+            <Link href={`/${locale}`} className="flex items-center gap-3 group">
+              <Image
+                src="/logo.png"
+                alt="Verdenomia"
+                width={48}
+                height={48}
+                className="w-10 h-10 md:w-12 md:h-12 object-contain"
+              />
               <div className="hidden sm:block">
                 <h1 className="text-xl md:text-2xl font-display font-bold text-verde-800">
                   Verdenomia
@@ -162,7 +162,7 @@ export default function Header() {
                   )}
                 </AnimatePresence>
               </div>
-              <a href="tel:+34919469528" className="btn-secondary text-sm py-2.5">
+              <a href="tel:+34919947586" className="btn-secondary text-sm py-2.5">
                 <Phone className="w-4 h-4" />
                 {t('common.call')}
               </a>
@@ -216,9 +216,13 @@ export default function Header() {
                     className="flex items-center gap-2"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    <div className="w-10 h-10 bg-gradient-to-br from-verde-500 to-verde-700 rounded-xl flex items-center justify-center">
-                      <Leaf className="w-6 h-6 text-white" />
-                    </div>
+                    <Image
+                      src="/logo.png"
+                      alt="Verdenomia"
+                      width={40}
+                      height={40}
+                      className="w-10 h-10 object-contain"
+                    />
                     <span className="text-xl font-display font-bold text-verde-800">
                       Verdenomia
                     </span>
@@ -294,7 +298,7 @@ export default function Header() {
                     {t('common.verifyEligibility')}
                   </Link>
                   <a
-                    href="tel:+34919469528"
+                    href="tel:+34919947586"
                     className="btn-secondary w-full justify-center"
                   >
                     <Phone className="w-4 h-4" />

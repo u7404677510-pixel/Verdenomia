@@ -164,7 +164,7 @@ export default function HomePage() {
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <a
-                  href="tel:+34919469528"
+                  href="tel:+34919947586"
                   className="btn-secondary-dark inline-flex items-center justify-center gap-2"
                 >
                   <Phone className="w-5 h-5" />
@@ -938,9 +938,9 @@ export default function HomePage() {
               {t('home.cta.primary')}
               <ArrowRight className="w-5 h-5" />
             </Link>
-            <a href="tel:+34919469528" className="btn-secondary-dark text-lg">
+            <a href="tel:+34919947586" className="btn-secondary-dark text-lg">
               <Phone className="w-5 h-5" />
-              +34 919 46 95 28
+              +34 919 94 75 86
             </a>
           </div>
         </div>

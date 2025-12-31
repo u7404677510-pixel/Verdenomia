@@ -54,43 +54,7 @@ const content = {
     ctaTitle: '¿Listo para trabajar con nosotros?',
     ctaDesc: 'Verifica tu elegibilidad al programa CAE y obtén un aislamiento 100% gratuito.',
     cta: 'Verificar mi elegibilidad',
-    contact: 'Contactarnos',
-  },
-  fr: {
-    badge: 'À propos',
-    title: 'Qui sommes-nous',
-    description: 'Nous sommes des spécialistes de l\'efficacité énergétique avec plus de 15 ans d\'expérience. Notre mission : rendre l\'isolation de qualité accessible à tous les foyers espagnols.',
-    stats: [
-      { value: '15+', label: 'Années d\'expérience' },
-      { value: '2,500+', label: 'Foyers isolés' },
-      { value: '50+', label: 'Techniciens qualifiés' },
-      { value: '100%', label: 'Clients satisfaits' },
-    ],
-    missionTitle: 'Notre mission',
-    missionP1: 'Chez <strong>Verdenomia</strong>, nous croyons que tout le monde devrait pouvoir vivre dans un logement bien isolé, confortable et économe en énergie.',
-    missionP2: 'C\'est pourquoi nous nous spécialisons dans l\'isolation des sols de combles, l\'intervention avec le meilleur rapport coût-bénéfice pour réduire les pertes thermiques d\'un logement.',
-    missionP3: 'Grâce aux <strong>Certificats d\'Économies d\'Énergie (CAE)</strong>, nous rendons possible cette amélioration à 100% gratuite pour le client.',
-    missionItems: ['Isolation professionnelle sans frais', 'Techniciens formés et certifiés', 'Matériaux de première qualité', 'Accompagnement complet du processus'],
-    promiseTitle: 'Notre promesse',
-    promise1: { title: 'Transparence totale', desc: 'Pas de frais cachés, pas d\'engagements. Nous vous expliquons tout clairement.' },
-    promise2: { title: 'Réponse sous 24h', desc: 'Un conseiller vous contacte dans les 24 heures suivant votre demande.' },
-    promise3: { title: 'Garantie 25 ans', desc: 'Nos matériaux sont garantis pendant 25 ans.' },
-    valuesTitle: 'Nos valeurs',
-    valuesDesc: 'Les principes qui guident chacune de nos interventions.',
-    values: [
-      { title: 'Transparence', desc: 'Pas de frais cachés, pas de surprises. Nous vous expliquons tout clairement.' },
-      { title: 'Engagement', desc: 'Nous nous engageons à fournir un service de qualité à chaque client.' },
-      { title: 'Durabilité', desc: 'Nous contribuons activement à la transition écologique et énergétique.' },
-      { title: 'Excellence', desc: 'Nous formons continuellement nos équipes pour garantir la meilleure qualité.' },
-    ],
-    officesTitle: 'Nos bureaux',
-    officesDesc: 'Présents dans toute l\'Espagne pour être près de vous.',
-    headquarters: 'Siège social',
-    commercial: 'Bureau commercial',
-    ctaTitle: 'Prêt à travailler avec nous ?',
-    ctaDesc: 'Vérifiez votre éligibilité au programme CAE et obtenez une isolation 100% gratuite.',
-    cta: 'Vérifier mon éligibilité',
-    contact: 'Nous contacter',
+    contact: 'Contáctanos',
   },
   en: {
     badge: 'About us',
@@ -318,11 +282,11 @@ export default function NosotrosPage() {
                   <h3 className="text-lg font-bold text-verde-800">Alicante</h3>
                   <p className="text-gray-600 mt-2">Calle Principal, 123<br />03001 Alicante</p>
                   <div className="mt-3 space-y-1">
-                    <a href="tel:+34919469528" className="flex items-center gap-2 text-verde-600 hover:text-verde-700">
-                      <Phone className="w-4 h-4" />+34 919 46 95 28
+                    <a href="tel:+34919947586" className="flex items-center gap-2 text-verde-600 hover:text-verde-700">
+                      <Phone className="w-4 h-4" />+34 919 94 75 86
                     </a>
-                    <a href="mailto:info@verdenomia.es" className="flex items-center gap-2 text-verde-600 hover:text-verde-700">
-                      <Mail className="w-4 h-4" />info@verdenomia.es
+                    <a href="mailto:Contacto@verdenomia.es" className="flex items-center gap-2 text-verde-600 hover:text-verde-700">
+                      <Mail className="w-4 h-4" />Contacto@verdenomia.es
                     </a>
                   </div>
                 </div>
@@ -347,8 +311,8 @@ export default function NosotrosPage() {
                   <h3 className="text-lg font-bold text-verde-800">Madrid</h3>
                   <p className="text-gray-600 mt-2">Calle Comercio, 45<br />28001 Madrid</p>
                   <div className="mt-3">
-                    <a href="tel:+34919469528" className="flex items-center gap-2 text-verde-600 hover:text-verde-700">
-                      <Phone className="w-4 h-4" />+34 919 46 95 28
+                    <a href="tel:+34919947586" className="flex items-center gap-2 text-verde-600 hover:text-verde-700">
+                      <Phone className="w-4 h-4" />+34 919 94 75 86
                     </a>
                   </div>
                 </div>

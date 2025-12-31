@@ -1,7 +1,7 @@
 {
   "common": {
-    "phone": "+34 919 46 95 28",
-    "email": "info@verdenomia.es",
+    "phone": "+34 919 94 75 86",
+    "email": "Contacto@verdenomia.es",
     "callNow": "Llamar ahora",
     "call": "Llamar",
     "contact": "Contacto",
@@ -75,7 +75,7 @@
       "description": "Responde a unas preguntas sencillas para saber si puedes beneficiarte del aislamiento 100% financiado.",
       "questionOf": "Pregunta {current} de {total}",
       "previousQuestion": "Pregunta anterior",
-      "q1": "¿Eres propietario u ocupante de la vivienda?",
+      "q1": "¿Eres propietario o inquilino?",
       "q1o1": "Soy propietario",
       "q1o2": "Soy inquilino",
       "q2": "¿Tu vivienda tiene buhardilla o ático?",
@@ -90,7 +90,7 @@
       "q4o2": "Eléctrico",
       "q4o3": "Gasóleo",
       "q4o4": "Otro",
-      "formTitle": "¡Buenas noticias! Pareces elegible 🎉",
+      "formTitle": "¡Buenas noticias! Podrías ser elegible 🎉",
       "formDescription": "Déjanos tus datos para que un asesor te contacte.",
       "fieldName": "Nombre",
       "fieldLastName": "Apellido",

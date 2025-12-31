@@ -30,7 +30,7 @@ const content = {
     titleHighlight: '100% financiado',
     description: 'Reemplaza tu iluminación tradicional por LED de última generación. Gracias a los CAE, la instalación puede estar <strong>completamente financiada</strong>.',
     benefits: ['Hasta 100% financiado', 'Hasta -70% consumo', 'Sin interrumpir actividad', 'Sin inversión inicial'],
-    cta: 'Solicitar audit gratuito',
+    cta: 'Solicitar evaluación gratuita',
     callNow: 'Llamar ahora',
     stats: [
       { label: 'Ahorro energético', value: '-70%' },
@@ -59,7 +59,7 @@ const content = {
     processTitle: 'Un proceso simple en 4 etapas',
     processDesc: 'Del audit inicial a la certificación, te acompañamos en todo el proceso.',
     process: [
-      { step: '01', title: 'Audit gratuito', desc: 'Analizamos tu instalación actual y calculamos el potencial de ahorro.' },
+      { step: '01', title: 'Evaluación gratuita', desc: 'Analizamos tu instalación actual y calculamos el potencial de ahorro.' },
       { step: '02', title: 'Presupuesto detallado', desc: 'Te presentamos un plan con la cobertura CAE y el ahorro estimado.' },
       { step: '03', title: 'Instalación profesional', desc: 'Nuestros técnicos certificados realizan la instalación de forma rápida.' },
       { step: '04', title: 'Certificación', desc: 'Generamos los certificados de ahorro energético y gestionamos los trámites.' },
@@ -72,7 +72,7 @@ const content = {
       'Local comercial, industrial o terciario en España',
       'Disposición a firmar el contrato de cesión de CAE',
     ],
-    formTitle: 'Solicita un audit gratuito',
+    formTitle: 'Solicita una evaluación gratuita',
     formDesc: 'Un experto te contactará en menos de 24 horas para analizar tu proyecto.',
     formFields: {
       company: 'Nombre de la empresa',
@@ -84,76 +84,10 @@ const content = {
       sectorOptions: ['Hotel / Hostelería', 'Oficinas', 'Comercio / Retail', 'Industria', 'Logística / Almacén', 'Parking', 'Otro'],
       selectSector: 'Selecciona un sector',
       privacy: 'Acepto la política de privacidad y el tratamiento de mis datos para ser contactado.',
-      submit: 'Solicitar audit gratuito',
+      submit: 'Solicitar evaluación gratuita',
       successTitle: '¡Solicitud recibida!',
       successDesc: 'Un experto B2B te contactará en las próximas 24 horas para discutir tu proyecto.',
       newRequest: 'Nueva solicitud',
-    },
-  },
-  fr: {
-    badge: 'Solutions pour entreprises',
-    title: 'Optimisez votre éclairage',
-    titleHighlight: '100% financé',
-    description: 'Remplacez votre éclairage traditionnel par des LED de dernière génération. Grâce aux CAE, l\'installation peut être <strong>entièrement financée</strong>.',
-    benefits: ['Jusqu\'à 100% financé', 'Jusqu\'à -70% conso', 'Sans interrompre l\'activité', 'Sans investissement initial'],
-    cta: 'Demander un audit gratuit',
-    callNow: 'Appeler maintenant',
-    stats: [
-      { label: 'Économies d\'énergie', value: '-70%' },
-      { label: 'Financement CAE', value: '100%' },
-      { label: 'Durée de vie LED', value: '+50.000h' },
-      { label: 'Maintenance', value: '-80%' },
-    ],
-    whyTitle: 'Pourquoi passer aux LED avec les CAE ?',
-    whyDesc: 'Optimisez vos coûts énergétiques sans investissement initial grâce au programme de certificats d\'économie.',
-    whyCards: [
-      { title: 'Jusqu\'à 100% financé', desc: 'Grâce aux CAE, le coût de la rénovation peut être entièrement couvert.' },
-      { title: 'Réduction de la consommation', desc: 'Économisez jusqu\'à 70% sur la consommation électrique avec un éclairage LED efficace.' },
-      { title: 'Installation rapide', desc: 'Nous planifions l\'installation en dehors des heures de travail pour ne pas interrompre votre activité.' },
-      { title: 'Sans investissement initial', desc: 'Pas de décaissement préalable. Nous gérons le financement CAE.' },
-    ],
-    sectorsTitle: 'Secteurs éligibles',
-    sectorsDesc: 'Toutes les entreprises avec des installations d\'éclairage de plus de 2 ans peuvent en bénéficier.',
-    sectors: [
-      { name: 'Hôtels', desc: 'Couloirs, parking, espaces communs' },
-      { name: 'Bureaux', desc: 'Espaces de travail, salles de réunion' },
-      { name: 'Commerce', desc: 'Magasins, supermarchés, centres commerciaux' },
-      { name: 'Industrie', desc: 'Usines, entrepôts, zones de production' },
-      { name: 'Logistique', desc: 'Centres de distribution, entrepôts' },
-      { name: 'Parking', desc: 'Garages, parkings souterrains' },
-    ],
-    processTitle: 'Un processus simple en 4 étapes',
-    processDesc: 'De l\'audit initial à la certification, nous vous accompagnons tout au long du processus.',
-    process: [
-      { step: '01', title: 'Audit gratuit', desc: 'Nous analysons votre installation actuelle et calculons le potentiel d\'économies.' },
-      { step: '02', title: 'Devis détaillé', desc: 'Nous vous présentons un plan avec la couverture CAE et les économies estimées.' },
-      { step: '03', title: 'Installation professionnelle', desc: 'Nos techniciens certifiés réalisent l\'installation rapidement.' },
-      { step: '04', title: 'Certification', desc: 'Nous générons les certificats d\'économie d\'énergie et gérons les démarches.' },
-    ],
-    eligTitle: 'Conditions d\'éligibilité',
-    eligDesc: 'Pour bénéficier du programme CAE pour l\'éclairage LED, votre entreprise doit remplir ces critères simples :',
-    eligItems: [
-      'Installation d\'éclairage existante depuis plus de 2 ans',
-      'Éclairage actuel avec technologie traditionnelle (fluorescents, halogénures, etc.)',
-      'Local commercial, industriel ou tertiaire en Espagne',
-      'Disposition à signer le contrat de cession de CAE',
-    ],
-    formTitle: 'Demandez un audit gratuit',
-    formDesc: 'Un expert vous contactera sous 24 heures pour analyser votre projet.',
-    formFields: {
-      company: 'Nom de l\'entreprise',
-      contact: 'Personne de contact',
-      email: 'Email',
-      phone: 'Téléphone',
-      sector: 'Secteur d\'activité',
-      message: 'Message (optionnel)',
-      sectorOptions: ['Hôtel / Restauration', 'Bureaux', 'Commerce / Retail', 'Industrie', 'Logistique / Entrepôt', 'Parking', 'Autre'],
-      selectSector: 'Sélectionnez un secteur',
-      privacy: 'J\'accepte la politique de confidentialité et le traitement de mes données pour être contacté.',
-      submit: 'Demander un audit gratuit',
-      successTitle: 'Demande reçue !',
-      successDesc: 'Un expert B2B vous contactera dans les prochaines 24 heures pour discuter de votre projet.',
-      newRequest: 'Nouvelle demande',
     },
   },
   en: {
@@ -267,7 +201,7 @@ export default function ProfesionalesPage() {
                   {t.cta}
                   <ArrowRight className="w-5 h-5" />
                 </a>
-                <a href="tel:+34919469528" className="btn-secondary border-white/30 text-white hover:bg-white/10 text-lg px-8 py-4">
+                <a href="tel:+34919947586" className="btn-secondary border-white/30 text-white hover:bg-white/10 text-lg px-8 py-4">
                   <Phone className="w-5 h-5" />
                   {t.callNow}
                 </a>
@@ -384,7 +318,7 @@ export default function ProfesionalesPage() {
                 <h3 className="text-2xl font-bold text-white">{locale === 'es' ? '¿Tienes dudas?' : locale === 'fr' ? 'Des questions ?' : 'Have questions?'}</h3>
                 <p className="text-verde-200 mt-2">{locale === 'es' ? 'Nuestros expertos están disponibles para analizar tu situación.' : locale === 'fr' ? 'Nos experts sont disponibles pour analyser votre situation.' : 'Our experts are available to analyze your situation.'}</p>
               </div>
-              <a href="tel:+34919469528" className="btn-primary bg-white text-verde-800 hover:bg-verde-50 w-full justify-center text-lg py-4">
+              <a href="tel:+34919947586" className="btn-primary bg-white text-verde-800 hover:bg-verde-50 w-full justify-center text-lg py-4">
                 <Phone className="w-5 h-5" />
                 {t.callNow}
               </a>

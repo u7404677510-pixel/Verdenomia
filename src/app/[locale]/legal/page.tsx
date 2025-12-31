@@ -10,7 +10,7 @@ const content = {
     title: 'Aviso legal',
     updated: 'Última actualización: Diciembre 2025',
     sections: [
-      { title: '1. Identificación', content: 'VERDENOMIA S.L.\nCIF: B-12345678\nDomicilio: Calle Principal, 123, 03001 Alicante, España\nEmail: info@verdenomia.es\nTeléfono: +34 919 46 95 28\nInscrita en el Registro Mercantil de Alicante.' },
+      { title: '1. Identificación', content: 'VERDENOMIA S.L.\nCIF: B-12345678\nDomicilio: Calle Principal, 123, 03001 Alicante, España\nEmail: Contacto@verdenomia.es\nTeléfono: +34 919 94 75 86\nInscrita en el Registro Mercantil de Alicante.' },
       { title: '2. Objeto', content: 'Este sitio web tiene como objeto proporcionar información sobre los servicios de aislamiento de Verdenomia y el programa de Certificados de Ahorro Energético (CAE).' },
       { title: '3. Condiciones de uso', content: 'El acceso a este sitio web es gratuito. El usuario se compromete a hacer un uso adecuado del sitio, sin realizar actividades ilícitas o contrarias a la buena fe.' },
       { title: '4. Propiedad intelectual', content: 'Todos los contenidos de este sitio web (textos, imágenes, logotipos, diseño) son propiedad de Verdenomia S.L. o de terceros que han autorizado su uso, y están protegidos por las leyes de propiedad intelectual.' },
@@ -19,24 +19,11 @@ const content = {
       { title: '7. Legislación aplicable', content: 'Las presentes condiciones se rigen por la legislación española. Para cualquier controversia serán competentes los Juzgados y Tribunales de Alicante.' },
     ],
   },
-  fr: {
-    title: 'Mentions légales',
-    updated: 'Dernière mise à jour : Décembre 2025',
-    sections: [
-      { title: '1. Identification', content: 'VERDENOMIA S.L.\nCIF : B-12345678\nSiège social : Calle Principal, 123, 03001 Alicante, Espagne\nEmail : info@verdenomia.es\nTéléphone : +34 919 46 95 28\nInscrite au Registre du Commerce d\'Alicante.' },
-      { title: '2. Objet', content: 'Ce site web a pour objet de fournir des informations sur les services d\'isolation de Verdenomia et le programme de Certificats d\'Économies d\'Énergie (CAE).' },
-      { title: '3. Conditions d\'utilisation', content: 'L\'accès à ce site web est gratuit. L\'utilisateur s\'engage à faire un usage approprié du site, sans réaliser d\'activités illicites ou contraires à la bonne foi.' },
-      { title: '4. Propriété intellectuelle', content: 'Tous les contenus de ce site web (textes, images, logos, design) sont la propriété de Verdenomia S.L. ou de tiers ayant autorisé leur utilisation, et sont protégés par les lois sur la propriété intellectuelle.' },
-      { title: '5. Limitation de responsabilité', content: 'Verdenomia n\'est pas responsable des dommages pouvant résulter de l\'utilisation des informations contenues sur ce site web ou de l\'impossibilité d\'y accéder.' },
-      { title: '6. Liens externes', content: 'Ce site peut contenir des liens vers des sites web tiers. Verdenomia n\'est pas responsable du contenu de ces sites.' },
-      { title: '7. Loi applicable', content: 'Les présentes conditions sont régies par la législation espagnole. Pour tout litige, les tribunaux d\'Alicante seront compétents.' },
-    ],
-  },
   en: {
     title: 'Legal Notice',
     updated: 'Last updated: December 2025',
     sections: [
-      { title: '1. Identification', content: 'VERDENOMIA S.L.\nCIF: B-12345678\nAddress: Calle Principal, 123, 03001 Alicante, Spain\nEmail: info@verdenomia.es\nPhone: +34 919 46 95 28\nRegistered at the Alicante Commercial Registry.' },
+      { title: '1. Identification', content: 'VERDENOMIA S.L.\nCIF: B-12345678\nAddress: Calle Principal, 123, 03001 Alicante, Spain\nEmail: Contacto@verdenomia.es\nPhone: +34 919 94 75 86\nRegistered at the Alicante Commercial Registry.' },
       { title: '2. Purpose', content: 'This website aims to provide information about Verdenomia\'s insulation services and the Energy Savings Certificates (CAE) program.' },
       { title: '3. Terms of Use', content: 'Access to this website is free. The user agrees to make appropriate use of the site, without carrying out illegal activities or activities contrary to good faith.' },
       { title: '4. Intellectual Property', content: 'All content on this website (texts, images, logos, design) is the property of Verdenomia S.L. or third parties who have authorized its use, and is protected by intellectual property laws.' },

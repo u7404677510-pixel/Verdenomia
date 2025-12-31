@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useLocale, useTranslations } from 'next-intl'
 import {
   Phone,
@@ -45,14 +46,14 @@ export default function Footer() {
       type: t('footer.headquarters'),
       address: 'Calle Principal, 123',
       postalCode: '03001 Alicante',
-      phone: '+34 919 46 95 28',
+      phone: '+34 919 94 75 86',
     },
     {
       city: 'Madrid',
       type: t('footer.commercialOffice'),
       address: 'Calle Comercio, 45',
       postalCode: '28001 Madrid',
-      phone: '+34 919 46 95 28',
+      phone: '+34 919 94 75 86',
     },
   ]
 
@@ -69,15 +70,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
           {/* Company info */}
           <div className="lg:col-span-1">
-            <Link href={`/${locale}`} className="flex items-center gap-2 mb-4 group">
-              <div className="relative">
-                <div className="w-12 h-12 bg-gradient-to-br from-verde-500 to-verde-700 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-verde-500/30 transition-shadow">
-                  <Leaf className="w-7 h-7 text-white" />
-                </div>
-                <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center shadow-md">
-                  <span className="text-yellow-900 text-[10px] font-black">0€</span>
-                </div>
-              </div>
+            <Link href={`/${locale}`} className="flex items-center gap-3 mb-4 group">
+              <Image
+                src="/logo.png"
+                alt="Verdenomia"
+                width={48}
+                height={48}
+                className="w-12 h-12 object-contain"
+              />
               <div>
                 <h2 className="text-xl font-display font-bold text-white">
                   Verdenomia
@@ -200,11 +200,11 @@ export default function Footer() {
                 </div>
               ))}
               <a
-                href="mailto:info@verdenomia.es"
+                href="mailto:Contacto@verdenomia.es"
                 className="flex items-center gap-2 text-verde-400 hover:text-verde-300 text-sm"
               >
                 <Mail className="w-4 h-4" />
-                info@verdenomia.es
+                Contacto@verdenomia.es
               </a>
             </div>
           </div>

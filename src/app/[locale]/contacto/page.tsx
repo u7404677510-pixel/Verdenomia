@@ -77,7 +77,7 @@ export default function ContactPage() {
 
                 <div className="space-y-4">
                   <a
-                    href="tel:+34919469528"
+                    href="tel:+34919947586"
                     className="flex items-center gap-4 p-4 bg-verde-50 rounded-xl hover:bg-verde-100 transition-colors"
                   >
                     <div className="w-12 h-12 bg-verde-600 rounded-xl flex items-center justify-center">
@@ -86,13 +86,13 @@ export default function ContactPage() {
                     <div>
                       <p className="text-sm text-gray-500">{t('common.call')}</p>
                       <p className="text-lg font-semibold text-verde-800">
-                        +34 919 46 95 28
+                        +34 919 94 75 86
                       </p>
                     </div>
                   </a>
 
                   <a
-                    href="mailto:info@verdenomia.es"
+                    href="mailto:Contacto@verdenomia.es"
                     className="flex items-center gap-4 p-4 bg-verde-50 rounded-xl hover:bg-verde-100 transition-colors"
                   >
                     <div className="w-12 h-12 bg-verde-600 rounded-xl flex items-center justify-center">
@@ -101,7 +101,7 @@ export default function ContactPage() {
                     <div>
                       <p className="text-sm text-gray-500">Email</p>
                       <p className="text-lg font-semibold text-verde-800">
-                        info@verdenomia.es
+                        Contacto@verdenomia.es
                       </p>
                     </div>
                   </a>

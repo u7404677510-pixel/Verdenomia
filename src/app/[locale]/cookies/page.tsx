@@ -14,18 +14,7 @@ const content = {
       { title: 'Cookies que utilizamos', content: 'Utilizamos cookies técnicas (necesarias para el funcionamiento del sitio), cookies analíticas (para entender cómo los usuarios interactúan con el sitio) y cookies de preferencias (para recordar sus elecciones).' },
       { title: 'Cookies de terceros', content: 'Podemos utilizar servicios de terceros como Google Analytics para analizar el uso del sitio. Estos servicios pueden establecer sus propias cookies.' },
       { title: 'Control de cookies', content: 'Puede configurar su navegador para rechazar cookies o para que le avise cuando se envían. Sin embargo, algunas funciones del sitio pueden no funcionar correctamente sin cookies.' },
-      { title: 'Más información', content: 'Para más información sobre cómo gestionamos sus datos, consulte nuestra Política de Privacidad. Si tiene preguntas, contacte con nosotros en info@verdenomia.es.' },
-    ],
-  },
-  fr: {
-    title: 'Politique de cookies',
-    updated: 'Dernière mise à jour : Décembre 2025',
-    sections: [
-      { title: 'Qu\'est-ce que les cookies ?', content: 'Les cookies sont de petits fichiers texte qui sont stockés sur votre appareil lorsque vous visitez un site web. Ils permettent au site de mémoriser vos actions et préférences pendant une période de temps.' },
-      { title: 'Cookies que nous utilisons', content: 'Nous utilisons des cookies techniques (nécessaires au fonctionnement du site), des cookies analytiques (pour comprendre comment les utilisateurs interagissent avec le site) et des cookies de préférences (pour mémoriser vos choix).' },
-      { title: 'Cookies tiers', content: 'Nous pouvons utiliser des services tiers comme Google Analytics pour analyser l\'utilisation du site. Ces services peuvent définir leurs propres cookies.' },
-      { title: 'Contrôle des cookies', content: 'Vous pouvez configurer votre navigateur pour refuser les cookies ou pour vous avertir lorsqu\'ils sont envoyés. Cependant, certaines fonctionnalités du site peuvent ne pas fonctionner correctement sans cookies.' },
-      { title: 'Plus d\'informations', content: 'Pour plus d\'informations sur la façon dont nous gérons vos données, consultez notre Politique de Confidentialité. Si vous avez des questions, contactez-nous à info@verdenomia.es.' },
+      { title: 'Más información', content: 'Para más información sobre cómo gestionamos sus datos, consulte nuestra Política de Privacidad. Si tiene preguntas, contacte con nosotros en Contacto@verdenomia.es.' },
     ],
   },
   en: {
@@ -36,7 +25,7 @@ const content = {
       { title: 'Cookies we use', content: 'We use technical cookies (necessary for the site to function), analytical cookies (to understand how users interact with the site), and preference cookies (to remember your choices).' },
       { title: 'Third-party cookies', content: 'We may use third-party services like Google Analytics to analyze site usage. These services may set their own cookies.' },
       { title: 'Cookie control', content: 'You can configure your browser to reject cookies or to alert you when cookies are being sent. However, some site features may not work properly without cookies.' },
-      { title: 'More information', content: 'For more information on how we manage your data, please see our Privacy Policy. If you have questions, contact us at info@verdenomia.es.' },
+      { title: 'More information', content: 'For more information on how we manage your data, please see our Privacy Policy. If you have questions, contact us at Contacto@verdenomia.es.' },
     ],
   },
 }

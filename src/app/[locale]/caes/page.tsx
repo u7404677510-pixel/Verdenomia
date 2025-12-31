@@ -28,7 +28,7 @@ const content = {
     description: 'Los CAE son un mecanismo que permite financiar al 100% las obras de eficiencia energética en tu hogar, sin coste para ti.',
     cta: 'Comprobar mi elegibilidad',
     howTitle: '¿Cómo funcionan los CAE?',
-    howP1: 'Los <strong>Certificados de Ahorro Energético (CAE)</strong> son un instrumento creado por el gobierno español para impulsar la eficiencia energética en edificios.',
+    howP1: 'Los <strong>Certificados de Ahorro Energético (CAE)</strong> son un instrumento creado por el gobierno español para impulsar la eficiencia energética en viviendas.',
     howP2: 'Las grandes empresas energéticas tienen la obligación legal de generar ahorros de energía. Para cumplir, financian obras de rehabilitación energética en viviendas particulares.',
     howP3: '<strong>¿El resultado?</strong> Tú obtienes un aislamiento de calidad profesional sin pagar nada. A cambio, cedes los certificados de ahorro generados a la empresa que financia la obra.',
     faqTitle: '¿Es realmente gratis?',
@@ -48,7 +48,7 @@ const content = {
     processTitle: '¿Cómo funciona el proceso?',
     processDesc: 'Un proceso simple y transparente, de principio a fin.',
     steps: [
-      { number: '01', title: 'Verificación de elegibilidad', desc: 'Respondemos a unas preguntas sencillas para confirmar que tu vivienda cumple los requisitos del programa.' },
+      { number: '01', title: 'Verificación de elegibilidad', desc: 'Responde a unas preguntas sencillas para confirmar que tu vivienda cumple los requisitos del programa.' },
       { number: '02', title: 'Diagnóstico técnico', desc: 'Un técnico visita tu domicilio para evaluar la buhardilla y proponer la mejor solución de aislamiento.' },
       { number: '03', title: 'Firma del contrato CAE', desc: 'Firmas un contrato de cesión de los certificados de ahorro energético a Verdenomia.' },
       { number: '04', title: 'Instalación del aislamiento', desc: 'Nuestros técnicos realizan la instalación en pocas horas, sin obras ni molestias.' },
@@ -64,50 +64,6 @@ const content = {
     ctaTitle: 'Aprovecha el programa CAE ahora',
     ctaDesc: 'Verifica tu elegibilidad en menos de 2 minutos y obtén un diagnóstico gratuito.',
     callNow: 'Llamar ahora',
-  },
-  fr: {
-    badge: 'Programme officiel d\'efficacité énergétique',
-    title: 'Qu\'est-ce que les',
-    titleHighlight: 'Certificats d\'Économies d\'Énergie ?',
-    description: 'Les CAE sont un mécanisme qui permet de financer à 100% les travaux d\'efficacité énergétique dans votre logement, sans frais pour vous.',
-    cta: 'Vérifier mon éligibilité',
-    howTitle: 'Comment fonctionnent les CAE ?',
-    howP1: 'Les <strong>Certificats d\'Économies d\'Énergie (CAE)</strong> sont un instrument créé par le gouvernement espagnol pour promouvoir l\'efficacité énergétique dans les bâtiments.',
-    howP2: 'Les grandes entreprises énergétiques ont l\'obligation légale de générer des économies d\'énergie. Pour y parvenir, elles financent des travaux de rénovation énergétique dans les logements particuliers.',
-    howP3: '<strong>Le résultat ?</strong> Vous obtenez une isolation de qualité professionnelle sans rien payer. En échange, vous cédez les certificats d\'économie générés à l\'entreprise qui finance les travaux.',
-    faqTitle: 'C\'est vraiment gratuit ?',
-    faqDesc: 'Oui, 100% gratuit. Pas de frais cachés, pas de mensualités, pas d\'engagement futur. Vous signez simplement la cession des CAE et nous nous occupons du reste.',
-    benefits: [
-      { title: '100% financé', desc: 'Le coût de votre isolation est entièrement couvert par les CAE. Vous ne payez rien.' },
-      { title: 'Transition écologique', desc: 'Vous contribuez à réduire les émissions de CO2 et à atteindre les objectifs européens d\'efficacité.' },
-      { title: 'Programme officiel', desc: 'Les CAE sont un dispositif légal et réglementé par le gouvernement espagnol.' },
-      { title: 'Processus rapide', desc: 'De la vérification à l\'installation, le processus complet ne prend que quelques jours.' },
-    ],
-    stats: [
-      { value: '2,500+', label: 'Foyers isolés' },
-      { value: '15M+', label: 'kWh économisés' },
-      { value: '3,500+', label: 'Tonnes de CO2 évitées' },
-      { value: '100%', label: 'Clients satisfaits' },
-    ],
-    processTitle: 'Comment se déroule le processus ?',
-    processDesc: 'Un processus simple et transparent, du début à la fin.',
-    steps: [
-      { number: '01', title: 'Vérification d\'éligibilité', desc: 'Répondez à quelques questions simples pour confirmer que votre logement répond aux critères du programme.' },
-      { number: '02', title: 'Diagnostic technique', desc: 'Un technicien visite votre domicile pour évaluer les combles et proposer la meilleure solution d\'isolation.' },
-      { number: '03', title: 'Signature du contrat CAE', desc: 'Vous signez un contrat de cession des certificats d\'économie d\'énergie à Verdenomia.' },
-      { number: '04', title: 'Installation de l\'isolation', desc: 'Nos techniciens réalisent l\'installation en quelques heures, sans travaux ni nuisances.' },
-      { number: '05', title: 'Validation et certification', desc: 'Nous documentons le travail effectué et générons les certificats d\'économie d\'énergie.' },
-    ],
-    eligTitle: 'Qui peut en bénéficier ?',
-    eligDesc: 'Les critères d\'éligibilité sont simples.',
-    b2cTitle: 'Particuliers (B2C)',
-    b2cItems: ['Propriétaire ou occupant du logement', 'Logement avec combles ou grenier', 'Sol des combles non isolé ou mal isolé', 'Logement construit il y a plus de 2 ans'],
-    b2bTitle: 'Professionnels (B2B)',
-    b2bItems: ['Entreprises, hôtels, commerces, entrepôts', 'Bâtiments avec zones non chauffées', 'Éclairage ancien (remplacement par LED)', 'Installations de plus de 2 ans'],
-    b2bLink: 'Voir les solutions B2B',
-    ctaTitle: 'Profitez du programme CAE maintenant',
-    ctaDesc: 'Vérifiez votre éligibilité en moins de 2 minutes et obtenez un diagnostic gratuit.',
-    callNow: 'Appeler maintenant',
   },
   en: {
     badge: 'Official energy efficiency program',
@@ -423,7 +379,7 @@ export default function CAEsPage() {
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <a
-                href="tel:+34919469528"
+                href="tel:+34919947586"
                 className="btn-secondary border-white/30 text-white hover:bg-white/10 text-lg px-8 py-4"
               >
                 <Phone className="w-5 h-5" />
