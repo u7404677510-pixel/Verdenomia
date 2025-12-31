@@ -253,7 +253,7 @@ export default function HomePage() {
                     <div>
                       <p className="text-2xl font-bold text-gray-900">0€</p>
                       <p className="text-xs text-gray-500">
-                        {locale === 'es' ? 'Coste para ti' : locale === 'fr' ? 'Coût pour vous' : 'Cost for you'}
+                        {locale === 'es' ? 'Coste para ti' : 'Cost for you'}
                       </p>
                     </div>
                   </div>
@@ -264,7 +264,7 @@ export default function HomePage() {
                   transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
                   className="absolute top-1/2 -right-4 bg-yellow-400 text-yellow-900 px-4 py-2 rounded-full font-bold text-sm shadow-lg"
                 >
-                  {locale === 'es' ? 'Suelo buhardilla' : locale === 'fr' ? 'Sol combles' : 'Attic floor'}
+                  {locale === 'es' ? 'Suelo buhardilla' : 'Attic floor'}
                 </motion.div>
 
                 <motion.div
@@ -279,7 +279,7 @@ export default function HomePage() {
                     <div>
                       <p className="text-2xl font-bold text-gray-900">-30%</p>
                       <p className="text-xs text-gray-500">
-                        {locale === 'es' ? 'Factura energética' : locale === 'fr' ? 'Facture énergie' : 'Energy bill'}
+                        {locale === 'es' ? 'Factura energética' : 'Energy bill'}
                       </p>
                     </div>
                   </div>
