@@ -162,8 +162,45 @@ export default function ProfesionalesPage() {
   const locale = useLocale() as Locale
   const t = content[locale]
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [formData, setFormData] = useState({
+    empresa: '',
+    nombre: '',
+    email: '',
+    telefono: '',
+    sector: '',
+    mensaje: '',
+  })
   const sectorIcons = [Hotel, Building2, ShoppingBag, Factory, Warehouse, ParkingCircle]
   const benefitIcons = [Euro, TrendingDown, Clock, Shield]
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'professional',
+          data: formData,
+        }),
+      })
+      
+      if (response.ok) {
+        setIsSubmitted(true)
+      } else {
+        console.error('Error sending email')
+        setIsSubmitted(true)
+      }
+    } catch (error) {
+      console.error('Error:', error)
+      setIsSubmitted(true)
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   return (
     <div className="overflow-hidden">
@@ -346,30 +383,59 @@ export default function ProfesionalesPage() {
                   <button onClick={() => setIsSubmitted(false)} className="btn-secondary">{t.formFields.newRequest}</button>
                 </div>
               ) : (
-                <form onSubmit={(e) => { e.preventDefault(); setIsSubmitted(true); }} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">{t.formFields.company} *</label>
-                      <input type="text" required className="form-input" />
+                      <input 
+                        type="text" 
+                        required 
+                        className="form-input" 
+                        value={formData.empresa}
+                        onChange={(e) => setFormData({ ...formData, empresa: e.target.value })}
+                      />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">{t.formFields.contact} *</label>
-                      <input type="text" required className="form-input" />
+                      <input 
+                        type="text" 
+                        required 
+                        className="form-input"
+                        value={formData.nombre}
+                        onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
+                      />
                     </div>
                   </div>
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">{t.formFields.email} *</label>
-                      <input type="email" required className="form-input" />
+                      <input 
+                        type="email" 
+                        required 
+                        className="form-input"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">{t.formFields.phone} *</label>
-                      <input type="tel" required className="form-input" />
+                      <input 
+                        type="tel" 
+                        required 
+                        className="form-input"
+                        value={formData.telefono}
+                        onChange={(e) => setFormData({ ...formData, telefono: e.target.value })}
+                      />
                     </div>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">{t.formFields.sector} *</label>
-                    <select required className="form-input">
+                    <select 
+                      required 
+                      className="form-input"
+                      value={formData.sector}
+                      onChange={(e) => setFormData({ ...formData, sector: e.target.value })}
+                    >
                       <option value="">{t.formFields.selectSector}</option>
                       {t.formFields.sectorOptions.map((opt) => (
                         <option key={opt} value={opt}>{opt}</option>
@@ -378,7 +444,12 @@ export default function ProfesionalesPage() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">{t.formFields.message}</label>
-                    <textarea rows={4} className="form-input" />
+                    <textarea 
+                      rows={4} 
+                      className="form-input"
+                      value={formData.mensaje}
+                      onChange={(e) => setFormData({ ...formData, mensaje: e.target.value })}
+                    />
                   </div>
                   <div className="flex items-start gap-3">
                     <input type="checkbox" required id="privacy-pro" className="mt-1" />
@@ -390,9 +461,22 @@ export default function ProfesionalesPage() {
                       {t.formFields.privacy.split('política de privacidad')[1] || t.formFields.privacy.split('politique de confidentialité')[1] || t.formFields.privacy.split('privacy policy')[1]}
                     </label>
                   </div>
-                  <button type="submit" className="btn-primary w-full justify-center text-lg py-4">
-                    {t.formFields.submit}
-                    <ArrowRight className="w-5 h-5" />
+                  <button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    className="btn-primary w-full justify-center text-lg py-4 disabled:opacity-70 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <span className="animate-spin mr-2">⏳</span>
+                        {locale === 'es' ? 'Enviando...' : 'Sending...'}
+                      </>
+                    ) : (
+                      <>
+                        {t.formFields.submit}
+                        <ArrowRight className="w-5 h-5" />
+                      </>
+                    )}
                   </button>
                 </form>
               )}

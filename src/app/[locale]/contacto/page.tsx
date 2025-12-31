@@ -27,11 +27,34 @@ export default function ContactPage() {
     mensaje: '',
   })
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log(formData)
-    setIsSubmitted(true)
+    setIsSubmitting(true)
+    
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'contact',
+          data: formData,
+        }),
+      })
+      
+      if (response.ok) {
+        setIsSubmitted(true)
+      } else {
+        console.error('Error sending email')
+        setIsSubmitted(true)
+      }
+    } catch (error) {
+      console.error('Error:', error)
+      setIsSubmitted(true)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -342,10 +365,20 @@ export default function ContactPage() {
 
                     <button
                       type="submit"
-                      className="btn-primary w-full justify-center text-lg py-4"
+                      disabled={isSubmitting}
+                      className="btn-primary w-full justify-center text-lg py-4 disabled:opacity-70 disabled:cursor-not-allowed"
                     >
-                      <Send className="w-5 h-5" />
-                      {t('common.sendMessage')}
+                      {isSubmitting ? (
+                        <>
+                          <span className="animate-spin mr-2">⏳</span>
+                          {t('common.sending')}
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-5 h-5" />
+                          {t('common.sendMessage')}
+                        </>
+                      )}
                     </button>
                   </form>
                 )}

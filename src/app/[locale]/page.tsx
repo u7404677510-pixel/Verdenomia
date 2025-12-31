@@ -46,6 +46,7 @@ export default function HomePage() {
     codigoPostal: '',
     consent: false,
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleAnswer = (question: keyof WizardAnswer, answer: string) => {
     setAnswers((prev) => ({ ...prev, [question]: answer }))
@@ -56,9 +57,37 @@ export default function HomePage() {
     setWizardStep(nextStep[question] || 'form')
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setWizardStep('success')
+    setIsSubmitting(true)
+    
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'eligibility',
+          data: {
+            ...formData,
+            answers,
+          },
+        }),
+      })
+      
+      if (response.ok) {
+        setWizardStep('success')
+      } else {
+        console.error('Error sending email')
+        // Still show success to user but log error
+        setWizardStep('success')
+      }
+    } catch (error) {
+      console.error('Error:', error)
+      // Still show success to user but log error
+      setWizardStep('success')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const goBack = () => {
@@ -559,9 +588,22 @@ export default function HomePage() {
                           </label>
                         </div>
 
-                        <button type="submit" className="btn-primary w-full justify-center text-lg py-4">
-                          {t('home.wizard.submitRequest')}
-                          <ArrowRight className="w-5 h-5" />
+                        <button 
+                          type="submit" 
+                          disabled={isSubmitting}
+                          className="btn-primary w-full justify-center text-lg py-4 disabled:opacity-70 disabled:cursor-not-allowed"
+                        >
+                          {isSubmitting ? (
+                            <>
+                              <span className="animate-spin mr-2">⏳</span>
+                              {t('common.sending')}
+                            </>
+                          ) : (
+                            <>
+                              {t('home.wizard.submitRequest')}
+                              <ArrowRight className="w-5 h-5" />
+                            </>
+                          )}
                         </button>
                       </form>
                     </motion.div>
