@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
+import { useLocale, useTranslations } from 'next-intl'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Menu,
@@ -17,26 +19,26 @@ import {
   HelpCircle,
   Mail,
 } from 'lucide-react'
-
-const navigation = [
-  { name: 'Inicio', href: '/', icon: Home },
-  { name: 'Quiénes somos', href: '/nosotros', icon: Info },
-  { name: 'Los CAEs', href: '/caes', icon: FileCheck },
-  { name: 'Profesionales', href: '/profesionales', icon: Building2 },
-  { name: 'FAQ', href: '/faq', icon: HelpCircle },
-  { name: 'Contacto', href: '/contacto', icon: Mail },
-]
-
-const languages = [
-  { code: 'es', name: 'Español', flag: '🇪🇸' },
-  { code: 'fr', name: 'Français', flag: '🇫🇷' },
-]
+import { locales, localeNames, localeFlags, type Locale } from '@/i18n/config'
 
 export default function Header() {
+  const t = useTranslations()
+  const locale = useLocale() as Locale
+  const pathname = usePathname()
+  const router = useRouter()
+  
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isLangOpen, setIsLangOpen] = useState(false)
-  const [currentLang, setCurrentLang] = useState(languages[0])
+
+  const navigation = [
+    { name: t('header.nav.home'), href: `/${locale}`, icon: Home },
+    { name: t('header.nav.about'), href: `/${locale}/nosotros`, icon: Info },
+    { name: t('header.nav.caes'), href: `/${locale}/caes`, icon: FileCheck },
+    { name: t('header.nav.professionals'), href: `/${locale}/profesionales`, icon: Building2 },
+    { name: t('header.nav.faq'), href: `/${locale}/faq`, icon: HelpCircle },
+    { name: t('header.nav.contact'), href: `/${locale}/contacto`, icon: Mail },
+  ]
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,6 +47,13 @@ export default function Header() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  const switchLocale = (newLocale: Locale) => {
+    // Get the path without the current locale
+    const pathWithoutLocale = pathname.replace(`/${locale}`, '') || '/'
+    router.push(`/${newLocale}${pathWithoutLocale}`)
+    setIsLangOpen(false)
+  }
 
   return (
     <>
@@ -55,17 +64,17 @@ export default function Header() {
           <div className="flex items-center gap-3 text-center">
             <span className="inline-flex items-center gap-2 px-3 py-1 bg-white/20 rounded-full text-xs font-semibold uppercase tracking-wide">
               <span className="w-2 h-2 bg-green-300 rounded-full animate-pulse" />
-              Programa CAE activo
+              {t('header.banner.badge')}
             </span>
             <span className="font-medium">
-              🏠 <strong>Aislamiento de suelos de buhardilla 100% financiado</strong> — ¡0€ para ti!
+              🏠 <strong>{t('header.banner.message')}</strong> — {t('header.banner.cta')}
             </span>
             <a
               href="tel:+34919469528"
               className="hidden md:flex items-center gap-1.5 px-3 py-1 bg-white/10 hover:bg-white/20 rounded-full transition-colors font-medium"
             >
               <Phone className="w-3.5 h-3.5" />
-              Llámanos
+              {t('common.call')}
             </a>
           </div>
         </div>
@@ -82,7 +91,7 @@ export default function Header() {
         <div className="container-custom">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 group">
+            <Link href={`/${locale}`} className="flex items-center gap-2 group">
               <div className="relative">
                 <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-verde-500 to-verde-700 rounded-xl flex items-center justify-center shadow-lg shadow-verde-500/30 group-hover:shadow-verde-500/50 transition-shadow">
                   <Leaf className="w-6 h-6 md:w-7 md:h-7 text-white" />
@@ -96,7 +105,7 @@ export default function Header() {
                   Verdenomia
                 </h1>
                 <p className="text-xs text-verde-600 -mt-0.5 font-medium">
-                  Aislamiento 100% subvencionado
+                  {t('header.tagline')}
                 </p>
               </div>
             </Link>
@@ -124,7 +133,7 @@ export default function Header() {
                   className="flex items-center gap-1.5 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors text-gray-600"
                 >
                   <Globe className="w-4 h-4" />
-                  <span className="text-sm">{currentLang.flag}</span>
+                  <span className="text-sm">{localeFlags[locale]}</span>
                   <ChevronDown className="w-3 h-3" />
                 </button>
                 <AnimatePresence>
@@ -135,21 +144,18 @@ export default function Header() {
                       exit={{ opacity: 0, y: -10 }}
                       className="absolute right-0 top-full mt-1 bg-white rounded-lg shadow-xl border border-gray-100 py-1 min-w-32 z-50"
                     >
-                      {languages.map((lang) => (
+                      {locales.map((loc) => (
                         <button
-                          key={lang.code}
-                          onClick={() => {
-                            setCurrentLang(lang)
-                            setIsLangOpen(false)
-                          }}
+                          key={loc}
+                          onClick={() => switchLocale(loc)}
                           className={`w-full px-4 py-2 text-left flex items-center gap-2 hover:bg-verde-50 transition-colors ${
-                            currentLang.code === lang.code
+                            locale === loc
                               ? 'text-verde-700 bg-verde-50'
                               : 'text-gray-700'
                           }`}
                         >
-                          <span>{lang.flag}</span>
-                          <span>{lang.name}</span>
+                          <span>{localeFlags[loc]}</span>
+                          <span>{localeNames[loc]}</span>
                         </button>
                       ))}
                     </motion.div>
@@ -158,10 +164,10 @@ export default function Header() {
               </div>
               <a href="tel:+34919469528" className="btn-secondary text-sm py-2.5">
                 <Phone className="w-4 h-4" />
-                Llamar
+                {t('common.call')}
               </a>
-              <Link href="/#eligibilidad" className="btn-primary text-sm py-2.5 animate-pulse-slow">
-                ¡Verificar elegibilidad!
+              <Link href={`/${locale}#eligibilidad`} className="btn-primary text-sm py-2.5 animate-pulse-slow">
+                {t('common.verifyEligibility')}
               </Link>
             </div>
 
@@ -206,7 +212,7 @@ export default function Header() {
                 {/* Header */}
                 <div className="flex items-center justify-between p-4 border-b border-gray-100">
                   <Link
-                    href="/"
+                    href={`/${locale}`}
                     className="flex items-center gap-2"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
@@ -225,10 +231,33 @@ export default function Header() {
                   </button>
                 </div>
 
+                {/* Language selector mobile */}
+                <div className="p-4 border-b border-gray-100">
+                  <div className="flex gap-2">
+                    {locales.map((loc) => (
+                      <button
+                        key={loc}
+                        onClick={() => {
+                          switchLocale(loc)
+                          setIsMobileMenuOpen(false)
+                        }}
+                        className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium flex items-center justify-center gap-2 ${
+                          locale === loc
+                            ? 'bg-verde-100 text-verde-700'
+                            : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                        }`}
+                      >
+                        <span>{localeFlags[loc]}</span>
+                        <span>{loc.toUpperCase()}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
                 {/* Promo banner mobile */}
                 <div className="mx-4 mt-4 p-3 bg-gradient-to-r from-verde-500 to-verde-600 rounded-xl text-white text-center">
-                  <p className="text-sm font-semibold">🎉 Aislamiento 100% financiado</p>
-                  <p className="text-xs opacity-90">Gracias a los CAE - 0€ para ti</p>
+                  <p className="text-sm font-semibold">🎉 {t('header.banner.message')}</p>
+                  <p className="text-xs opacity-90">{t('header.banner.cta')}</p>
                 </div>
 
                 {/* Navigation */}
@@ -258,18 +287,18 @@ export default function Header() {
                 {/* Footer */}
                 <div className="p-4 border-t border-gray-100 space-y-3">
                   <Link
-                    href="/#eligibilidad"
+                    href={`/${locale}#eligibilidad`}
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="btn-primary w-full justify-center"
                   >
-                    ¡Verificar mi elegibilidad!
+                    {t('common.verifyEligibility')}
                   </Link>
                   <a
                     href="tel:+34919469528"
                     className="btn-secondary w-full justify-center"
                   >
                     <Phone className="w-4 h-4" />
-                    Llamar Ahora
+                    {t('common.callNow')}
                   </a>
                 </div>
               </div>

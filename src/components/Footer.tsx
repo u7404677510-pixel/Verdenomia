@@ -1,118 +1,133 @@
 'use client'
 
 import Link from 'next/link'
+import { useLocale, useTranslations } from 'next-intl'
 import {
-  Leaf,
   Phone,
   Mail,
   MapPin,
+  Leaf,
   Facebook,
   Instagram,
   Linkedin,
   ArrowRight,
+  Building2,
+  Heart,
 } from 'lucide-react'
-
-const navigation = {
-  empresa: [
-    { name: 'Inicio', href: '/' },
-    { name: 'Quiénes somos', href: '/nosotros' },
-    { name: 'Los CAEs', href: '/caes' },
-    { name: 'FAQ', href: '/faq' },
-    { name: 'Contacto', href: '/contacto' },
-  ],
-  servicios: [
-    { name: 'Aislamiento particulares', href: '/#eligibilidad' },
-    { name: 'Soluciones B2B', href: '/profesionales' },
-  ],
-  legal: [
-    { name: 'Aviso legal', href: '/legal' },
-    { name: 'Política de privacidad', href: '/privacidad' },
-    { name: 'Política de cookies', href: '/cookies' },
-  ],
-}
-
-const offices = [
-  {
-    city: 'Alicante',
-    type: 'Sede Central',
-    address: 'Calle Principal, 123',
-    zip: '03001 Alicante',
-    phone: '+34 919 46 95 28',
-  },
-  {
-    city: 'Madrid',
-    type: 'Oficina Comercial',
-    address: 'Calle Comercio, 45',
-    zip: '28001 Madrid',
-    phone: '+34 919 46 95 28',
-  },
-]
+import { type Locale } from '@/i18n/config'
 
 export default function Footer() {
+  const t = useTranslations()
+  const locale = useLocale() as Locale
+
+  const navigation = [
+    { name: t('header.nav.home'), href: `/${locale}` },
+    { name: t('header.nav.about'), href: `/${locale}/nosotros` },
+    { name: t('header.nav.caes'), href: `/${locale}/caes` },
+    { name: t('header.nav.faq'), href: `/${locale}/faq` },
+    { name: t('header.nav.contact'), href: `/${locale}/contacto` },
+  ]
+
+  const services = [
+    { name: t('footer.serviceB2C'), href: `/${locale}#eligibilidad` },
+    { name: t('footer.serviceB2B'), href: `/${locale}/profesionales` },
+  ]
+
+  const legal = [
+    { name: t('footer.legalNotice'), href: `/${locale}/legal` },
+    { name: t('footer.privacy'), href: `/${locale}/privacidad` },
+    { name: t('footer.cookies'), href: `/${locale}/cookies` },
+  ]
+
+  const offices = [
+    {
+      city: 'Alicante',
+      type: t('footer.headquarters'),
+      address: 'Calle Principal, 123',
+      postalCode: '03001 Alicante',
+      phone: '+34 919 46 95 28',
+    },
+    {
+      city: 'Madrid',
+      type: t('footer.commercialOffice'),
+      address: 'Calle Comercio, 45',
+      postalCode: '28001 Madrid',
+      phone: '+34 919 46 95 28',
+    },
+  ]
+
+  const socialLinks = [
+    { name: 'Facebook', icon: Facebook, href: '#' },
+    { name: 'Instagram', icon: Instagram, href: '#' },
+    { name: 'LinkedIn', icon: Linkedin, href: '#' },
+  ]
+
   return (
-    <footer className="bg-verde-950 text-white">
+    <footer className="bg-gradient-to-b from-gray-900 to-gray-950 text-gray-300">
       {/* Main footer */}
       <div className="container-custom py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-          {/* Brand */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+          {/* Company info */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2 mb-6">
-              <div className="w-10 h-10 bg-gradient-to-br from-verde-500 to-verde-600 rounded-xl flex items-center justify-center">
-                <Leaf className="w-6 h-6 text-white" />
+            <Link href={`/${locale}`} className="flex items-center gap-2 mb-4 group">
+              <div className="relative">
+                <div className="w-12 h-12 bg-gradient-to-br from-verde-500 to-verde-700 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-verde-500/30 transition-shadow">
+                  <Leaf className="w-7 h-7 text-white" />
+                </div>
+                <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center shadow-md">
+                  <span className="text-yellow-900 text-[10px] font-black">0€</span>
+                </div>
               </div>
               <div>
-                <span className="text-xl font-display font-bold">Verdenomia</span>
-                <p className="text-xs text-verde-300 -mt-0.5">Aislamiento 100% financiado</p>
+                <h2 className="text-xl font-display font-bold text-white">
+                  Verdenomia
+                </h2>
+                <p className="text-xs text-verde-400">{t('footer.tagline')}</p>
               </div>
             </Link>
-            <p className="text-verde-200 text-sm mb-6">
-              Especialistas en aislamiento de suelos de buhardilla. Gracias a los CAE, tu aislamiento es 100% gratuito.
+
+            <p className="text-sm text-gray-400 mb-6 leading-relaxed">
+              {t('footer.description')}
             </p>
-            
-            {/* CTA */}
+
             <Link
-              href="/#eligibilidad"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-verde-600 hover:bg-verde-500 rounded-lg text-sm font-medium transition-colors"
+              href={`/${locale}#eligibilidad`}
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-verde-600 to-verde-700 text-white px-5 py-2.5 rounded-full font-semibold text-sm hover:shadow-lg hover:shadow-verde-600/30 transition-all hover:-translate-y-0.5"
             >
-              Verificar elegibilidad
+              {t('common.checkEligibility')}
               <ArrowRight className="w-4 h-4" />
             </Link>
 
-            {/* Social */}
             <div className="flex gap-3 mt-6">
-              <a
-                href="#"
-                className="w-10 h-10 bg-verde-800 hover:bg-verde-700 rounded-lg flex items-center justify-center transition-colors"
-              >
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 bg-verde-800 hover:bg-verde-700 rounded-lg flex items-center justify-center transition-colors"
-              >
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 bg-verde-800 hover:bg-verde-700 rounded-lg flex items-center justify-center transition-colors"
-              >
-                <Linkedin className="w-5 h-5" />
-              </a>
+              {socialLinks.map((social) => {
+                const Icon = social.icon
+                return (
+                  <a
+                    key={social.name}
+                    href={social.href}
+                    className="w-10 h-10 rounded-full bg-gray-800 hover:bg-verde-600 flex items-center justify-center transition-all hover:-translate-y-1"
+                    aria-label={social.name}
+                  >
+                    <Icon className="w-5 h-5" />
+                  </a>
+                )
+              })}
             </div>
           </div>
 
           {/* Navigation */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-verde-300 mb-4">
-              Navegación
+            <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
+              {t('footer.navigation')}
             </h3>
-            <ul className="space-y-3">
-              {navigation.empresa.map((item) => (
+            <ul className="space-y-2.5">
+              {navigation.map((item) => (
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-verde-100 hover:text-white transition-colors"
+                    className="text-gray-400 hover:text-verde-400 transition-colors text-sm flex items-center gap-2 group"
                   >
+                    <span className="w-1.5 h-1.5 bg-verde-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                     {item.name}
                   </Link>
                 </li>
@@ -120,34 +135,32 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Services & Legal */}
+          {/* Services + Legal */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-verde-300 mb-4">
-              Servicios
-            </h3>
-            <ul className="space-y-3 mb-8">
-              {navigation.servicios.map((item) => (
+            <h3 className="text-white font-semibold mb-4">{t('footer.services')}</h3>
+            <ul className="space-y-2.5 mb-6">
+              {services.map((item) => (
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-verde-100 hover:text-white transition-colors"
+                    className="text-gray-400 hover:text-verde-400 transition-colors text-sm flex items-center gap-2 group"
                   >
+                    <span className="w-1.5 h-1.5 bg-verde-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                     {item.name}
                   </Link>
                 </li>
               ))}
             </ul>
 
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-verde-300 mb-4">
-              Legal
-            </h3>
-            <ul className="space-y-3">
-              {navigation.legal.map((item) => (
+            <h3 className="text-white font-semibold mb-4">{t('footer.legal')}</h3>
+            <ul className="space-y-2.5">
+              {legal.map((item) => (
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-verde-100 hover:text-white transition-colors"
+                    className="text-gray-400 hover:text-verde-400 transition-colors text-sm flex items-center gap-2 group"
                   >
+                    <span className="w-1.5 h-1.5 bg-verde-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                     {item.name}
                   </Link>
                 </li>
@@ -157,36 +170,38 @@ export default function Footer() {
 
           {/* Offices */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-verde-300 mb-4">
-              Nuestras oficinas
+            <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
+              <Building2 className="w-4 h-4 text-verde-400" />
+              {t('footer.offices')}
             </h3>
-            <div className="space-y-6">
+            <div className="space-y-4">
               {offices.map((office) => (
-                <div key={office.city}>
+                <div
+                  key={office.city}
+                  className="p-4 bg-gray-800/50 rounded-xl border border-gray-700/50 hover:border-verde-600/30 transition-colors"
+                >
                   <div className="flex items-center gap-2 mb-2">
                     <span className="font-semibold text-white">{office.city}</span>
-                    <span className="text-xs px-2 py-0.5 bg-verde-800 text-verde-200 rounded">
+                    <span className="text-xs bg-verde-600/20 text-verde-400 px-2 py-0.5 rounded-full">
                       {office.type}
                     </span>
                   </div>
-                  <div className="text-sm text-verde-200 space-y-1">
-                    <p className="flex items-start gap-2">
-                      <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                      {office.address}, {office.zip}
-                    </p>
-                    <a
-                      href={`tel:${office.phone.replace(/\s/g, '')}`}
-                      className="flex items-center gap-2 hover:text-white transition-colors"
-                    >
-                      <Phone className="w-4 h-4" />
-                      {office.phone}
-                    </a>
-                  </div>
+                  <p className="text-sm text-gray-400 flex items-start gap-2 mb-1">
+                    <MapPin className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-verde-500" />
+                    {office.address}, {office.postalCode}
+                  </p>
+                  <a
+                    href={`tel:${office.phone.replace(/\s/g, '')}`}
+                    className="text-sm text-verde-400 hover:text-verde-300 flex items-center gap-2"
+                  >
+                    <Phone className="w-3.5 h-3.5" />
+                    {office.phone}
+                  </a>
                 </div>
               ))}
               <a
                 href="mailto:info@verdenomia.es"
-                className="flex items-center gap-2 text-verde-200 hover:text-white transition-colors"
+                className="flex items-center gap-2 text-verde-400 hover:text-verde-300 text-sm"
               >
                 <Mail className="w-4 h-4" />
                 info@verdenomia.es
@@ -197,15 +212,15 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-verde-800">
+      <div className="border-t border-gray-800">
         <div className="container-custom py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-verde-300">
-            <p>
-              © {new Date().getFullYear()} Verdenomia. Todos los derechos reservados.
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-sm text-gray-500">
+              © {new Date().getFullYear()} Verdenomia. {t('footer.copyright')}
             </p>
-            <p className="flex items-center gap-2">
-              <Leaf className="w-4 h-4 text-verde-500" />
-              Comprometidos con la eficiencia energética
+            <p className="text-sm text-gray-500 flex items-center gap-1">
+              <Heart className="w-4 h-4 text-verde-500" />
+              {t('footer.commitment')}
             </p>
           </div>
         </div>

@@ -1,0 +1,190 @@
+{
+  "common": {
+    "phone": "+34 919 46 95 28",
+    "email": "info@verdenomia.es",
+    "callNow": "Appeler maintenant",
+    "call": "Appeler",
+    "contact": "Contact",
+    "verifyEligibility": "Vérifier mon éligibilité !",
+    "checkEligibility": "Vérifier mon éligibilité",
+    "learnMore": "En savoir plus",
+    "sendMessage": "Envoyer le message",
+    "back": "Retour",
+    "next": "Suivant",
+    "submit": "Envoyer",
+    "close": "Fermer",
+    "loading": "Chargement...",
+    "success": "Succès !",
+    "error": "Erreur"
+  },
+  "header": {
+    "banner": {
+      "badge": "Programme CAE actif",
+      "message": "Isolation des sols de combles 100% financée",
+      "cta": "0€ pour vous !"
+    },
+    "nav": {
+      "home": "Accueil",
+      "about": "Qui sommes-nous",
+      "caes": "Les CAE",
+      "professionals": "Professionnels",
+      "faq": "FAQ",
+      "contact": "Contact"
+    },
+    "tagline": "Isolation 100% subventionnée"
+  },
+  "footer": {
+    "tagline": "Isolation 100% financée",
+    "description": "Spécialistes de l'isolation des sols de combles. Grâce aux CAE, votre isolation est 100% gratuite.",
+    "navigation": "Navigation",
+    "services": "Services",
+    "serviceB2C": "Isolation particuliers",
+    "serviceB2B": "Solutions B2B",
+    "legal": "Mentions légales",
+    "legalNotice": "Mentions légales",
+    "privacy": "Politique de confidentialité",
+    "cookies": "Politique de cookies",
+    "offices": "Nos bureaux",
+    "headquarters": "Siège social",
+    "commercialOffice": "Bureau commercial",
+    "copyright": "Tous droits réservés.",
+    "commitment": "Engagés pour l'efficacité énergétique"
+  },
+  "home": {
+    "hero": {
+      "badge": "Programme CAE en vigueur",
+      "title": "Isolez vos combles",
+      "titleHighlight": "100% gratuit",
+      "description": "Grâce aux <strong>Certificats d'Économies d'Énergie (CAE)</strong>, nous isolons le sol de vos combles sans frais pour vous. Réduisez votre facture jusqu'à <strong>30%</strong>.",
+      "benefit1": "0€ — 100% financé",
+      "benefit2": "Installation en quelques heures",
+      "benefit3": "Jusqu'à -30% sur la facture",
+      "benefit4": "Sans travaux ni nuisances",
+      "ctaPrimary": "Suis-je éligible ?",
+      "ctaSecondary": "Appeler maintenant"
+    },
+    "stats": {
+      "homes": "Foyers isolés",
+      "funded": "Financé par CAE",
+      "savings": "Économies d'énergie",
+      "response": "Réponse garantie"
+    },
+    "wizard": {
+      "badge": "✨ Réponse sous 24h garantie",
+      "title": "Êtes-vous éligible au programme CAE ?",
+      "description": "Répondez à quelques questions simples pour savoir si vous pouvez bénéficier de l'isolation 100% financée.",
+      "questionOf": "Question {current} sur {total}",
+      "previousQuestion": "Question précédente",
+      "q1": "Êtes-vous propriétaire ou occupant du logement ?",
+      "q1o1": "Je suis propriétaire",
+      "q1o2": "Je suis locataire",
+      "q2": "Votre logement a-t-il des combles ou un grenier ?",
+      "q2o1": "Oui, il a des combles/grenier",
+      "q2o2": "Non",
+      "q3": "Le sol de vos combles est-il actuellement isolé ?",
+      "q3o1": "Non isolé",
+      "q3o2": "Partiellement isolé",
+      "q3o3": "Je ne sais pas",
+      "q4": "Quel est le type de chauffage de votre logement ?",
+      "q4o1": "Gaz naturel",
+      "q4o2": "Électrique",
+      "q4o3": "Fioul",
+      "q4o4": "Autre",
+      "formTitle": "Bonne nouvelle ! Vous semblez éligible 🎉",
+      "formDescription": "Laissez-nous vos coordonnées pour qu'un conseiller vous contacte.",
+      "fieldName": "Prénom",
+      "fieldLastName": "Nom",
+      "fieldEmail": "Email",
+      "fieldPhone": "Téléphone",
+      "fieldPostalCode": "Code postal",
+      "privacyConsent": "J'accepte la {link} et le traitement de mes données pour être contacté.",
+      "privacyLink": "politique de confidentialité",
+      "submitRequest": "Envoyer ma demande",
+      "successTitle": "Merci pour votre demande !",
+      "successMessage": "Un conseiller vous contactera dans les prochaines <strong>24 heures</strong> pour évaluer votre éligibilité et programmer un diagnostic gratuit.",
+      "newRequest": "Nouvelle demande"
+    },
+    "why": {
+      "title": "Pourquoi isoler le sol de vos combles ?",
+      "description": "30% des pertes de chaleur de votre logement se produisent par le toit. Isoler vos combles est la solution la plus efficace et rapide.",
+      "benefit1Title": "Confort thermique toute l'année",
+      "benefit1Desc": "Gardez votre maison chaude en hiver et fraîche en été sans effort.",
+      "benefit2Title": "Économies sur votre facture",
+      "benefit2Desc": "Réduisez votre consommation de chauffage et climatisation jusqu'à 30%.",
+      "benefit3Title": "Installation rapide",
+      "benefit3Desc": "L'intervention se fait en quelques heures, sans travaux ni nuisances.",
+      "benefit4Title": "Matériaux de qualité",
+      "benefit4Desc": "Nous utilisons de la laine minérale haute densité avec garantie 25 ans.",
+      "techniquesTitle": "Nos techniques d'isolation",
+      "blownTitle": "Isolation soufflée",
+      "blownSubtitle": "Laine minérale projetée",
+      "blownDesc": "Idéale pour les combles difficiles d'accès. La laine minérale est projetée uniformément sur toute la surface.",
+      "blownFeatures": "Rapide • Sans résidus • Couverture totale",
+      "rolledTitle": "Isolation en rouleaux",
+      "rolledSubtitle": "Panneau de laine minérale",
+      "rolledDesc": "Parfait pour les combles accessibles. Des panneaux de laine minérale haute densité sont déroulés.",
+      "rolledFeatures": "Épaisseur précise • Haute densité • Durabilité",
+      "discoverCAE": "Découvrir les CAE"
+    },
+    "process": {
+      "title": "Un processus simple et transparent",
+      "description": "De la vérification d'éligibilité à l'installation, nous vous accompagnons à chaque étape.",
+      "step1Title": "Vérifiez votre éligibilité",
+      "step1Desc": "Répondez à quelques questions simples pour savoir si vous remplissez les conditions du programme CAE.",
+      "step2Title": "Diagnostic gratuit",
+      "step2Desc": "Un technicien évalue vos combles et vous explique le processus sans engagement.",
+      "step3Title": "Installation rapide",
+      "step3Desc": "Nous isolons le sol de vos combles en quelques heures avec des techniques de soufflage ou déroulage.",
+      "step4Title": "0€ pour vous !",
+      "step4Desc": "Grâce aux CAE, l'intervention est 100% financée. Vous ne payez rien."
+    },
+    "testimonials": {
+      "title": "Ce que disent nos clients",
+      "description": "Plus de 2 500 foyers nous ont déjà fait confiance.",
+      "certified": "Entreprise certifiée",
+      "guarantee": "Garantie 25 ans",
+      "technicians": "+50 techniciens"
+    },
+    "cta": {
+      "title": "Prêt à isoler votre logement gratuitement ?",
+      "description": "Grâce aux Certificats d'Économies d'Énergie (CAE), votre isolation est 100% financée. N'attendez plus.",
+      "primary": "Vérifier mon éligibilité"
+    }
+  },
+  "contact": {
+    "hero": {
+      "badge": "Contact",
+      "title": "Parlons-en !",
+      "description": "Nous sommes disponibles pour répondre à toutes vos questions sur l'isolation et le programme CAE."
+    },
+    "info": {
+      "title": "Informations de contact",
+      "hours": "Horaires d'ouverture",
+      "weekdays": "Lundi - Vendredi",
+      "weekdaysHours": "9h00 - 18h00",
+      "weekend": "Samedi - Dimanche",
+      "closed": "Fermé"
+    },
+    "form": {
+      "title": "Envoyez-nous un message",
+      "description": "Remplissez le formulaire et nous vous répondrons sous 24 heures.",
+      "subject": "Sujet",
+      "subjectPlaceholder": "Sélectionnez un sujet",
+      "subjectEligibility": "Vérifier mon éligibilité",
+      "subjectInfo": "Informations générales",
+      "subjectAppointment": "Demander un rendez-vous",
+      "subjectB2B": "Solution professionnelle (B2B)",
+      "subjectOther": "Autre",
+      "message": "Message",
+      "messagePlaceholder": "Écrivez votre message ici...",
+      "successTitle": "Message envoyé !",
+      "successMessage": "Merci de nous avoir contactés. Nous vous répondrons dans les prochaines <strong>24 heures</strong>.",
+      "sendAnother": "Envoyer un autre message"
+    },
+    "cta": {
+      "title": "Vous préférez qu'on vous rappelle ?",
+      "description": "Vérifiez votre éligibilité au programme CAE et un conseiller vous contactera sous 24 heures."
+    }
+  }
+}
+
