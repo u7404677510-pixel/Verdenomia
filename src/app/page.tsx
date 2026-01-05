@@ -704,11 +704,11 @@ export default function HomePage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                  href="tel:+34919469528"
+                  href="tel:+34919947586"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-tierra-700 font-semibold rounded-xl shadow-xl hover:bg-tierra-50 transition-colors"
                 >
                   <Phone className="w-5 h-5" />
-                  +34 919 46 95 28
+                  +34 919 94 75 86
                 </a>
                 <Link
                   href="/contacto#presupuesto"
