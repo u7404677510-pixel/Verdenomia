@@ -315,8 +315,8 @@ export default function ProfesionalesPage() {
             <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/10">
               <div className="text-center mb-6">
                 <Lightbulb className="w-16 h-16 mx-auto text-verde-300 mb-4" />
-                <h3 className="text-2xl font-bold text-white">{locale === 'es' ? '¿Tienes dudas?' : locale === 'fr' ? 'Des questions ?' : 'Have questions?'}</h3>
-                <p className="text-verde-200 mt-2">{locale === 'es' ? 'Nuestros expertos están disponibles para analizar tu situación.' : locale === 'fr' ? 'Nos experts sont disponibles pour analyser votre situation.' : 'Our experts are available to analyze your situation.'}</p>
+                <h3 className="text-2xl font-bold text-white">{locale === 'es' ? '¿Tienes dudas?' : 'Have questions?'}</h3>
+                <p className="text-verde-200 mt-2">{locale === 'es' ? 'Nuestros expertos están disponibles para analizar tu situación.' : 'Our experts are available to analyze your situation.'}</p>
               </div>
               <a href="tel:+34919947586" className="btn-primary bg-white text-verde-800 hover:bg-verde-50 w-full justify-center text-lg py-4">
                 <Phone className="w-5 h-5" />
@@ -385,7 +385,7 @@ export default function ProfesionalesPage() {
                     <label htmlFor="privacy-pro" className="text-sm text-gray-600">
                       {t.formFields.privacy.split('política de privacidad')[0]}
                       <Link href={`/${locale}/privacidad`} className="text-verde-600 hover:underline">
-                        {locale === 'es' ? 'política de privacidad' : locale === 'fr' ? 'politique de confidentialité' : 'privacy policy'}
+                        {locale === 'es' ? 'política de privacidad' : 'privacy policy'}
                       </Link>
                       {t.formFields.privacy.split('política de privacidad')[1] || t.formFields.privacy.split('politique de confidentialité')[1] || t.formFields.privacy.split('privacy policy')[1]}
                     </label>
