@@ -1,0 +1,190 @@
+{
+  "common": {
+    "phone": "+34 919 94 75 86",
+    "email": "Contacto@verdenomia.es",
+    "callNow": "Llamar ahora",
+    "call": "Llamar",
+    "contact": "Contacto",
+    "verifyEligibility": "¡Verificar elegibilidad!",
+    "checkEligibility": "Comprobar mi elegibilidad",
+    "learnMore": "Saber más",
+    "sendMessage": "Enviar mensaje",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "submit": "Enviar",
+    "close": "Cerrar",
+    "loading": "Cargando...",
+    "success": "¡Éxito!",
+    "error": "Error"
+  },
+  "header": {
+    "banner": {
+      "badge": "Programa CAE activo",
+      "message": "Aislamiento de suelos de buhardilla 100% financiado",
+      "cta": "¡0€ para ti!"
+    },
+    "nav": {
+      "home": "Inicio",
+      "about": "Quiénes somos",
+      "caes": "Los CAEs",
+      "professionals": "Profesionales",
+      "faq": "FAQ",
+      "contact": "Contacto"
+    },
+    "tagline": "Aislamiento 100% subvencionado"
+  },
+  "footer": {
+    "tagline": "Aislamiento 100% financiado",
+    "description": "Especialistas en aislamiento de suelos de buhardilla. Gracias a los CAE, tu aislamiento es 100% gratuito.",
+    "navigation": "Navegación",
+    "services": "Servicios",
+    "serviceB2C": "Aislamiento particulares",
+    "serviceB2B": "Soluciones B2B",
+    "legal": "Legal",
+    "legalNotice": "Aviso legal",
+    "privacy": "Política de privacidad",
+    "cookies": "Política de cookies",
+    "offices": "Nuestras oficinas",
+    "headquarters": "Sede Central",
+    "commercialOffice": "Oficina Comercial",
+    "copyright": "Todos los derechos reservados.",
+    "commitment": "Comprometidos con la eficiencia energética"
+  },
+  "home": {
+    "hero": {
+      "badge": "Programa CAE vigente",
+      "title": "Aísla tu buhardilla",
+      "titleHighlight": "100% gratis",
+      "description": "Gracias a los <strong>Certificados de Ahorro Energético (CAE)</strong>, aislamos el suelo de tu buhardilla sin coste para ti. Reduce tu factura hasta un <strong>30%</strong>.",
+      "benefit1": "0€ — 100% financiado",
+      "benefit2": "Instalación en pocas horas",
+      "benefit3": "Hasta -30% en factura",
+      "benefit4": "Sin obras ni molestias",
+      "ctaPrimary": "¿Soy elegible?",
+      "ctaSecondary": "Llamar ahora"
+    },
+    "stats": {
+      "homes": "Hogares aislados",
+      "funded": "Financiado por CAE",
+      "savings": "Ahorro energético",
+      "response": "Respuesta garantizada"
+    },
+    "wizard": {
+      "badge": "✨ Respuesta en 24h garantizada",
+      "title": "¿Eres elegible al programa CAE?",
+      "description": "Responde a unas preguntas sencillas para saber si puedes beneficiarte del aislamiento 100% financiado.",
+      "questionOf": "Pregunta {current} de {total}",
+      "previousQuestion": "Pregunta anterior",
+      "q1": "¿Eres propietario o inquilino?",
+      "q1o1": "Soy propietario",
+      "q1o2": "Soy inquilino",
+      "q2": "¿Tu vivienda tiene buhardilla o ático?",
+      "q2o1": "Sí, tiene buhardilla/ático",
+      "q2o2": "No tiene",
+      "q3": "¿El suelo de tu buhardilla está aislado actualmente?",
+      "q3o1": "No está aislado",
+      "q3o2": "Parcialmente aislado",
+      "q3o3": "No lo sé",
+      "q4": "¿Cuál es el tipo de calefacción de tu vivienda?",
+      "q4o1": "Gas natural",
+      "q4o2": "Eléctrico",
+      "q4o3": "Gasóleo",
+      "q4o4": "Otro",
+      "formTitle": "¡Buenas noticias! Podrías ser elegible 🎉",
+      "formDescription": "Déjanos tus datos para que un asesor te contacte.",
+      "fieldName": "Nombre",
+      "fieldLastName": "Apellido",
+      "fieldEmail": "Email",
+      "fieldPhone": "Teléfono",
+      "fieldPostalCode": "Código Postal",
+      "privacyConsent": "Acepto la {link} y el tratamiento de mis datos para ser contactado.",
+      "privacyLink": "política de privacidad",
+      "submitRequest": "Enviar solicitud",
+      "successTitle": "¡Gracias por tu solicitud!",
+      "successMessage": "Un asesor te contactará en las próximas <strong>24 horas</strong> para evaluar tu elegibilidad y programar un diagnóstico gratuito.",
+      "newRequest": "Nueva consulta"
+    },
+    "why": {
+      "title": "¿Por qué aislar el suelo de tu buhardilla?",
+      "description": "El 30% de las pérdidas de calor de tu hogar se producen por el techo. Aislar tu buhardilla es la solución más eficaz y rápida.",
+      "benefit1Title": "Confort térmico todo el año",
+      "benefit1Desc": "Mantén tu casa caliente en invierno y fresca en verano sin esfuerzo.",
+      "benefit2Title": "Ahorro en tu factura",
+      "benefit2Desc": "Reduce tu consumo de calefacción y aire acondicionado hasta un 30%.",
+      "benefit3Title": "Instalación rápida",
+      "benefit3Desc": "El proceso se realiza en pocas horas, sin obras ni molestias en tu hogar.",
+      "benefit4Title": "Materiales de calidad",
+      "benefit4Desc": "Usamos lana mineral de alta densidad con garantía de 25 años.",
+      "techniquesTitle": "Nuestras técnicas de aislamiento",
+      "blownTitle": "Aislamiento soplado",
+      "blownSubtitle": "Lana mineral proyectada",
+      "blownDesc": "Ideal para buhardillas con acceso difícil. La lana mineral se proyecta de forma homogénea sobre toda la superficie.",
+      "blownFeatures": "Rápido • Sin residuos • Cobertura total",
+      "rolledTitle": "Aislamiento en rollos",
+      "rolledSubtitle": "Manta de lana mineral",
+      "rolledDesc": "Perfecto para buhardillas accesibles. Se desenrollan mantas de lana mineral de alta densidad.",
+      "rolledFeatures": "Espesor preciso • Alta densidad • Durabilidad",
+      "discoverCAE": "Descubre los CAE"
+    },
+    "process": {
+      "title": "Un proceso simple y transparente",
+      "description": "De la verificación de elegibilidad a la instalación, te acompañamos en cada etapa.",
+      "step1Title": "Verifica tu elegibilidad",
+      "step1Desc": "Responde unas preguntas sencillas para saber si cumples los requisitos del programa CAE.",
+      "step2Title": "Diagnóstico gratuito",
+      "step2Desc": "Un técnico evalúa tu buhardilla y te explica el proceso sin ningún compromiso.",
+      "step3Title": "Instalación rápida",
+      "step3Desc": "Aislamos el suelo de tu buhardilla en pocas horas con técnicas de soplado o desenrollado.",
+      "step4Title": "¡0€ para ti!",
+      "step4Desc": "Gracias a los CAE, la intervención está 100% financiada. No pagas nada."
+    },
+    "testimonials": {
+      "title": "Lo que dicen nuestros clientes",
+      "description": "Más de 2,500 hogares ya han confiado en nosotros.",
+      "certified": "Empresa certificada",
+      "guarantee": "Garantía 25 años",
+      "technicians": "+50 técnicos"
+    },
+    "cta": {
+      "title": "¿Listo para aislar tu hogar gratis?",
+      "description": "Gracias a los Certificados de Ahorro Energético (CAE), tu aislamiento está 100% financiado. No esperes más.",
+      "primary": "Verificar mi elegibilidad"
+    }
+  },
+  "contact": {
+    "hero": {
+      "badge": "Contacto",
+      "title": "¿Hablamos?",
+      "description": "Estamos disponibles para responder a todas tus preguntas sobre el aislamiento y el programa CAE."
+    },
+    "info": {
+      "title": "Información de contacto",
+      "hours": "Horario de atención",
+      "weekdays": "Lunes - Viernes",
+      "weekdaysHours": "9:00 - 18:00",
+      "weekend": "Sábado - Domingo",
+      "closed": "Cerrado"
+    },
+    "form": {
+      "title": "Envíanos un mensaje",
+      "description": "Rellena el formulario y te responderemos en menos de 24 horas.",
+      "subject": "Asunto",
+      "subjectPlaceholder": "Selecciona un asunto",
+      "subjectEligibility": "Verificar elegibilidad",
+      "subjectInfo": "Información general",
+      "subjectAppointment": "Solicitar cita",
+      "subjectB2B": "Solución profesional (B2B)",
+      "subjectOther": "Otro",
+      "message": "Mensaje",
+      "messagePlaceholder": "Escribe tu mensaje aquí...",
+      "successTitle": "¡Mensaje enviado!",
+      "successMessage": "Gracias por contactarnos. Te responderemos en las próximas <strong>24 horas</strong>.",
+      "sendAnother": "Enviar otro mensaje"
+    },
+    "cta": {
+      "title": "¿Prefieres que te llamemos?",
+      "description": "Verifica tu elegibilidad al programa CAE y un asesor te contactará en menos de 24 horas."
+    }
+  }
+}
+

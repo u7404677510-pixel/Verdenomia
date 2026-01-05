@@ -2,132 +2,110 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
+import { useLocale, useTranslations } from 'next-intl'
 import {
-  Leaf,
-  MapPin,
   Phone,
   Mail,
-  Clock,
+  MapPin,
+  Leaf,
   Facebook,
   Instagram,
   Linkedin,
-  Twitter,
-  ChevronRight,
+  ArrowRight,
+  Building2,
   Heart,
-  Shield,
-  Award,
 } from 'lucide-react'
-
-const footerLinks = {
-  servicios: [
-    { name: 'Aislamiento Insuflado', href: '/servicios#insuflado' },
-    { name: 'Aislamiento en Manta', href: '/servicios#manta' },
-    { name: 'Diagnóstico Energético', href: '/servicios#diagnostico' },
-    { name: 'Asesoría Subvenciones', href: '/ayudas' },
-  ],
-  empresa: [
-    { name: 'Sobre Nosotros', href: '/sobre-nosotros' },
-    { name: 'Nuestro Equipo', href: '/equipo' },
-    { name: 'Política de Calidad', href: '/calidad' },
-    { name: 'Certificaciones', href: '/calidad#certificaciones' },
-  ],
-  recursos: [
-    { name: 'Blog', href: '/blog' },
-    { name: 'Guía de Ayudas', href: '/ayudas' },
-    { name: 'Preguntas Frecuentes', href: '/faq' },
-    { name: 'Proyectos Realizados', href: '/proyectos' },
-  ],
-  legal: [
-    { name: 'Aviso Legal', href: '/legal/aviso-legal' },
-    { name: 'Política de Privacidad', href: '/legal/privacidad' },
-    { name: 'Política de Cookies', href: '/legal/cookies' },
-    { name: 'Términos y Condiciones', href: '/legal/terminos' },
-  ],
-}
-
-const offices = [
-  {
-    city: 'Alicante (Sede Central)',
-    address: 'Avenida Maisonnave 41, 3º piso, 03003 Alicante',
-    phone: '+34 919 94 75 86',
-    hours: 'Lun - Vie: 9:00 - 18:00',
-  },
-  {
-    city: 'Madrid',
-    address: 'Madrid, España',
-    phone: '+34 919 94 75 86',
-    hours: 'Lun - Vie: 9:00 - 18:00',
-  },
-]
-
-const socialLinks = [
-  { name: 'Facebook', icon: Facebook, href: 'https://facebook.com/verdenomia' },
-  { name: 'Instagram', icon: Instagram, href: 'https://instagram.com/verdenomia' },
-  { name: 'LinkedIn', icon: Linkedin, href: 'https://linkedin.com/company/verdenomia' },
-  { name: 'Twitter', icon: Twitter, href: 'https://twitter.com/verdenomia' },
-]
+import { type Locale } from '@/i18n/config'
 
 export default function Footer() {
-  return (
-    <footer className="bg-gradient-to-b from-verde-900 to-verde-950 text-white">
-      {/* Newsletter section */}
-      <div className="border-b border-verde-800/50">
-        <div className="container-custom py-12">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
-            <div className="text-center lg:text-left">
-              <h3 className="text-2xl font-display font-bold mb-2">
-                Mantente Informado
-              </h3>
-              <p className="text-verde-200">
-                Recibe consejos de ahorro energético y novedades sobre ayudas públicas
-              </p>
-            </div>
-            <form className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
-              <input
-                type="email"
-                placeholder="Tu correo electrónico"
-                className="px-5 py-3 rounded-xl bg-white/10 border border-verde-700 text-white placeholder:text-verde-300 focus:bg-white/15 focus:border-verde-500 focus:outline-none transition-colors w-full sm:w-80"
-              />
-              <button
-                type="submit"
-                className="px-6 py-3 bg-tierra-500 hover:bg-tierra-600 text-white font-semibold rounded-xl transition-colors whitespace-nowrap"
-              >
-                Suscribirme
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
+  const t = useTranslations()
+  const locale = useLocale() as Locale
 
+  const navigation = [
+    { name: t('header.nav.home'), href: `/${locale}` },
+    { name: t('header.nav.about'), href: `/${locale}/nosotros` },
+    { name: t('header.nav.caes'), href: `/${locale}/caes` },
+    { name: t('header.nav.faq'), href: `/${locale}/faq` },
+    { name: t('header.nav.contact'), href: `/${locale}/contacto` },
+  ]
+
+  const services = [
+    { name: t('footer.serviceB2C'), href: `/${locale}#eligibilidad` },
+    { name: t('footer.serviceB2B'), href: `/${locale}/profesionales` },
+  ]
+
+  const legal = [
+    { name: t('footer.legalNotice'), href: `/${locale}/legal` },
+    { name: t('footer.privacy'), href: `/${locale}/privacidad` },
+    { name: t('footer.cookies'), href: `/${locale}/cookies` },
+  ]
+
+  const offices = [
+    {
+      city: 'Alicante',
+      type: t('footer.headquarters'),
+      address: 'Calle Principal, 123',
+      postalCode: '03001 Alicante',
+      phone: '+34 919 94 75 86',
+    },
+    {
+      city: 'Madrid',
+      type: t('footer.commercialOffice'),
+      address: 'Calle Comercio, 45',
+      postalCode: '28001 Madrid',
+      phone: '+34 919 94 75 86',
+    },
+  ]
+
+  const socialLinks = [
+    { name: 'Facebook', icon: Facebook, href: '#' },
+    { name: 'Instagram', icon: Instagram, href: '#' },
+    { name: 'LinkedIn', icon: Linkedin, href: '#' },
+  ]
+
+  return (
+    <footer className="bg-gradient-to-b from-gray-900 to-gray-950 text-gray-300">
       {/* Main footer */}
       <div className="container-custom py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10">
-          {/* Brand column */}
-          <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+          {/* Company info */}
+          <div className="lg:col-span-1">
+            <Link href={`/${locale}`} className="flex items-center gap-3 mb-4 group">
               <Image
                 src="/logo.png"
                 alt="Verdenomia"
-                width={180}
-                height={50}
-                className="h-12 w-auto brightness-0 invert"
+                width={48}
+                height={48}
+                className="w-12 h-12 object-contain"
               />
+              <div>
+                <h2 className="text-xl font-display font-bold text-white">
+                  Verdenomia
+                </h2>
+                <p className="text-xs text-verde-400">{t('footer.tagline')}</p>
+              </div>
             </Link>
-            <p className="text-verde-200 mb-6 leading-relaxed">
-              Especialistas en aislamiento de buhardillas con más de 15 años de
-              experiencia. Hacemos tu hogar más eficiente con ayudas públicas que
-              reducen el coste a 1€.
+
+            <p className="text-sm text-gray-400 mb-6 leading-relaxed">
+              {t('footer.description')}
             </p>
-            <div className="flex items-center gap-4 mb-6">
+
+            <Link
+              href={`/${locale}#eligibilidad`}
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-verde-600 to-verde-700 text-white px-5 py-2.5 rounded-full font-semibold text-sm hover:shadow-lg hover:shadow-verde-600/30 transition-all hover:-translate-y-0.5"
+            >
+              {t('common.checkEligibility')}
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+
+            <div className="flex gap-3 mt-6">
               {socialLinks.map((social) => {
                 const Icon = social.icon
                 return (
                   <a
                     key={social.name}
                     href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 bg-verde-800/50 hover:bg-verde-700 rounded-lg flex items-center justify-center transition-colors"
+                    className="w-10 h-10 rounded-full bg-gray-800 hover:bg-verde-600 flex items-center justify-center transition-all hover:-translate-y-1"
                     aria-label={social.name}
                   >
                     <Icon className="w-5 h-5" />
@@ -135,136 +113,114 @@ export default function Footer() {
                 )
               })}
             </div>
-            {/* Trust badges */}
-            <div className="flex items-center gap-4 flex-wrap">
-              <div className="flex items-center gap-2 px-3 py-2 bg-verde-800/30 rounded-lg">
-                <Shield className="w-5 h-5 text-verde-400" />
-                <span className="text-sm text-verde-200">ISO 9001</span>
-              </div>
-              <div className="flex items-center gap-2 px-3 py-2 bg-verde-800/30 rounded-lg">
-                <Award className="w-5 h-5 text-verde-400" />
-                <span className="text-sm text-verde-200">RGE Certificado</span>
-              </div>
-            </div>
           </div>
 
-          {/* Links columns */}
+          {/* Navigation */}
           <div>
-            <h4 className="font-semibold text-lg mb-4">Servicios</h4>
-            <ul className="space-y-3">
-              {footerLinks.servicios.map((link) => (
-                <li key={link.name}>
+            <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
+              {t('footer.navigation')}
+            </h3>
+            <ul className="space-y-2.5">
+              {navigation.map((item) => (
+                <li key={item.name}>
                   <Link
-                    href={link.href}
-                    className="text-verde-200 hover:text-white flex items-center gap-1 group transition-colors"
+                    href={item.href}
+                    className="text-gray-400 hover:text-verde-400 transition-colors text-sm flex items-center gap-2 group"
                   >
-                    <ChevronRight className="w-4 h-4 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" />
-                    {link.name}
+                    <span className="w-1.5 h-1.5 bg-verde-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                    {item.name}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
+          {/* Services + Legal */}
           <div>
-            <h4 className="font-semibold text-lg mb-4">Empresa</h4>
-            <ul className="space-y-3">
-              {footerLinks.empresa.map((link) => (
-                <li key={link.name}>
+            <h3 className="text-white font-semibold mb-4">{t('footer.services')}</h3>
+            <ul className="space-y-2.5 mb-6">
+              {services.map((item) => (
+                <li key={item.name}>
                   <Link
-                    href={link.href}
-                    className="text-verde-200 hover:text-white flex items-center gap-1 group transition-colors"
+                    href={item.href}
+                    className="text-gray-400 hover:text-verde-400 transition-colors text-sm flex items-center gap-2 group"
                   >
-                    <ChevronRight className="w-4 h-4 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" />
-                    {link.name}
+                    <span className="w-1.5 h-1.5 bg-verde-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <h3 className="text-white font-semibold mb-4">{t('footer.legal')}</h3>
+            <ul className="space-y-2.5">
+              {legal.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="text-gray-400 hover:text-verde-400 transition-colors text-sm flex items-center gap-2 group"
+                  >
+                    <span className="w-1.5 h-1.5 bg-verde-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                    {item.name}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
+          {/* Offices */}
           <div>
-            <h4 className="font-semibold text-lg mb-4">Recursos</h4>
-            <ul className="space-y-3">
-              {footerLinks.recursos.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-verde-200 hover:text-white flex items-center gap-1 group transition-colors"
-                  >
-                    <ChevronRight className="w-4 h-4 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" />
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-semibold text-lg mb-4">Legal</h4>
-            <ul className="space-y-3">
-              {footerLinks.legal.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-verde-200 hover:text-white flex items-center gap-1 group transition-colors"
-                  >
-                    <ChevronRight className="w-4 h-4 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" />
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        {/* Offices */}
-        <div className="mt-12 pt-10 border-t border-verde-800/50">
-          <h4 className="font-semibold text-lg mb-6">Nuestras Oficinas</h4>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {offices.map((office) => (
-              <div
-                key={office.city}
-                className="bg-verde-800/20 rounded-xl p-5 hover:bg-verde-800/30 transition-colors"
-              >
-                <h5 className="font-semibold text-lg mb-3">{office.city}</h5>
-                <div className="space-y-2 text-verde-200 text-sm">
-                  <p className="flex items-start gap-2">
-                    <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                    {office.address}
+            <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
+              <Building2 className="w-4 h-4 text-verde-400" />
+              {t('footer.offices')}
+            </h3>
+            <div className="space-y-4">
+              {offices.map((office) => (
+                <div
+                  key={office.city}
+                  className="p-4 bg-gray-800/50 rounded-xl border border-gray-700/50 hover:border-verde-600/30 transition-colors"
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="font-semibold text-white">{office.city}</span>
+                    <span className="text-xs bg-verde-600/20 text-verde-400 px-2 py-0.5 rounded-full">
+                      {office.type}
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-400 flex items-start gap-2 mb-1">
+                    <MapPin className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-verde-500" />
+                    {office.address}, {office.postalCode}
                   </p>
-                  <p className="flex items-center gap-2">
-                    <Phone className="w-4 h-4 flex-shrink-0" />
-                    <a href={`tel:${office.phone.replace(/\s/g, '')}`} className="hover:text-white">
-                      {office.phone}
-                    </a>
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <Clock className="w-4 h-4 flex-shrink-0" />
-                    {office.hours}
-                  </p>
+                  <a
+                    href={`tel:${office.phone.replace(/\s/g, '')}`}
+                    className="text-sm text-verde-400 hover:text-verde-300 flex items-center gap-2"
+                  >
+                    <Phone className="w-3.5 h-3.5" />
+                    {office.phone}
+                  </a>
                 </div>
-              </div>
-            ))}
+              ))}
+              <a
+                href="mailto:Contacto@verdenomia.es"
+                className="flex items-center gap-2 text-verde-400 hover:text-verde-300 text-sm"
+              >
+                <Mail className="w-4 h-4" />
+                Contacto@verdenomia.es
+              </a>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-verde-800/50 bg-verde-950">
+      <div className="border-t border-gray-800">
         <div className="container-custom py-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-verde-300">
-            <p>
-              © {new Date().getFullYear()} Verdenomia. Todos los derechos reservados.
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-sm text-gray-500">
+              © {new Date().getFullYear()} Verdenomia. {t('footer.copyright')}
             </p>
-            <p className="flex items-center gap-1">
-              Hecho con <Heart className="w-4 h-4 text-red-400" /> para un mundo más sostenible
-            </p>
-            <p>
-              <a href="mailto:Contacto@verdenomia.es" className="hover:text-white flex items-center gap-2">
-                <Mail className="w-4 h-4" />
-                Contacto@verdenomia.es
-              </a>
+            <p className="text-sm text-gray-500 flex items-center gap-1">
+              <Heart className="w-4 h-4 text-verde-500" />
+              {t('footer.commitment')}
             </p>
           </div>
         </div>
@@ -272,4 +228,3 @@ export default function Footer() {
     </footer>
   )
 }
-

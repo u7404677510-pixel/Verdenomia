@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { usePathname, useRouter } from 'next/navigation'
+import { useLocale, useTranslations } from 'next-intl'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Menu,
@@ -12,34 +14,32 @@ import {
   ChevronDown,
   Globe,
   Home,
-  Wrench,
-  BadgeEuro,
-  Award,
-  FolderOpen,
-  BookOpen,
+  Info,
+  FileCheck,
+  Building2,
+  HelpCircle,
   Mail,
 } from 'lucide-react'
-
-const navigation = [
-  { name: 'Inicio', href: '/', icon: Home },
-  { name: 'Servicios', href: '/servicios', icon: Wrench },
-  { name: 'Ayudas', href: '/ayudas', icon: BadgeEuro },
-  { name: 'Calidad', href: '/calidad', icon: Award },
-  { name: 'Proyectos', href: '/proyectos', icon: FolderOpen },
-  { name: 'Blog', href: '/blog', icon: BookOpen },
-  { name: 'Contacto', href: '/contacto', icon: Mail },
-]
-
-const languages = [
-  { code: 'es', name: 'Español', flag: '🇪🇸' },
-  { code: 'en', name: 'English', flag: '🇬🇧' },
-]
+import { locales, localeNames, localeFlags, type Locale } from '@/i18n/config'
 
 export default function Header() {
+  const t = useTranslations()
+  const locale = useLocale() as Locale
+  const pathname = usePathname()
+  const router = useRouter()
+  
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isLangOpen, setIsLangOpen] = useState(false)
-  const [currentLang, setCurrentLang] = useState(languages[0])
+
+  const navigation = [
+    { name: t('header.nav.home'), href: `/${locale}`, icon: Home },
+    { name: t('header.nav.about'), href: `/${locale}/nosotros`, icon: Info },
+    { name: t('header.nav.caes'), href: `/${locale}/caes`, icon: FileCheck },
+    { name: t('header.nav.professionals'), href: `/${locale}/profesionales`, icon: Building2 },
+    { name: t('header.nav.faq'), href: `/${locale}/faq`, icon: HelpCircle },
+    { name: t('header.nav.contact'), href: `/${locale}/contacto`, icon: Mail },
+  ]
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,67 +49,34 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  const switchLocale = (newLocale: Locale) => {
+    // Get the path without the current locale
+    const pathWithoutLocale = pathname.replace(`/${locale}`, '') || '/'
+    router.push(`/${newLocale}${pathWithoutLocale}`)
+    setIsLangOpen(false)
+  }
+
   return (
     <>
-      {/* Top bar */}
-      <div className="bg-gradient-to-r from-verde-800 to-verde-700 text-white py-2 text-sm">
-        <div className="container-custom flex justify-between items-center">
-          <div className="flex items-center gap-6">
+      {/* Top bar - Bandeau promotionnel */}
+      <div className="bg-gradient-to-r from-verde-700 via-verde-600 to-verde-700 text-white py-2.5 text-sm relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImEiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHBhdGggZD0iTTAgMGg0MHY0MEgweiIgZmlsbD0ibm9uZSIvPjxjaXJjbGUgY3g9IjIwIiBjeT0iMjAiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNhKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==')] opacity-50" />
+        <div className="container-custom flex justify-center items-center relative">
+          <div className="flex items-center gap-3 text-center">
+            <span className="inline-flex items-center gap-2 px-3 py-1 bg-white/20 rounded-full text-xs font-semibold uppercase tracking-wide">
+              <span className="w-2 h-2 bg-green-300 rounded-full animate-pulse" />
+              {t('header.banner.badge')}
+            </span>
+            <span className="font-medium">
+              🏠 <strong>{t('header.banner.message')}</strong> — {t('header.banner.cta')}
+            </span>
             <a
               href="tel:+34919947586"
-              className="flex items-center gap-2 hover:text-verde-200 transition-colors"
+              className="hidden md:flex items-center gap-1.5 px-3 py-1 bg-white/10 hover:bg-white/20 rounded-full transition-colors font-medium"
             >
-              <Phone className="w-4 h-4" />
-              <span className="hidden sm:inline">+34 919 94 75 86</span>
+              <Phone className="w-3.5 h-3.5" />
+              {t('common.call')}
             </a>
-            <span className="hidden md:inline text-verde-200">
-              Lun - Vie: 9:00 - 18:00
-            </span>
-          </div>
-          <div className="flex items-center gap-4">
-            <span className="hidden lg:flex items-center gap-2 text-verde-100">
-              <Leaf className="w-4 h-4" />
-              Aislamiento desde 1€ con ayudas públicas
-            </span>
-            {/* Language selector */}
-            <div className="relative">
-              <button
-                onClick={() => setIsLangOpen(!isLangOpen)}
-                className="flex items-center gap-1.5 px-2 py-1 rounded hover:bg-verde-600/50 transition-colors"
-              >
-                <Globe className="w-4 h-4" />
-                <span>{currentLang.flag}</span>
-                <ChevronDown className="w-3 h-3" />
-              </button>
-              <AnimatePresence>
-                {isLangOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="absolute right-0 top-full mt-1 bg-white rounded-lg shadow-xl border border-gray-100 py-1 min-w-32 z-50"
-                  >
-                    {languages.map((lang) => (
-                      <button
-                        key={lang.code}
-                        onClick={() => {
-                          setCurrentLang(lang)
-                          setIsLangOpen(false)
-                        }}
-                        className={`w-full px-4 py-2 text-left flex items-center gap-2 hover:bg-verde-50 transition-colors ${
-                          currentLang.code === lang.code
-                            ? 'text-verde-700 bg-verde-50'
-                            : 'text-gray-700'
-                        }`}
-                      >
-                        <span>{lang.flag}</span>
-                        <span>{lang.name}</span>
-                      </button>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
           </div>
         </div>
       </div>
@@ -125,15 +92,22 @@ export default function Header() {
         <div className="container-custom">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
-            <Link href="/" className="flex items-center group">
+            <Link href={`/${locale}`} className="flex items-center gap-3 group">
               <Image
                 src="/logo.png"
                 alt="Verdenomia"
-                width={180}
-                height={50}
-                className="h-10 md:h-12 w-auto"
-                priority
+                width={48}
+                height={48}
+                className="w-10 h-10 md:w-12 md:h-12 object-contain"
               />
+              <div className="hidden sm:block">
+                <h1 className="text-xl md:text-2xl font-display font-bold text-verde-800">
+                  Verdenomia
+                </h1>
+                <p className="text-xs text-verde-600 -mt-0.5 font-medium">
+                  {t('header.tagline')}
+                </p>
+              </div>
             </Link>
 
             {/* Desktop navigation */}
@@ -152,11 +126,48 @@ export default function Header() {
 
             {/* CTA buttons */}
             <div className="hidden md:flex items-center gap-3">
-              <Link href="/contacto" className="btn-secondary text-sm py-2.5">
-                Contactar
-              </Link>
-              <Link href="/contacto#presupuesto" className="btn-primary text-sm py-2.5">
-                Pedir Presupuesto
+              {/* Language selector */}
+              <div className="relative">
+                <button
+                  onClick={() => setIsLangOpen(!isLangOpen)}
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors text-gray-600"
+                >
+                  <Globe className="w-4 h-4" />
+                  <span className="text-sm">{localeFlags[locale]}</span>
+                  <ChevronDown className="w-3 h-3" />
+                </button>
+                <AnimatePresence>
+                  {isLangOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="absolute right-0 top-full mt-1 bg-white rounded-lg shadow-xl border border-gray-100 py-1 min-w-32 z-50"
+                    >
+                      {locales.map((loc) => (
+                        <button
+                          key={loc}
+                          onClick={() => switchLocale(loc)}
+                          className={`w-full px-4 py-2 text-left flex items-center gap-2 hover:bg-verde-50 transition-colors ${
+                            locale === loc
+                              ? 'text-verde-700 bg-verde-50'
+                              : 'text-gray-700'
+                          }`}
+                        >
+                          <span>{localeFlags[loc]}</span>
+                          <span>{localeNames[loc]}</span>
+                        </button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+              <a href="tel:+34919947586" className="btn-secondary text-sm py-2.5">
+                <Phone className="w-4 h-4" />
+                {t('common.call')}
+              </a>
+              <Link href={`/${locale}#eligibilidad`} className="btn-primary text-sm py-2.5 animate-pulse-slow">
+                {t('common.verifyEligibility')}
               </Link>
             </div>
 
@@ -201,17 +212,20 @@ export default function Header() {
                 {/* Header */}
                 <div className="flex items-center justify-between p-4 border-b border-gray-100">
                   <Link
-                    href="/"
-                    className="flex items-center"
+                    href={`/${locale}`}
+                    className="flex items-center gap-2"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     <Image
                       src="/logo.png"
                       alt="Verdenomia"
-                      width={140}
+                      width={40}
                       height={40}
-                      className="h-9 w-auto"
+                      className="w-10 h-10 object-contain"
                     />
+                    <span className="text-xl font-display font-bold text-verde-800">
+                      Verdenomia
+                    </span>
                   </Link>
                   <button
                     onClick={() => setIsMobileMenuOpen(false)}
@@ -219,6 +233,35 @@ export default function Header() {
                   >
                     <X className="w-6 h-6 text-gray-500" />
                   </button>
+                </div>
+
+                {/* Language selector mobile */}
+                <div className="p-4 border-b border-gray-100">
+                  <div className="flex gap-2">
+                    {locales.map((loc) => (
+                      <button
+                        key={loc}
+                        onClick={() => {
+                          switchLocale(loc)
+                          setIsMobileMenuOpen(false)
+                        }}
+                        className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium flex items-center justify-center gap-2 ${
+                          locale === loc
+                            ? 'bg-verde-100 text-verde-700'
+                            : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                        }`}
+                      >
+                        <span>{localeFlags[loc]}</span>
+                        <span>{loc.toUpperCase()}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Promo banner mobile */}
+                <div className="mx-4 mt-4 p-3 bg-gradient-to-r from-verde-500 to-verde-600 rounded-xl text-white text-center">
+                  <p className="text-sm font-semibold">🎉 {t('header.banner.message')}</p>
+                  <p className="text-xs opacity-90">{t('header.banner.cta')}</p>
                 </div>
 
                 {/* Navigation */}
@@ -248,18 +291,18 @@ export default function Header() {
                 {/* Footer */}
                 <div className="p-4 border-t border-gray-100 space-y-3">
                   <Link
-                    href="/contacto#presupuesto"
+                    href={`/${locale}#eligibilidad`}
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="btn-primary w-full justify-center"
                   >
-                    Pedir Presupuesto
+                    {t('common.verifyEligibility')}
                   </Link>
                   <a
                     href="tel:+34919947586"
                     className="btn-secondary w-full justify-center"
                   >
                     <Phone className="w-4 h-4" />
-                    Llamar Ahora
+                    {t('common.callNow')}
                   </a>
                 </div>
               </div>
@@ -270,5 +313,3 @@ export default function Header() {
     </>
   )
 }
-
-
