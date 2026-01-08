@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useLocale, useTranslations } from 'next-intl'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
@@ -99,152 +100,111 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center bg-gradient-to-br from-verde-800 via-verde-700 to-verde-900 text-white overflow-hidden">
-        {/* Background pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-            }}
+      {/* Hero Section - Full Page with Background Image */}
+      <section className="relative min-h-screen flex items-center text-white overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/hero-house.png"
+            alt={locale === 'es' ? 'Aislamiento de buhardilla' : 'Attic insulation'}
+            fill
+            className="object-cover"
+            priority
+            quality={90}
           />
+          {/* Subtle overlay for text readability - reduced opacity */}
+          <div className="absolute inset-0 bg-gradient-to-r from-verde-900/80 via-verde-900/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-verde-900/40 via-transparent to-transparent" />
         </div>
 
-        <div className="container-custom relative py-20">
+        <div className="container-custom relative z-10 py-24 lg:py-32">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left content */}
-            <div className="max-w-xl">
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="max-w-2xl"
+            >
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-verde-100 text-sm mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/15 backdrop-blur-md rounded-full text-white text-sm mb-8 border border-white/20">
                 <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
                 {t('home.hero.badge')}
               </div>
 
               {/* Title */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold leading-tight mb-6">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-display font-bold leading-[1.1] mb-8">
                 {t('home.hero.title')}
                 <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-500">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500">
                   {t('home.hero.titleHighlight')}
                 </span>
               </h1>
 
               {/* Description */}
               <p
-                className="text-lg text-verde-100 mb-8 leading-relaxed"
+                className="text-xl text-white/90 mb-10 leading-relaxed max-w-xl"
                 dangerouslySetInnerHTML={{ __html: t.raw('home.hero.description') }}
               />
 
               {/* Benefits grid */}
-              <div className="grid grid-cols-2 gap-4 mb-8">
+              <div className="grid grid-cols-2 gap-4 mb-10">
                 {[
                   { icon: Euro, text: t('home.hero.benefit1') },
                   { icon: Clock, text: t('home.hero.benefit2') },
                   { icon: Thermometer, text: t('home.hero.benefit3') },
                   { icon: Shield, text: t('home.hero.benefit4') },
                 ].map((benefit, i) => (
-                  <div
+                  <motion.div
                     key={i}
-                    className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-xl p-3"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
+                    className="flex items-center gap-3 bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/10"
                   >
-                    <benefit.icon className="w-5 h-5 text-yellow-400 flex-shrink-0" />
+                    <benefit.icon className="w-6 h-6 text-yellow-400 flex-shrink-0" />
                     <span className="text-sm font-medium">{benefit.text}</span>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
 
               {/* CTA buttons */}
-              <div className="flex flex-col sm:flex-row gap-4">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.7 }}
+                className="flex flex-col sm:flex-row gap-4"
+              >
                 <Link
                   href="#eligibilidad"
-                  className="btn-cta inline-flex items-center justify-center gap-2 text-lg"
+                  className="btn-cta inline-flex items-center justify-center gap-2 text-lg px-8 py-4"
                 >
                   {t('home.hero.ctaPrimary')}
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <a
                   href="tel:+34919947586"
-                  className="btn-secondary-dark inline-flex items-center justify-center gap-2"
+                  className="btn-secondary-dark inline-flex items-center justify-center gap-2 px-8 py-4"
                 >
                   <Phone className="w-5 h-5" />
                   {t('home.hero.ctaSecondary')}
                 </a>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
-            {/* Right side - House illustration */}
-            <div className="hidden lg:flex justify-center relative">
-              <div className="relative">
-                {/* House SVG */}
-                <svg
-                  viewBox="0 0 400 350"
-                  className="w-full max-w-md"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  {/* House body */}
-                  <rect
-                    x="80"
-                    y="150"
-                    width="240"
-                    height="180"
-                    fill="rgba(255,255,255,0.1)"
-                    stroke="rgba(255,255,255,0.3)"
-                    strokeWidth="2"
-                  />
-                  {/* Roof */}
-                  <path
-                    d="M50 150 L200 50 L350 150"
-                    fill="rgba(255,255,255,0.15)"
-                    stroke="rgba(255,255,255,0.4)"
-                    strokeWidth="3"
-                  />
-                  {/* Attic floor - highlighted */}
-                  <rect
-                    x="80"
-                    y="140"
-                    width="240"
-                    height="20"
-                    fill="#fbbf24"
-                    opacity="0.8"
-                  />
-                  {/* Windows */}
-                  <rect
-                    x="110"
-                    y="200"
-                    width="60"
-                    height="60"
-                    fill="rgba(255,255,255,0.2)"
-                    stroke="rgba(255,255,255,0.4)"
-                    strokeWidth="2"
-                  />
-                  <rect
-                    x="230"
-                    y="200"
-                    width="60"
-                    height="60"
-                    fill="rgba(255,255,255,0.2)"
-                    stroke="rgba(255,255,255,0.4)"
-                    strokeWidth="2"
-                  />
-                  {/* Door */}
-                  <rect
-                    x="160"
-                    y="250"
-                    width="80"
-                    height="80"
-                    fill="rgba(255,255,255,0.15)"
-                    stroke="rgba(255,255,255,0.4)"
-                    strokeWidth="2"
-                  />
-                </svg>
-
-                {/* Floating badges */}
+            {/* Right side - Floating stats cards - positioned to not overlap */}
+            <div className="hidden lg:flex justify-center items-center relative">
+              <div className="relative w-full max-w-lg h-[400px]">
+                {/* Card 1: 0€ - Top right */}
                 <motion.div
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                  className="absolute top-10 right-0 bg-white rounded-2xl shadow-2xl p-4"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1, y: [0, -10, 0] }}
+                  transition={{ 
+                    opacity: { duration: 0.5, delay: 0.5 },
+                    scale: { duration: 0.5, delay: 0.5 },
+                    y: { duration: 4, repeat: Infinity, delay: 0.5 }
+                  }}
+                  className="absolute top-0 right-0 bg-white rounded-2xl shadow-2xl p-4"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-xl flex items-center justify-center">
@@ -259,18 +219,30 @@ export default function HomePage() {
                   </div>
                 </motion.div>
 
+                {/* Card 2: Suelo buhardilla - Middle left */}
                 <motion.div
-                  animate={{ y: [0, 10, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
-                  className="absolute top-1/2 -right-4 bg-yellow-400 text-yellow-900 px-4 py-2 rounded-full font-bold text-sm shadow-lg"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1, y: [0, 8, 0] }}
+                  transition={{ 
+                    opacity: { duration: 0.5, delay: 0.7 },
+                    scale: { duration: 0.5, delay: 0.7 },
+                    y: { duration: 3.5, repeat: Infinity, delay: 1 }
+                  }}
+                  className="absolute top-[120px] left-0 bg-yellow-400 text-yellow-900 px-5 py-3 rounded-full font-bold shadow-lg"
                 >
-                  {locale === 'es' ? 'Suelo buhardilla' : 'Attic floor'}
+                  {locale === 'es' ? '✓ Suelo buhardilla' : '✓ Attic floor'}
                 </motion.div>
 
+                {/* Card 3: -30% - Bottom left */}
                 <motion.div
-                  animate={{ y: [0, -8, 0] }}
-                  transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
-                  className="absolute bottom-20 left-0 bg-white rounded-2xl shadow-2xl p-4"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1, y: [0, -8, 0] }}
+                  transition={{ 
+                    opacity: { duration: 0.5, delay: 0.9 },
+                    scale: { duration: 0.5, delay: 0.9 },
+                    y: { duration: 3, repeat: Infinity, delay: 0.5 }
+                  }}
+                  className="absolute bottom-[80px] left-[20px] bg-white rounded-2xl shadow-2xl p-4"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 bg-gradient-to-br from-verde-500 to-verde-600 rounded-xl flex items-center justify-center">
@@ -284,10 +256,50 @@ export default function HomePage() {
                     </div>
                   </div>
                 </motion.div>
+
+                {/* Card 4: 100% Financiado - Bottom right */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1, y: [0, 6, 0] }}
+                  transition={{ 
+                    opacity: { duration: 0.5, delay: 1.1 },
+                    scale: { duration: 0.5, delay: 1.1 },
+                    y: { duration: 4, repeat: Infinity, delay: 2 }
+                  }}
+                  className="absolute bottom-0 right-[40px] bg-white rounded-2xl shadow-2xl p-4"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-green-500 rounded-xl flex items-center justify-center">
+                      <CheckCircle2 className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <p className="text-2xl font-bold text-gray-900">100%</p>
+                      <p className="text-xs text-gray-500">
+                        {locale === 'es' ? 'Financiado' : 'Funded'}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
               </div>
             </div>
           </div>
         </div>
+
+        {/* Scroll indicator */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        >
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            className="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center pt-2"
+          >
+            <motion.div className="w-1.5 h-1.5 bg-white rounded-full" />
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* Stats band */}
@@ -763,33 +775,55 @@ export default function HomePage() {
 
             <div className="grid md:grid-cols-2 gap-6">
               {/* Blown insulation */}
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-14 h-14 bg-yellow-400 rounded-xl flex items-center justify-center">
-                    <Wind className="w-7 h-7 text-yellow-900" />
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-bold">{t('home.why.blownTitle')}</h4>
-                    <p className="text-verde-200 text-sm">{t('home.why.blownSubtitle')}</p>
-                  </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden">
+                <div className="relative h-48">
+                  <Image
+                    src="/technique-insufflation.png"
+                    alt={t('home.why.blownTitle')}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-verde-900/80 to-transparent" />
                 </div>
-                <p className="text-verde-100 mb-4">{t('home.why.blownDesc')}</p>
-                <p className="text-sm text-yellow-300 font-medium">{t('home.why.blownFeatures')}</p>
+                <div className="p-6">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-14 h-14 bg-yellow-400 rounded-xl flex items-center justify-center">
+                      <Wind className="w-7 h-7 text-yellow-900" />
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-bold">{t('home.why.blownTitle')}</h4>
+                      <p className="text-verde-200 text-sm">{t('home.why.blownSubtitle')}</p>
+                    </div>
+                  </div>
+                  <p className="text-verde-100 mb-4">{t('home.why.blownDesc')}</p>
+                  <p className="text-sm text-yellow-300 font-medium">{t('home.why.blownFeatures')}</p>
+                </div>
               </div>
 
               {/* Rolled insulation */}
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-14 h-14 bg-verde-400 rounded-xl flex items-center justify-center">
-                    <Shield className="w-7 h-7 text-verde-900" />
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-bold">{t('home.why.rolledTitle')}</h4>
-                    <p className="text-verde-200 text-sm">{t('home.why.rolledSubtitle')}</p>
-                  </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden">
+                <div className="relative h-48">
+                  <Image
+                    src="/technique-rouleau.png"
+                    alt={t('home.why.rolledTitle')}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-verde-900/80 to-transparent" />
                 </div>
-                <p className="text-verde-100 mb-4">{t('home.why.rolledDesc')}</p>
-                <p className="text-sm text-verde-300 font-medium">{t('home.why.rolledFeatures')}</p>
+                <div className="p-6">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-14 h-14 bg-verde-400 rounded-xl flex items-center justify-center">
+                      <Shield className="w-7 h-7 text-verde-900" />
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-bold">{t('home.why.rolledTitle')}</h4>
+                      <p className="text-verde-200 text-sm">{t('home.why.rolledSubtitle')}</p>
+                    </div>
+                  </div>
+                  <p className="text-verde-100 mb-4">{t('home.why.rolledDesc')}</p>
+                  <p className="text-sm text-verde-300 font-medium">{t('home.why.rolledFeatures')}</p>
+                </div>
               </div>
             </div>
           </div>
@@ -895,11 +929,22 @@ export default function HomePage() {
                 </div>
                 <p className="text-gray-700 mb-4">{testimonial.text}</p>
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-verde-100 rounded-full flex items-center justify-center">
-                    <span className="text-verde-600 font-semibold">
-                      {testimonial.name.charAt(0)}
-                    </span>
-                  </div>
+                  {i === 0 ? (
+                    <div className="relative w-10 h-10 rounded-full overflow-hidden">
+                      <Image
+                        src="/avatar-1.png"
+                        alt={testimonial.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-10 h-10 bg-verde-100 rounded-full flex items-center justify-center">
+                      <span className="text-verde-600 font-semibold">
+                        {testimonial.name.charAt(0)}
+                      </span>
+                    </div>
+                  )}
                   <div>
                     <p className="font-semibold text-gray-900">{testimonial.name}</p>
                     <p className="text-sm text-gray-500">{testimonial.location}</p>

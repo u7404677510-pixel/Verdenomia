@@ -291,4 +291,67 @@ input:focus, textarea:focus, select:focus {
   }
 }
 
+/* Wizard option buttons */
+.wizard-option {
+  @apply w-full flex items-center gap-4 p-4 
+         bg-gray-50 border-2 border-gray-200 rounded-xl
+         text-left font-medium text-gray-800
+         transition-all duration-200
+         hover:bg-verde-50 hover:border-verde-300
+         focus:outline-none focus:ring-2 focus:ring-verde-500 focus:ring-offset-2;
+}
+
+.wizard-option:hover svg {
+  @apply transform scale-110;
+}
+
+.wizard-option span {
+  @apply flex-1;
+}
+
+/* Form inputs */
+.form-input {
+  @apply w-full px-4 py-3 
+         bg-white border border-gray-300 rounded-xl
+         text-gray-900 placeholder-gray-400
+         transition-all duration-200
+         focus:border-verde-500 focus:ring-2 focus:ring-verde-500/20 focus:outline-none;
+}
+
+.form-input:disabled {
+  @apply bg-gray-100 cursor-not-allowed;
+}
+
+select.form-input {
+  @apply appearance-none cursor-pointer
+         bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%236b7280%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')]
+         bg-no-repeat bg-[right_1rem_center] bg-[length:1.25rem];
+}
+
+/* CTA button for hero */
+.btn-cta {
+  @apply inline-flex items-center justify-center gap-2 px-8 py-4
+         bg-gradient-to-r from-yellow-400 to-yellow-500
+         text-verde-900 font-bold rounded-xl
+         shadow-lg shadow-yellow-500/30
+         transition-all duration-300
+         hover:from-yellow-300 hover:to-yellow-400
+         hover:shadow-xl hover:shadow-yellow-500/40
+         hover:-translate-y-0.5
+         active:translate-y-0
+         focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2;
+}
+
+/* Secondary button for dark backgrounds */
+.btn-secondary-dark {
+  @apply inline-flex items-center justify-center gap-2 px-6 py-3
+         bg-white/15 backdrop-blur-md text-white font-semibold rounded-xl
+         border border-white/30
+         transition-all duration-300
+         hover:bg-white/25 hover:border-white/50
+         hover:-translate-y-0.5
+         active:translate-y-0
+         focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-transparent;
+}
+
 

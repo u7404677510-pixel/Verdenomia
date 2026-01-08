@@ -168,33 +168,45 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Offices */}
+          {/* Offices + Map */}
           <div>
             <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
               <Building2 className="w-4 h-4 text-verde-400" />
               {t('footer.offices')}
             </h3>
-            <div className="space-y-4">
+            
+            {/* Spain Map */}
+            <div className="mb-4 rounded-xl overflow-hidden border border-gray-700/50">
+              <Image
+                src="/mapa-espana.png"
+                alt={locale === 'es' ? 'Presencia en España' : 'Presence in Spain'}
+                width={300}
+                height={200}
+                className="w-full h-auto opacity-90 hover:opacity-100 transition-opacity"
+              />
+            </div>
+
+            <div className="space-y-3">
               {offices.map((office) => (
                 <div
                   key={office.city}
-                  className="p-4 bg-gray-800/50 rounded-xl border border-gray-700/50 hover:border-verde-600/30 transition-colors"
+                  className="p-3 bg-gray-800/50 rounded-xl border border-gray-700/50 hover:border-verde-600/30 transition-colors"
                 >
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="font-semibold text-white">{office.city}</span>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="font-semibold text-white text-sm">{office.city}</span>
                     <span className="text-xs bg-verde-600/20 text-verde-400 px-2 py-0.5 rounded-full">
                       {office.type}
                     </span>
                   </div>
-                  <p className="text-sm text-gray-400 flex items-start gap-2 mb-1">
-                    <MapPin className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-verde-500" />
+                  <p className="text-xs text-gray-400 flex items-start gap-2 mb-1">
+                    <MapPin className="w-3 h-3 mt-0.5 flex-shrink-0 text-verde-500" />
                     {office.address}, {office.postalCode}
                   </p>
                   <a
                     href={`tel:${office.phone.replace(/\s/g, '')}`}
-                    className="text-sm text-verde-400 hover:text-verde-300 flex items-center gap-2"
+                    className="text-xs text-verde-400 hover:text-verde-300 flex items-center gap-2"
                   >
-                    <Phone className="w-3.5 h-3.5" />
+                    <Phone className="w-3 h-3" />
                     {office.phone}
                   </a>
                 </div>

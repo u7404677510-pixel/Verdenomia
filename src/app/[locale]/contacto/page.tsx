@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useLocale, useTranslations } from 'next-intl'
 import { motion } from 'framer-motion'
 import {
@@ -39,24 +40,44 @@ export default function ContactPage() {
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-verde-900 via-verde-800 to-verde-900 overflow-hidden">
         <div className="container-custom relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="max-w-3xl mx-auto text-center"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-verde-100 text-sm mb-6">
-              <Mail className="w-4 h-4" />
-              {t('contact.hero.badge')}
-            </div>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-verde-100 text-sm mb-6">
+                <Mail className="w-4 h-4" />
+                {t('contact.hero.badge')}
+              </div>
 
-            <h1 className="text-4xl md:text-5xl font-display font-bold text-white leading-tight mb-6">
-              {t('contact.hero.title')}
-            </h1>
+              <h1 className="text-4xl md:text-5xl font-display font-bold text-white leading-tight mb-6">
+                {t('contact.hero.title')}
+              </h1>
 
-            <p className="text-xl text-verde-100 mb-8 leading-relaxed">
-              {t('contact.hero.description')}
-            </p>
-          </motion.div>
+              <p className="text-xl text-verde-100 mb-8 leading-relaxed">
+                {t('contact.hero.description')}
+              </p>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2 }}
+              className="hidden lg:block"
+            >
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/contact-office.png"
+                  alt={locale === 'es' ? 'Nuestra oficina' : 'Our office'}
+                  width={600}
+                  height={400}
+                  className="w-full h-auto object-cover"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-verde-900/40 to-transparent" />
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -352,6 +373,41 @@ export default function ContactPage() {
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Map Section */}
+      <section className="py-16 bg-white">
+        <div className="container-custom">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-8"
+          >
+            <h2 className="text-2xl md:text-3xl font-display font-bold text-verde-900 mb-4">
+              {locale === 'es' ? 'Nuestra presencia en España' : 'Our presence in Spain'}
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              {locale === 'es' 
+                ? 'Operamos en todo el territorio nacional desde nuestras oficinas en Madrid y Alicante.' 
+                : 'We operate throughout Spain from our offices in Madrid and Alicante.'}
+            </p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="max-w-3xl mx-auto"
+          >
+            <Image
+              src="/mapa-espana.png"
+              alt={locale === 'es' ? 'Mapa de presencia en España' : 'Spain presence map'}
+              width={800}
+              height={600}
+              className="w-full h-auto rounded-2xl shadow-lg"
+            />
+          </motion.div>
         </div>
       </section>
 

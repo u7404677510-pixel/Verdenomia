@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useLocale } from 'next-intl'
 import { motion } from 'framer-motion'
 import {
@@ -121,35 +122,55 @@ export default function CAEsPage() {
       {/* Hero Section */}
       <section className="relative py-24 bg-gradient-to-br from-verde-900 via-verde-800 to-verde-900 overflow-hidden">
         <div className="container-custom relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-verde-100 text-sm mb-6">
-              <FileCheck className="w-4 h-4" />
-              {t.badge}
-            </div>
-
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-tight mb-6">
-              {t.title}
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-verde-300 to-green-200">
-                {t.titleHighlight}
-              </span>
-            </h1>
-
-            <p className="text-xl text-verde-100 mb-8 leading-relaxed max-w-3xl mx-auto">
-              {t.description}
-            </p>
-
-            <Link
-              href={`/${locale}#eligibilidad`}
-              className="btn-primary bg-white text-verde-800 hover:bg-verde-50 text-lg px-8 py-4"
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
             >
-              {t.cta}
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-          </motion.div>
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-verde-100 text-sm mb-6">
+                <FileCheck className="w-4 h-4" />
+                {t.badge}
+              </div>
+
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-tight mb-6">
+                {t.title}
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-verde-300 to-green-200">
+                  {t.titleHighlight}
+                </span>
+              </h1>
+
+              <p className="text-xl text-verde-100 mb-8 leading-relaxed">
+                {t.description}
+              </p>
+
+              <Link
+                href={`/${locale}#eligibilidad`}
+                className="btn-primary bg-white text-verde-800 hover:bg-verde-50 text-lg px-8 py-4"
+              >
+                {t.cta}
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2 }}
+              className="hidden lg:block"
+            >
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/caes-hero.png"
+                  alt={locale === 'es' ? 'Certificados de Ahorro Energético' : 'Energy Savings Certificates'}
+                  width={600}
+                  height={400}
+                  className="w-full h-auto object-cover"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-verde-900/40 to-transparent" />
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 

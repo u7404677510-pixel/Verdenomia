@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useLocale } from 'next-intl'
 import { motion } from 'framer-motion'
 import {
@@ -208,15 +209,25 @@ export default function ProfesionalesPage() {
               </div>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }} className="hidden lg:block">
-              <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/10">
-                <div className="grid grid-cols-2 gap-4">
-                  {t.stats.map((stat, i) => (
-                    <div key={i} className="bg-white/10 rounded-2xl p-4 text-center">
-                      <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
-                      <div className="text-verde-200 text-sm">{stat.label}</div>
-                    </div>
-                  ))}
-                </div>
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/pro-hero.png"
+                  alt={locale === 'es' ? 'Soluciones LED para empresas' : 'LED solutions for businesses'}
+                  width={600}
+                  height={400}
+                  className="w-full h-auto object-cover"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-verde-900/40 to-transparent" />
+              </div>
+              {/* Stats overlay */}
+              <div className="grid grid-cols-2 gap-3 mt-4">
+                {t.stats.map((stat, i) => (
+                  <div key={i} className="bg-white/10 backdrop-blur-sm rounded-xl p-3 text-center border border-white/10">
+                    <div className="text-2xl font-bold text-white">{stat.value}</div>
+                    <div className="text-verde-200 text-xs">{stat.label}</div>
+                  </div>
+                ))}
               </div>
             </motion.div>
           </div>

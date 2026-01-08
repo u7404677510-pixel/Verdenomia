@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useLocale } from 'next-intl'
 import { motion } from 'framer-motion'
 import {
@@ -105,22 +106,41 @@ export default function NosotrosPage() {
       {/* Hero */}
       <section className="relative py-24 bg-gradient-to-br from-verde-900 via-verde-800 to-verde-900 overflow-hidden">
         <div className="container-custom relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-verde-100 text-sm mb-6">
-              <Users className="w-4 h-4" />
-              {t.badge}
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-tight mb-6">
-              {t.title}
-            </h1>
-            <p className="text-xl text-verde-100 mb-8 leading-relaxed max-w-3xl mx-auto">
-              {t.description}
-            </p>
-          </motion.div>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-verde-100 text-sm mb-6">
+                <Users className="w-4 h-4" />
+                {t.badge}
+              </div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-tight mb-6">
+                {t.title}
+              </h1>
+              <p className="text-xl text-verde-100 mb-8 leading-relaxed">
+                {t.description}
+              </p>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2 }}
+              className="hidden lg:block"
+            >
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/about-team.png"
+                  alt={locale === 'es' ? 'Nuestro equipo' : 'Our team'}
+                  width={600}
+                  height={400}
+                  className="w-full h-auto object-cover"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-verde-900/40 to-transparent" />
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
