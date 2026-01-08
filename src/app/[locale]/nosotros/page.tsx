@@ -329,7 +329,7 @@ export default function NosotrosPage() {
                     {t.commercial}
                   </span>
                   <h3 className="text-lg font-bold text-verde-800">Madrid</h3>
-                  <p className="text-gray-600 mt-2">Calle Comercio, 45<br />28001 Madrid</p>
+                  <p className="text-gray-600 mt-2">Madrid, España</p>
                   <div className="mt-3">
                     <a href="tel:+34919947360" className="flex items-center gap-2 text-verde-600 hover:text-verde-700">
                       <Phone className="w-4 h-4" />+34 919 94 73 60

@@ -182,9 +182,7 @@ export default function ContactPage() {
                       </span>
                     </div>
                     <p className="text-gray-600 text-sm">
-                      Calle Comercio, 45
-                      <br />
-                      28001 Madrid
+                      Madrid, España
                     </p>
                   </div>
                 </div>
