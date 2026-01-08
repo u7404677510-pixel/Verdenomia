@@ -54,14 +54,40 @@ export const metadata: Metadata = {
     description:
       'Aísla el suelo de tu buhardilla 100% gratis gracias a los CAE. Ahorra hasta un 30% en tu factura.',
     siteName: 'Verdenomia',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Verdenomia - Aislamiento 100% Gratis',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Verdenomia - Aislamiento 100% Gratis con CAE',
+    description: 'Aísla el suelo de tu buhardilla 100% gratis gracias a los CAE.',
+    images: ['/og-image.png'],
   },
   robots: {
     index: true,
     follow: true,
   },
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+    other: [
+      { rel: 'android-chrome-192x192', url: '/android-chrome-192x192.png' },
+      { rel: 'android-chrome-512x512', url: '/android-chrome-512x512.png' },
+    ],
   },
+  manifest: '/site.webmanifest',
 }
 
 type Props = {
