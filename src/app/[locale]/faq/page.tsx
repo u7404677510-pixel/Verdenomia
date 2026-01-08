@@ -92,7 +92,7 @@ export default function FAQPage() {
   return (
     <div className="overflow-hidden">
       {/* Hero */}
-      <section className="relative py-20 bg-gradient-to-br from-verde-900 via-verde-800 to-verde-900 overflow-hidden">
+      <section className="relative py-20 bg-gray-900 overflow-hidden">
         <div className="container-custom relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -180,7 +180,7 @@ export default function FAQPage() {
               {t.cta}
               <ArrowRight className="w-5 h-5" />
             </Link>
-            <a href="tel:+34919947586" className="btn-secondary text-lg">
+            <a href="tel:+34919947360" className="btn-secondary text-lg">
               <Phone className="w-5 h-5" />
               {t.callNow}
             </a>

@@ -104,7 +104,7 @@ export default function NosotrosPage() {
   return (
     <div className="overflow-hidden">
       {/* Hero */}
-      <section className="relative py-24 bg-gradient-to-br from-verde-900 via-verde-800 to-verde-900 overflow-hidden">
+      <section className="relative py-24 bg-gray-900 overflow-hidden">
         <div className="container-custom relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -205,7 +205,7 @@ export default function NosotrosPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <div className="bg-gradient-to-br from-verde-800 to-verde-900 rounded-3xl p-8 text-white">
+              <div className="bg-gray-900 rounded-3xl p-8 text-white">
                 <h3 className="text-2xl font-bold mb-6">{t.promiseTitle}</h3>
                 <div className="space-y-4">
                   {[t.promise1, t.promise2, t.promise3].map((promise, i) => {
@@ -302,8 +302,8 @@ export default function NosotrosPage() {
                   <h3 className="text-lg font-bold text-verde-800">Alicante</h3>
                   <p className="text-gray-600 mt-2">Calle Principal, 123<br />03001 Alicante</p>
                   <div className="mt-3 space-y-1">
-                    <a href="tel:+34919947586" className="flex items-center gap-2 text-verde-600 hover:text-verde-700">
-                      <Phone className="w-4 h-4" />+34 919 94 75 86
+                    <a href="tel:+34919947360" className="flex items-center gap-2 text-verde-600 hover:text-verde-700">
+                      <Phone className="w-4 h-4" />+34 919 94 73 60
                     </a>
                     <a href="mailto:Contacto@verdenomia.es" className="flex items-center gap-2 text-verde-600 hover:text-verde-700">
                       <Mail className="w-4 h-4" />Contacto@verdenomia.es
@@ -331,8 +331,8 @@ export default function NosotrosPage() {
                   <h3 className="text-lg font-bold text-verde-800">Madrid</h3>
                   <p className="text-gray-600 mt-2">Calle Comercio, 45<br />28001 Madrid</p>
                   <div className="mt-3">
-                    <a href="tel:+34919947586" className="flex items-center gap-2 text-verde-600 hover:text-verde-700">
-                      <Phone className="w-4 h-4" />+34 919 94 75 86
+                    <a href="tel:+34919947360" className="flex items-center gap-2 text-verde-600 hover:text-verde-700">
+                      <Phone className="w-4 h-4" />+34 919 94 73 60
                     </a>
                   </div>
                 </div>
@@ -343,21 +343,21 @@ export default function NosotrosPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-gradient-to-br from-verde-800 to-verde-900">
+      <section className="py-24 bg-gradient-to-b from-white to-gray-50">
         <div className="container-custom text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-6">{t.ctaTitle}</h2>
-            <p className="text-xl text-verde-100 mb-8 max-w-2xl mx-auto">{t.ctaDesc}</p>
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-6">{t.ctaTitle}</h2>
+            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">{t.ctaDesc}</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href={`/${locale}#eligibilidad`} className="btn-primary bg-white text-verde-800 hover:bg-verde-50 text-lg px-8 py-4">
+              <Link href={`/${locale}#eligibilidad`} className="btn-primary text-lg px-8 py-4">
                 {t.cta}
                 <ArrowRight className="w-5 h-5" />
               </Link>
-              <Link href={`/${locale}/contacto`} className="btn-secondary border-white/30 text-white hover:bg-white/10 text-lg px-8 py-4">
+              <Link href={`/${locale}/contacto`} className="btn-secondary text-lg px-8 py-4">
                 {t.contact}
               </Link>
             </div>

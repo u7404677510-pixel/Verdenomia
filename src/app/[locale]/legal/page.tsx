@@ -10,7 +10,7 @@ const content = {
     title: 'Aviso legal',
     updated: 'Última actualización: Diciembre 2025',
     sections: [
-      { title: '1. Identificación', content: 'VERDENOMIA S.L.\nCIF: B-12345678\nDomicilio: Calle Principal, 123, 03001 Alicante, España\nEmail: Contacto@verdenomia.es\nTeléfono: +34 919 94 75 86\nInscrita en el Registro Mercantil de Alicante.' },
+      { title: '1. Identificación', content: 'VERDENOMIA S.L.\nCIF: B-12345678\nDomicilio: Calle Principal, 123, 03001 Alicante, España\nEmail: Contacto@verdenomia.es\nTeléfono: +34 919 94 73 60\nInscrita en el Registro Mercantil de Alicante.' },
       { title: '2. Objeto', content: 'Este sitio web tiene como objeto proporcionar información sobre los servicios de aislamiento de Verdenomia y el programa de Certificados de Ahorro Energético (CAE).' },
       { title: '3. Condiciones de uso', content: 'El acceso a este sitio web es gratuito. El usuario se compromete a hacer un uso adecuado del sitio, sin realizar actividades ilícitas o contrarias a la buena fe.' },
       { title: '4. Propiedad intelectual', content: 'Todos los contenidos de este sitio web (textos, imágenes, logotipos, diseño) son propiedad de Verdenomia S.L. o de terceros que han autorizado su uso, y están protegidos por las leyes de propiedad intelectual.' },
@@ -23,7 +23,7 @@ const content = {
     title: 'Legal Notice',
     updated: 'Last updated: December 2025',
     sections: [
-      { title: '1. Identification', content: 'VERDENOMIA S.L.\nCIF: B-12345678\nAddress: Calle Principal, 123, 03001 Alicante, Spain\nEmail: Contacto@verdenomia.es\nPhone: +34 919 94 75 86\nRegistered at the Alicante Commercial Registry.' },
+      { title: '1. Identification', content: 'VERDENOMIA S.L.\nCIF: B-12345678\nAddress: Calle Principal, 123, 03001 Alicante, Spain\nEmail: Contacto@verdenomia.es\nPhone: +34 919 94 73 60\nRegistered at the Alicante Commercial Registry.' },
       { title: '2. Purpose', content: 'This website aims to provide information about Verdenomia\'s insulation services and the Energy Savings Certificates (CAE) program.' },
       { title: '3. Terms of Use', content: 'Access to this website is free. The user agrees to make appropriate use of the site, without carrying out illegal activities or activities contrary to good faith.' },
       { title: '4. Intellectual Property', content: 'All content on this website (texts, images, logos, design) is the property of Verdenomia S.L. or third parties who have authorized its use, and is protected by intellectual property laws.' },
@@ -40,7 +40,7 @@ export default function LegalPage() {
 
   return (
     <div className="overflow-hidden">
-      <section className="py-20 bg-gradient-to-br from-verde-900 to-verde-800">
+      <section className="py-20 bg-gray-900">
         <div className="container-custom">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-verde-100 text-sm mb-6">

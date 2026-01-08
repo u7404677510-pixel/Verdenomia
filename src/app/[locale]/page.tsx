@@ -112,9 +112,9 @@ export default function HomePage() {
             priority
             quality={90}
           />
-          {/* Subtle overlay for text readability - reduced opacity */}
-          <div className="absolute inset-0 bg-gradient-to-r from-verde-900/80 via-verde-900/50 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-verde-900/40 via-transparent to-transparent" />
+          {/* Subtle overlay for text readability - neutral dark */}
+          <div className="absolute inset-0 bg-gradient-to-r from-gray-900/85 via-gray-900/60 to-gray-900/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 via-transparent to-transparent" />
         </div>
 
         <div className="container-custom relative z-10 py-24 lg:py-32">
@@ -183,7 +183,7 @@ export default function HomePage() {
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <a
-                  href="tel:+34919947586"
+                  href="tel:+34919947360"
                   className="btn-secondary-dark inline-flex items-center justify-center gap-2 px-8 py-4"
                 >
                   <Phone className="w-5 h-5" />
@@ -336,7 +336,7 @@ export default function HomePage() {
               className="bg-white rounded-3xl shadow-2xl shadow-verde-500/10 overflow-hidden"
             >
               {/* Header */}
-              <div className="bg-gradient-to-r from-verde-600 to-verde-700 text-white p-6 md:p-8">
+              <div className="bg-gray-900 text-white p-6 md:p-8">
                 <div className="flex items-center justify-center gap-2 mb-4">
                   <Sparkles className="w-5 h-5 text-yellow-300" />
                   <span className="text-sm font-medium text-verde-100">
@@ -362,7 +362,7 @@ export default function HomePage() {
                       </span>
                       <span>{Math.round((stepNumber[wizardStep] / 5) * 100)}%</span>
                     </div>
-                    <div className="h-2 bg-verde-800/50 rounded-full overflow-hidden">
+                    <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
                       <motion.div
                         className="h-full bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full"
                         initial={{ width: 0 }}
@@ -762,7 +762,7 @@ export default function HomePage() {
           </div>
 
           {/* Techniques */}
-          <div className="bg-gradient-to-br from-verde-800 to-verde-900 rounded-3xl p-8 md:p-12 text-white">
+          <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-8 md:p-12 text-white">
             <div className="flex flex-col md:flex-row items-center justify-between mb-8">
               <h3 className="text-2xl md:text-3xl font-display font-bold mb-4 md:mb-0">
                 {t('home.why.techniquesTitle')}
@@ -783,7 +783,7 @@ export default function HomePage() {
                     fill
                     className="object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-verde-900/80 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent" />
                 </div>
                 <div className="p-6">
                   <div className="flex items-center gap-4 mb-4">
@@ -809,7 +809,7 @@ export default function HomePage() {
                     fill
                     className="object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-verde-900/80 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent" />
                 </div>
                 <div className="p-6">
                   <div className="flex items-center gap-4 mb-4">
@@ -970,24 +970,30 @@ export default function HomePage() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-20 bg-gradient-to-br from-verde-700 to-verde-900 text-white">
+      <section className="py-24 bg-gradient-to-b from-white to-gray-50">
         <div className="container-custom text-center">
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
-            {t('home.cta.title')}
-          </h2>
-          <p className="text-lg text-verde-100 max-w-2xl mx-auto mb-8">
-            {t('home.cta.description')}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="#eligibilidad" className="btn-cta text-lg">
-              {t('home.cta.primary')}
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-            <a href="tel:+34919947586" className="btn-secondary-dark text-lg">
-              <Phone className="w-5 h-5" />
-              +34 919 94 75 86
-            </a>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">
+              {t('home.cta.title')}
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-10">
+              {t('home.cta.description')}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="#eligibilidad" className="btn-primary text-lg px-8 py-4">
+                {t('home.cta.primary')}
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+              <a href="tel:+34919947360" className="btn-secondary text-lg px-8 py-4">
+                <Phone className="w-5 h-5" />
+                +34 919 94 73 60
+              </a>
+            </div>
+          </motion.div>
         </div>
       </section>
     </>

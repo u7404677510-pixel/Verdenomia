@@ -120,7 +120,7 @@ export default function CAEsPage() {
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
-      <section className="relative py-24 bg-gradient-to-br from-verde-900 via-verde-800 to-verde-900 overflow-hidden">
+      <section className="relative py-24 bg-gray-900 overflow-hidden">
         <div className="container-custom relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -327,17 +327,17 @@ export default function CAEsPage() {
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">{t.eligDesc}</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="max-w-2xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="bg-verde-50 rounded-2xl p-8 border border-verde-100"
             >
-              <div className="w-14 h-14 bg-verde-100 rounded-2xl flex items-center justify-center mb-6">
+              <div className="w-14 h-14 bg-verde-100 rounded-2xl flex items-center justify-center mb-6 mx-auto">
                 <Home className="w-7 h-7 text-verde-600" />
               </div>
-              <h3 className="text-xl font-bold text-verde-800 mb-4">{t.b2cTitle}</h3>
+              <h3 className="text-xl font-bold text-verde-800 mb-4 text-center">{t.eligTitle}</h3>
               <ul className="space-y-3">
                 {t.b2cItems.map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
@@ -347,61 +347,33 @@ export default function CAEsPage() {
                 ))}
               </ul>
             </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="bg-verde-50 rounded-2xl p-8 border border-verde-100"
-            >
-              <div className="w-14 h-14 bg-verde-100 rounded-2xl flex items-center justify-center mb-6">
-                <Building2 className="w-7 h-7 text-verde-600" />
-              </div>
-              <h3 className="text-xl font-bold text-verde-800 mb-4">{t.b2bTitle}</h3>
-              <ul className="space-y-3">
-                {t.b2bItems.map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-verde-500 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-700">{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href={`/${locale}/profesionales`}
-                className="inline-flex items-center gap-2 mt-6 text-verde-600 font-semibold hover:text-verde-700 transition-colors"
-              >
-                {t.b2bLink}
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </motion.div>
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-gradient-to-br from-verde-800 to-verde-900">
+      <section className="py-24 bg-gradient-to-b from-white to-gray-50">
         <div className="container-custom text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-6">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-6">
               {t.ctaTitle}
             </h2>
-            <p className="text-xl text-verde-100 mb-8 max-w-2xl mx-auto">{t.ctaDesc}</p>
+            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">{t.ctaDesc}</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href={`/${locale}#eligibilidad`}
-                className="btn-primary bg-white text-verde-800 hover:bg-verde-50 text-lg px-8 py-4"
+                className="btn-primary text-lg px-8 py-4"
               >
                 {t.cta}
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <a
-                href="tel:+34919947586"
-                className="btn-secondary border-white/30 text-white hover:bg-white/10 text-lg px-8 py-4"
+                href="tel:+34919947360"
+                className="btn-secondary text-lg px-8 py-4"
               >
                 <Phone className="w-5 h-5" />
                 {t.callNow}

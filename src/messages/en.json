@@ -1,6 +1,6 @@
 {
   "common": {
-    "phone": "+34 919 94 75 86",
+    "phone": "+34 919 94 73 60",
     "email": "Contacto@verdenomia.es",
     "callNow": "Call now",
     "call": "Call",
@@ -25,9 +25,8 @@
     },
     "nav": {
       "home": "Home",
-      "about": "About us",
-      "caes": "CAE Program",
-      "professionals": "Professionals",
+      "about": "About",
+      "caes": "CAE",
       "faq": "FAQ",
       "contact": "Contact"
     },

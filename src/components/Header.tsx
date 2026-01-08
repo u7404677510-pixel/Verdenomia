@@ -36,7 +36,6 @@ export default function Header() {
     { name: t('header.nav.home'), href: `/${locale}`, icon: Home },
     { name: t('header.nav.about'), href: `/${locale}/nosotros`, icon: Info },
     { name: t('header.nav.caes'), href: `/${locale}/caes`, icon: FileCheck },
-    { name: t('header.nav.professionals'), href: `/${locale}/profesionales`, icon: Building2 },
     { name: t('header.nav.faq'), href: `/${locale}/faq`, icon: HelpCircle },
     { name: t('header.nav.contact'), href: `/${locale}/contacto`, icon: Mail },
   ]
@@ -58,21 +57,19 @@ export default function Header() {
 
   return (
     <>
-      {/* Top bar - Bandeau promotionnel */}
-      <div className="bg-gradient-to-r from-verde-700 via-verde-600 to-verde-700 text-white py-2.5 text-sm relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImEiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHBhdGggZD0iTTAgMGg0MHY0MEgweiIgZmlsbD0ibm9uZSIvPjxjaXJjbGUgY3g9IjIwIiBjeT0iMjAiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNhKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==')] opacity-50" />
-        <div className="container-custom flex justify-center items-center relative">
+      {/* Top bar - Bandeau promotionnel - minimal */}
+      <div className="bg-gray-900 text-white py-2 text-sm">
+        <div className="container-custom flex justify-center items-center">
           <div className="flex items-center gap-3 text-center">
-            <span className="inline-flex items-center gap-2 px-3 py-1 bg-white/20 rounded-full text-xs font-semibold uppercase tracking-wide">
-              <span className="w-2 h-2 bg-green-300 rounded-full animate-pulse" />
+            <span className="inline-flex items-center gap-2 px-2.5 py-0.5 bg-verde-600 rounded-full text-xs font-medium">
               {t('header.banner.badge')}
             </span>
-            <span className="font-medium">
-              🏠 <strong>{t('header.banner.message')}</strong> — {t('header.banner.cta')}
+            <span className="text-gray-300">
+              {t('header.banner.message')} — <span className="text-white font-medium">{t('header.banner.cta')}</span>
             </span>
             <a
-              href="tel:+34919947586"
-              className="hidden md:flex items-center gap-1.5 px-3 py-1 bg-white/10 hover:bg-white/20 rounded-full transition-colors font-medium"
+              href="tel:+34919947360"
+              className="hidden md:flex items-center gap-1.5 px-3 py-1 text-verde-400 hover:text-verde-300 transition-colors font-medium"
             >
               <Phone className="w-3.5 h-3.5" />
               {t('common.call')}
@@ -111,15 +108,14 @@ export default function Header() {
             </Link>
 
             {/* Desktop navigation */}
-            <nav className="hidden lg:flex items-center gap-1">
+            <nav className="hidden lg:flex items-center gap-0.5">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="px-4 py-2 text-gray-700 font-medium rounded-lg hover:bg-verde-50 hover:text-verde-700 transition-colors relative group"
+                  className="px-3 py-2 text-sm text-gray-600 font-medium rounded-lg hover:bg-gray-100 hover:text-gray-900 transition-colors"
                 >
                   {item.name}
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-verde-600 rounded-full transition-all group-hover:w-1/2" />
                 </Link>
               ))}
             </nav>
@@ -162,7 +158,7 @@ export default function Header() {
                   )}
                 </AnimatePresence>
               </div>
-              <a href="tel:+34919947586" className="btn-secondary text-sm py-2.5">
+              <a href="tel:+34919947360" className="btn-secondary text-sm py-2.5">
                 <Phone className="w-4 h-4" />
                 {t('common.call')}
               </a>
@@ -298,7 +294,7 @@ export default function Header() {
                     {t('common.verifyEligibility')}
                   </Link>
                   <a
-                    href="tel:+34919947586"
+                    href="tel:+34919947360"
                     className="btn-secondary w-full justify-center"
                   >
                     <Phone className="w-4 h-4" />

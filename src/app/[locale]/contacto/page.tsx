@@ -38,7 +38,7 @@ export default function ContactPage() {
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-verde-900 via-verde-800 to-verde-900 overflow-hidden">
+      <section className="relative py-20 bg-gray-900 overflow-hidden">
         <div className="container-custom relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -98,7 +98,7 @@ export default function ContactPage() {
 
                 <div className="space-y-4">
                   <a
-                    href="tel:+34919947586"
+                    href="tel:+34919947360"
                     className="flex items-center gap-4 p-4 bg-verde-50 rounded-xl hover:bg-verde-100 transition-colors"
                   >
                     <div className="w-12 h-12 bg-verde-600 rounded-xl flex items-center justify-center">
@@ -107,7 +107,7 @@ export default function ContactPage() {
                     <div>
                       <p className="text-sm text-gray-500">{t('common.call')}</p>
                       <p className="text-lg font-semibold text-verde-800">
-                        +34 919 94 75 86
+                        +34 919 94 73 60
                       </p>
                     </div>
                   </a>
@@ -319,7 +319,6 @@ export default function ContactPage() {
                           {t('contact.form.subjectInfo')}
                         </option>
                         <option value="cita">{t('contact.form.subjectAppointment')}</option>
-                        <option value="b2b">{t('contact.form.subjectB2B')}</option>
                         <option value="otro">{t('contact.form.subjectOther')}</option>
                       </select>
                     </div>

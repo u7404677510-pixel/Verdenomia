@@ -31,7 +31,6 @@ export default function Footer() {
 
   const services = [
     { name: t('footer.serviceB2C'), href: `/${locale}#eligibilidad` },
-    { name: t('footer.serviceB2B'), href: `/${locale}/profesionales` },
   ]
 
   const legal = [
@@ -46,14 +45,16 @@ export default function Footer() {
       type: t('footer.headquarters'),
       address: 'Calle Principal, 123',
       postalCode: '03001 Alicante',
-      phone: '+34 919 94 75 86',
+      phone: '+34 919 94 73 60',
+      showAddress: true,
     },
     {
       city: 'Madrid',
       type: t('footer.commercialOffice'),
-      address: 'Calle Comercio, 45',
-      postalCode: '28001 Madrid',
-      phone: '+34 919 94 75 86',
+      address: '',
+      postalCode: 'España',
+      phone: '+34 919 94 73 60',
+      showAddress: false,
     },
   ]
 
@@ -64,7 +65,7 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="bg-gradient-to-b from-gray-900 to-gray-950 text-gray-300">
+    <footer className="bg-gray-900 text-gray-300">
       {/* Main footer */}
       <div className="container-custom py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
@@ -72,7 +73,7 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <Link href={`/${locale}`} className="flex items-center gap-3 mb-4 group">
               <Image
-                src="/logo.png"
+                src="/logo-white.png"
                 alt="Verdenomia"
                 width={48}
                 height={48}
@@ -92,7 +93,7 @@ export default function Footer() {
 
             <Link
               href={`/${locale}#eligibilidad`}
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-verde-600 to-verde-700 text-white px-5 py-2.5 rounded-full font-semibold text-sm hover:shadow-lg hover:shadow-verde-600/30 transition-all hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 bg-verde-600 text-white px-5 py-2.5 rounded-full font-medium text-sm hover:bg-verde-500 transition-all"
             >
               {t('common.checkEligibility')}
               <ArrowRight className="w-4 h-4" />
@@ -200,7 +201,7 @@ export default function Footer() {
                   </div>
                   <p className="text-xs text-gray-400 flex items-start gap-2 mb-1">
                     <MapPin className="w-3 h-3 mt-0.5 flex-shrink-0 text-verde-500" />
-                    {office.address}, {office.postalCode}
+                    {office.showAddress ? `${office.address}, ${office.postalCode}` : `${office.city}, ${office.postalCode}`}
                   </p>
                   <a
                     href={`tel:${office.phone.replace(/\s/g, '')}`}

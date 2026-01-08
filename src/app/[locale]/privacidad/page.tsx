@@ -40,7 +40,7 @@ export default function PrivacidadPage() {
 
   return (
     <div className="overflow-hidden">
-      <section className="py-20 bg-gradient-to-br from-verde-900 to-verde-800">
+      <section className="py-20 bg-gray-900">
         <div className="container-custom">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-verde-100 text-sm mb-6">
