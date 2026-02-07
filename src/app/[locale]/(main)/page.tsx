@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useLocale, useTranslations } from 'next-intl'
@@ -24,8 +24,11 @@ import {
   Award,
   Users,
   Building,
+  Loader2,
 } from 'lucide-react'
 import { type Locale } from '@/i18n/config'
+import { useUTM } from '@/hooks/useUTM'
+import { trackLead, trackWizardStart, trackWizardStep, trackPhoneClick } from '@/lib/tracking'
 
 type WizardStep = 'q1' | 'q2' | 'q3' | 'q4' | 'form' | 'success'
 
@@ -36,9 +39,10 @@ interface WizardAnswer {
   q4?: string
 }
 
-export default function HomePage() {
+function HomePageContent() {
   const t = useTranslations()
   const locale = useLocale() as Locale
+  const utmParams = useUTM()
   const [wizardStep, setWizardStep] = useState<WizardStep>('q1')
   const [answers, setAnswers] = useState<WizardAnswer>({})
   const [formData, setFormData] = useState({
@@ -49,8 +53,16 @@ export default function HomePage() {
     codigoPostal: '',
     consent: false,
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleAnswer = (question: keyof WizardAnswer, answer: string) => {
+    if (question === 'q1') {
+      trackWizardStart()
+    } else {
+      // Track each intermediate step for funnel analysis
+      const stepMap: Record<string, string> = { q2: '2', q3: '3', q4: '4' }
+      if (stepMap[question]) trackWizardStep(stepMap[question])
+    }
     setAnswers((prev) => ({ ...prev, [question]: answer }))
     const nextStep: Record<string, WizardStep> = {
       q1: 'q2',
@@ -58,12 +70,41 @@ export default function HomePage() {
       q3: 'q4',
       q4: 'form',
     }
-    setWizardStep(nextStep[question] || 'form')
+    const next = nextStep[question] || 'form'
+    setWizardStep(next)
+    // Track when user reaches the contact form step
+    if (next === 'form') trackWizardStep('form')
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setWizardStep('success')
+    setIsSubmitting(true)
+    try {
+      const payload = {
+        source: 'homepage' as const,
+        nombre: formData.nombre,
+        apellido: formData.apellido,
+        email: formData.email,
+        telefono: formData.telefono,
+        codigoPostal: formData.codigoPostal,
+        answers,
+        locale,
+        ...utmParams,
+      }
+      const res = await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      if (res.ok) {
+        trackLead({ source: 'homepage' })
+      }
+    } catch {
+      // Continue
+    } finally {
+      setIsSubmitting(false)
+      setWizardStep('success')
+    }
   }
 
   const goBack = () => {
@@ -184,6 +225,7 @@ export default function HomePage() {
                 </Link>
                 <a
                   href="tel:+34919947360"
+                  onClick={() => trackPhoneClick()}
                   className="btn-secondary-dark inline-flex items-center justify-center gap-2 px-8 py-4"
                 >
                   <Phone className="w-5 h-5" />
@@ -300,28 +342,6 @@ export default function HomePage() {
             <motion.div className="w-1.5 h-1.5 bg-white rounded-full" />
           </motion.div>
         </motion.div>
-      </section>
-
-      {/* Stats band */}
-      <section className="bg-white border-b border-gray-100">
-        <div className="container-custom py-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-            {[
-              { value: '2,500+', label: t('home.stats.homes'), icon: Building },
-              { value: '100%', label: t('home.stats.funded'), icon: Euro },
-              { value: '30%', label: t('home.stats.savings'), icon: Zap },
-              { value: '24h', label: t('home.stats.response'), icon: Clock },
-            ].map((stat, i) => (
-              <div key={i} className="text-center">
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-verde-100 rounded-xl mb-3">
-                  <stat.icon className="w-6 h-6 text-verde-600" />
-                </div>
-                <p className="text-2xl md:text-3xl font-bold text-gray-900">{stat.value}</p>
-                <p className="text-sm text-gray-500">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* Eligibility Wizard */}
@@ -673,9 +693,22 @@ export default function HomePage() {
                           </label>
                         </div>
 
-                        <button type="submit" className="btn-primary w-full justify-center text-lg py-4">
-                          {t('home.wizard.submitRequest')}
-                          <ArrowRight className="w-5 h-5" />
+                        <button
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="btn-primary w-full justify-center text-lg py-4"
+                        >
+                          {isSubmitting ? (
+                            <>
+                              <Loader2 className="w-5 h-5 animate-spin" />
+                              {t('home.wizard.submitting')}
+                            </>
+                          ) : (
+                            <>
+                              {t('home.wizard.submitRequest')}
+                              <ArrowRight className="w-5 h-5" />
+                            </>
+                          )}
                         </button>
                       </form>
                     </motion.div>
@@ -707,6 +740,28 @@ export default function HomePage() {
                 </AnimatePresence>
               </div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats band */}
+      <section className="bg-white border-b border-gray-100">
+        <div className="container-custom py-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+            {[
+              { value: '2,500+', label: t('home.stats.homes'), icon: Building },
+              { value: '100%', label: t('home.stats.funded'), icon: Euro },
+              { value: '30%', label: t('home.stats.savings'), icon: Zap },
+              { value: '24h', label: t('home.stats.response'), icon: Clock },
+            ].map((stat, i) => (
+              <div key={i} className="text-center">
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-verde-100 rounded-xl mb-3">
+                  <stat.icon className="w-6 h-6 text-verde-600" />
+                </div>
+                <p className="text-2xl md:text-3xl font-bold text-gray-900">{stat.value}</p>
+                <p className="text-sm text-gray-500">{stat.label}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -988,7 +1043,11 @@ export default function HomePage() {
                 {t('home.cta.primary')}
                 <ArrowRight className="w-5 h-5" />
               </Link>
-              <a href="tel:+34919947360" className="btn-secondary text-lg px-8 py-4">
+              <a
+                href="tel:+34919947360"
+                onClick={() => trackPhoneClick()}
+                className="btn-secondary text-lg px-8 py-4"
+              >
                 <Phone className="w-5 h-5" />
                 +34 919 94 73 60
               </a>
@@ -1000,3 +1059,10 @@ export default function HomePage() {
   )
 }
 
+export default function HomePage() {
+  return (
+    <Suspense>
+      <HomePageContent />
+    </Suspense>
+  )
+}

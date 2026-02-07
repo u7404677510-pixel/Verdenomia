@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useLocale, useTranslations } from 'next-intl'
@@ -13,12 +13,16 @@ import {
   Send,
   CheckCircle2,
   ArrowRight,
+  Loader2,
 } from 'lucide-react'
 import { type Locale } from '@/i18n/config'
+import { useUTM } from '@/hooks/useUTM'
+import { trackLead, trackPhoneClick } from '@/lib/tracking'
 
-export default function ContactPage() {
+function ContactPageContent() {
   const t = useTranslations()
   const locale = useLocale() as Locale
+  const utmParams = useUTM()
   const [formData, setFormData] = useState({
     nombre: '',
     apellido: '',
@@ -28,11 +32,37 @@ export default function ContactPage() {
     mensaje: '',
   })
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log(formData)
-    setIsSubmitted(true)
+    setIsSubmitting(true)
+    try {
+      const payload = {
+        source: 'contact' as const,
+        nombre: formData.nombre,
+        apellido: formData.apellido,
+        email: formData.email,
+        telefono: formData.telefono,
+        asunto: formData.asunto,
+        mensaje: formData.mensaje,
+        locale,
+        ...utmParams,
+      }
+      const res = await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      if (res.ok) {
+        trackLead({ source: 'contact' })
+      }
+    } catch {
+      // Continue
+    } finally {
+      setIsSubmitting(false)
+      setIsSubmitted(true)
+    }
   }
 
   return (
@@ -99,6 +129,7 @@ export default function ContactPage() {
                 <div className="space-y-4">
                   <a
                     href="tel:+34919947360"
+                    onClick={() => trackPhoneClick()}
                     className="flex items-center gap-4 p-4 bg-verde-50 rounded-xl hover:bg-verde-100 transition-colors"
                   >
                     <div className="w-12 h-12 bg-verde-600 rounded-xl flex items-center justify-center">
@@ -360,10 +391,15 @@ export default function ContactPage() {
 
                     <button
                       type="submit"
+                      disabled={isSubmitting}
                       className="btn-primary w-full justify-center text-lg py-4"
                     >
-                      <Send className="w-5 h-5" />
-                      {t('common.sendMessage')}
+                      {isSubmitting ? (
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                      ) : (
+                        <Send className="w-5 h-5" />
+                      )}
+                      {isSubmitting ? t('common.sending') : t('common.sendMessage')}
                     </button>
                   </form>
                 )}
@@ -427,3 +463,10 @@ export default function ContactPage() {
   )
 }
 
+export default function ContactPage() {
+  return (
+    <Suspense>
+      <ContactPageContent />
+    </Suspense>
+  )
+}

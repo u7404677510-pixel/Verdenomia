@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { trackWhatsApp } from '@/lib/tracking'
 
 const WHATSAPP_NUMBER = '34919947360'
 const DEFAULT_MESSAGE = '¡Hola! Me gustaría obtener información sobre el aislamiento de mi vivienda.'
@@ -47,6 +48,7 @@ export default function WhatsAppButton() {
         target="_blank"
         rel="noopener noreferrer"
         className="relative group"
+        onClick={() => trackWhatsApp()}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         whileHover={{ scale: 1.1 }}
