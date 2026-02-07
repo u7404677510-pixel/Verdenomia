@@ -19,6 +19,7 @@ import {
   Building2,
   HelpCircle,
   Mail,
+  BookOpen,
 } from 'lucide-react'
 import { locales, localeNames, localeFlags, type Locale } from '@/i18n/config'
 
@@ -36,6 +37,7 @@ export default function Header() {
     { name: t('header.nav.home'), href: `/${locale}`, icon: Home },
     { name: t('header.nav.about'), href: `/${locale}/nosotros`, icon: Info },
     { name: t('header.nav.caes'), href: `/${locale}/caes`, icon: FileCheck },
+    { name: 'Blog', href: `/${locale}/blog`, icon: BookOpen },
     { name: t('header.nav.faq'), href: `/${locale}/faq`, icon: HelpCircle },
     { name: t('header.nav.contact'), href: `/${locale}/contacto`, icon: Mail },
   ]

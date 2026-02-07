@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation'
 import '../globals.css'
 import MetaPixel from '@/components/tracking/MetaPixel'
 import GoogleAds from '@/components/tracking/GoogleAds'
+import { OrganizationSchema } from '@/components/SchemaMarkup'
 import { locales, type Locale } from '@/i18n/config'
 
 const outfit = Outfit({
@@ -26,7 +27,7 @@ export function generateStaticParams() {
 
 export const metadata: Metadata = {
   title: {
-    default: 'Verdenomia - Aislamiento 100% Gratis con CAE',
+    default: 'Aislamiento de Ático Gratis | 100% Financiado por CAE - Verdenomia',
     template: '%s | Verdenomia',
   },
   description:
@@ -49,7 +50,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'es_ES',
     url: 'https://verdenomia.es',
-    title: 'Verdenomia - Aislamiento 100% Gratis con CAE',
+    title: 'Aislamiento de Ático Gratis | 100% Financiado por CAE - Verdenomia',
     description:
       'Aísla el suelo de tu buhardilla 100% gratis gracias a los CAE. Ahorra hasta un 30% en tu factura.',
     siteName: 'Verdenomia',
@@ -64,7 +65,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Verdenomia - Aislamiento 100% Gratis con CAE',
+    title: 'Aislamiento de Ático Gratis | 100% Financiado por CAE - Verdenomia',
     description: 'Aísla el suelo de tu buhardilla 100% gratis gracias a los CAE.',
     images: ['/og-image.png'],
   },
@@ -118,6 +119,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       <body className="font-sans antialiased">
         <MetaPixel />
         <GoogleAds />
+        <OrganizationSchema />
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>

@@ -25,12 +25,16 @@ export default function Footer() {
     { name: t('header.nav.home'), href: `/${locale}` },
     { name: t('header.nav.about'), href: `/${locale}/nosotros` },
     { name: t('header.nav.caes'), href: `/${locale}/caes` },
+    { name: 'Blog', href: `/${locale}/blog` },
     { name: t('header.nav.faq'), href: `/${locale}/faq` },
     { name: t('header.nav.contact'), href: `/${locale}/contacto` },
+    { name: locale === 'es' ? 'Transparencia' : 'Transparency', href: `/${locale}/transparencia` },
   ]
 
   const services = [
     { name: t('footer.serviceB2C'), href: `/${locale}#eligibilidad` },
+    { name: locale === 'es' ? 'Aislamiento Madrid' : 'Insulation Madrid', href: `/${locale}/aislamiento-madrid` },
+    { name: locale === 'es' ? 'Aislamiento Alicante' : 'Insulation Alicante', href: `/${locale}/aislamiento-alicante` },
   ]
 
   const legal = [
