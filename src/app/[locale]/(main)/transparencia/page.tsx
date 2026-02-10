@@ -26,7 +26,7 @@ const content = {
     companyDesc: 'Datos verificables de nuestra empresa.',
     companyItems: [
       { label: 'Razón social', value: 'Verdenomia S.L.' },
-      { label: 'CIF', value: 'B-XXXXXXXX' },
+      { label: 'CIF', value: 'B22963375' },
       { label: 'Empresa registrada', value: 'Registro Mercantil de Alicante' },
       { label: 'Seguro RC', value: 'Seguro de responsabilidad civil vigente' },
     ],
@@ -79,7 +79,7 @@ const content = {
     companyDesc: 'Verifiable data about our company.',
     companyItems: [
       { label: 'Company name', value: 'Verdenomia S.L.' },
-      { label: 'Tax ID (CIF)', value: 'B-XXXXXXXX' },
+      { label: 'Tax ID (CIF)', value: 'B22963375' },
       { label: 'Registered company', value: 'Commercial Registry of Alicante' },
       { label: 'Liability insurance', value: 'Active civil liability insurance' },
     ],

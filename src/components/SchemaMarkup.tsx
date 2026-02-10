@@ -36,9 +36,9 @@ export function OrganizationSchema() {
         email: 'contacto@verdenomia.es',
         address: {
           '@type': 'PostalAddress',
-          streetAddress: 'Calle Principal, 123',
+          streetAddress: 'Avenida Maisonnave 41, 3°',
           addressLocality: 'Alicante',
-          postalCode: '03001',
+          postalCode: '03003',
           addressCountry: 'ES',
         },
         areaServed: {

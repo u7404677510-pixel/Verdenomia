@@ -47,8 +47,8 @@ export default function Footer() {
     {
       city: 'Alicante',
       type: t('footer.headquarters'),
-      address: 'Calle Principal, 123',
-      postalCode: '03001 Alicante',
+      address: 'Avenida Maisonnave 41, 3°',
+      postalCode: '03003 Alicante',
       phone: '+34 919 94 73 60',
       showAddress: true,
     },

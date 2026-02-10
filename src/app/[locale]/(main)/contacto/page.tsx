@@ -200,9 +200,9 @@ function ContactPageContent() {
                       </span>
                     </div>
                     <p className="text-gray-600 text-sm">
-                      Calle Principal, 123
+                      Avenida Maisonnave 41, 3°
                       <br />
-                      03001 Alicante
+                      03003 Alicante
                     </p>
                   </div>
                   <div className="p-4 bg-gray-50 rounded-xl">

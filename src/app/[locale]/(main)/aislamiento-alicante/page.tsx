@@ -44,8 +44,8 @@ const content = {
     teamDesc: 'Nuestra sede central está en Alicante. Aquí es donde todo empezó.',
     officeType: 'Sede Central',
     officeCity: 'Alicante',
-    officeAddress: 'Calle Principal, 123',
-    officePostalCity: '03001 Alicante',
+    officeAddress: 'Avenida Maisonnave 41, 3°',
+    officePostalCity: '03003 Alicante',
     officePhone: '+34 919 94 73 60',
     officeEmail: 'Contacto@verdenomia.es',
     testimonialTitle: 'Lo que dicen nuestros clientes en Alicante',
@@ -78,8 +78,8 @@ const content = {
     teamDesc: 'Our headquarters is in Alicante. This is where it all started.',
     officeType: 'Headquarters',
     officeCity: 'Alicante',
-    officeAddress: 'Calle Principal, 123',
-    officePostalCity: '03001 Alicante',
+    officeAddress: 'Avenida Maisonnave 41, 3°',
+    officePostalCity: '03003 Alicante',
     officePhone: '+34 919 94 73 60',
     officeEmail: 'Contacto@verdenomia.es',
     testimonialTitle: 'What our Alicante customers say',
@@ -100,7 +100,7 @@ export default function AislamientoAlicantePage() {
 
   return (
     <div className="overflow-hidden">
-      <LocalBusinessSchema city="Alicante" address="Calle Principal, 123" postalCode="03001" type="Sede Central" />
+      <LocalBusinessSchema city="Alicante" address="Avenida Maisonnave 41, 3°" postalCode="03003" type="Sede Central" />
 
       {/* Hero */}
       <section className="relative py-24 bg-gray-900 overflow-hidden">

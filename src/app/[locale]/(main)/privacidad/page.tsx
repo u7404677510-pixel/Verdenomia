@@ -10,7 +10,7 @@ const content = {
     title: 'Política de privacidad',
     updated: 'Última actualización: Diciembre 2025',
     sections: [
-      { title: '1. Responsable del tratamiento', content: 'VERDENOMIA S.L., con CIF B-12345678, domicilio en Calle Principal, 123, 03001 Alicante, España. Email: Contacto@verdenomia.es' },
+      { title: '1. Responsable del tratamiento', content: 'VERDENOMIA SL, con CIF B22963375, domicilio en Avenida Maisonnave 41, 3°, 03003 Alicante, España. Email: Contacto@verdenomia.es' },
       { title: '2. Finalidad del tratamiento', content: 'Sus datos personales serán tratados para: gestionar su solicitud de información, evaluar su elegibilidad al programa CAE, programar visitas técnicas, enviar comunicaciones comerciales (con su consentimiento), y cumplir obligaciones legales.' },
       { title: '3. Base legal', content: 'El tratamiento se basa en: su consentimiento, la ejecución de un contrato o medidas precontractuales, y el cumplimiento de obligaciones legales aplicables.' },
       { title: '4. Destinatarios', content: 'Sus datos podrán ser comunicados a: empresas energéticas para la gestión de los CAE, administraciones públicas cuando sea legalmente exigido, y proveedores de servicios que actúan como encargados del tratamiento.' },
@@ -23,7 +23,7 @@ const content = {
     title: 'Privacy Policy',
     updated: 'Last updated: December 2025',
     sections: [
-      { title: '1. Data Controller', content: 'VERDENOMIA S.L., with CIF B-12345678, located at Calle Principal, 123, 03001 Alicante, Spain. Email: Contacto@verdenomia.es' },
+      { title: '1. Data Controller', content: 'VERDENOMIA SL, with CIF B22963375, located at Avenida Maisonnave 41, 3°, 03003 Alicante, Spain. Email: Contacto@verdenomia.es' },
       { title: '2. Purpose of Processing', content: 'Your personal data will be processed to: manage your information request, assess your eligibility for the CAE program, schedule technical visits, send commercial communications (with your consent), and comply with legal obligations.' },
       { title: '3. Legal Basis', content: 'Processing is based on: your consent, the execution of a contract or pre-contractual measures, and compliance with applicable legal obligations.' },
       { title: '4. Recipients', content: 'Your data may be communicated to: energy companies for CAE management, public administrations when legally required, and service providers acting as data processors.' },

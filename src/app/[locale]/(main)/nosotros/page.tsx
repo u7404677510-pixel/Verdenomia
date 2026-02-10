@@ -300,7 +300,7 @@ export default function NosotrosPage() {
                     {t.headquarters}
                   </span>
                   <h3 className="text-lg font-bold text-verde-800">Alicante</h3>
-                  <p className="text-gray-600 mt-2">Calle Principal, 123<br />03001 Alicante</p>
+                  <p className="text-gray-600 mt-2">Avenida Maisonnave 41, 3°<br />03003 Alicante</p>
                   <div className="mt-3 space-y-1">
                     <a href="tel:+34919947360" className="flex items-center gap-2 text-verde-600 hover:text-verde-700">
                       <Phone className="w-4 h-4" />+34 919 94 73 60
